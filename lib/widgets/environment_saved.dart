@@ -1,25 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:zwc/controllers/dashboard_controller.dart';
-import 'package:zwc/model/certificate_model.dart';
-import 'package:zwc/screens/dashboard/certificate.dart';
 
 class EnvironmentSavedWidget extends StatefulWidget {
   const EnvironmentSavedWidget(
-      {super.key,
-      required this.environmentSaving,
-      required this.environmentSavingLifetime,
-      required this.dateRange});
-  final Map environmentSaving, environmentSavingLifetime;
+      {super.key, required this.environmentSaving, required this.dateRange});
+  final List<CollectionModel> environmentSaving;
   final DateTimeRange dateRange;
   @override
   State<EnvironmentSavedWidget> createState() => _EnvironmentSavedWidgetState();
 }
 
 class _EnvironmentSavedWidgetState extends State<EnvironmentSavedWidget> {
-  Map currentSelection = {};
+  List<CollectionModel> currentSelection = [];
   @override
   void initState() {
     currentSelection = widget.environmentSaving;
@@ -34,6 +28,7 @@ class _EnvironmentSavedWidgetState extends State<EnvironmentSavedWidget> {
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
@@ -44,124 +39,76 @@ class _EnvironmentSavedWidgetState extends State<EnvironmentSavedWidget> {
                 fontSize: 18,
               ),
             ),
-            currentSelection == widget.environmentSaving
-                ? RichText(
-                    text: TextSpan(
-                        style: const TextStyle(
-                          color: Colors.grey,
-                        ),
-                        children: [
-                        TextSpan(
-                            text: DateFormat("d MMMM")
-                                .format(widget.dateRange.start)),
-                        const TextSpan(text: " - "),
-                        TextSpan(
-                            text: DateFormat("d MMMM")
-                                .format(widget.dateRange.end)),
-                      ]))
-                : RichText(
-                    text: TextSpan(
-                        style: const TextStyle(
-                          color: Colors.grey,
-                        ),
-                        children: [
-                        const TextSpan(text: "Your Lifetime savings"),
-                      ])),
-            currentSelection == widget.environmentSaving
-                ? TextButton(
-                    onPressed: () {
-                      currentSelection = widget.environmentSavingLifetime;
-                      setState(() {});
-                    },
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                            Colors.green.withOpacity(0.1))),
-                    child: const Text("See Lifetime Savings"),
-                  )
-                : TextButton(
-                    onPressed: () {
-                      currentSelection = widget.environmentSaving;
-                      setState(() {});
-                    },
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                            Colors.green.withOpacity(0.1))),
-                    child: const Text("See Current Savings"),
+            RichText(
+                text: TextSpan(
+                    style: const TextStyle(
+                      color: Colors.grey,
+                    ),
+                    children: [
+                  TextSpan(
+                      text:
+                          DateFormat("d MMMM").format(widget.dateRange.start)),
+                  const TextSpan(text: " - "),
+                  TextSpan(
+                      text: DateFormat("d MMMM").format(widget.dateRange.end)),
+                ])),
+            const SizedBox(height: 16),
+            Container(
+              height: 200,
+              child: RawScrollbar(
+                trackVisibility: true,
+                thumbColor: Colors.green.shade100,
+                thickness: 5,
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    mainAxisSpacing: 20,
+                    crossAxisSpacing: 20,
+                    crossAxisCount: 3,
                   ),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                EnvironmentalSavingWidgets(
-                  title: "Carbon",
-                  icon: Icons.local_fire_department,
-                  value: currentSelection["Carbon Emmission"] ?? 0,
-                  units: "KG",
-                  color: Colors.orange,
-                ),
-                EnvironmentalSavingWidgets(
-                  title: "Landfill",
-                  icon: Icons.delete,
-                  value: currentSelection["Landfill Saves"] ?? 0,
-                  units: "M3",
-                  color: Colors.redAccent,
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                EnvironmentalSavingWidgets(
-                  title: "Oil",
-                  icon: Icons.local_gas_station,
-                  value: currentSelection["Oil Conserves"] ?? 0,
-                  units: "Ltrs",
-                  color: Colors.blueGrey,
-                ),
-                EnvironmentalSavingWidgets(
-                  title: "Water",
-                  icon: Icons.water_drop,
-                  value: currentSelection["Water Saved"] ?? 0,
-                  units: "Ltrs",
-                  color: Colors.blue,
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                EnvironmentalSavingWidgets(
-                  title: "Trees",
-                  icon: Icons.eco,
-                  value: currentSelection["Trees Saved"] ?? 0,
-                  units: "",
-                  color: Colors.green,
-                ),
-                GetBuilder<DashboardController>(builder: (controller) {
-                  if (controller.certificateLoading)
-                    return Expanded(
-                      child: Center(
-                        child: CircularProgressIndicator(),
+                  itemCount: widget.environmentSaving.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      decoration: BoxDecoration(
+                          color: index == 0
+                              ? Colors.blue
+                              : index == 1
+                                  ? Colors.red
+                                  : index == 2
+                                      ? Colors.purple
+                                      : index == 3
+                                          ? Colors.indigo
+                                          : index == 4
+                                              ? Colors.brown
+                                              : Colors.grey,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            widget.environmentSaving[index].label.toString(),
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.montserrat(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 10),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            widget.environmentSaving[index].data.toString(),
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.montserrat(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 10),
+                          ),
+                        ],
                       ),
                     );
-                  return Expanded(
-                      child: TextButton.icon(
-                    onPressed: () async {
-                      CertificateModel? model =
-                          await controller.getCertificate();
-                      if (model == null) return;
-                      Get.to(() => CertificateScreen(model));
-                    },
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                            Colors.green.withOpacity(0.1))),
-                    label: const Text("Certificate"),
-                    icon: Icon(Icons.workspace_premium),
-                  ));
-                })
-              ],
+                  },
+                ),
+              ),
             ),
           ],
         ),
@@ -181,7 +128,7 @@ class EnvironmentalSavingWidgets extends StatelessWidget {
   }) : super(key: key);
   final String title, units;
   final IconData icon;
-  final double value;
+  final dynamic value;
   final Color color;
   @override
   Widget build(BuildContext context) {

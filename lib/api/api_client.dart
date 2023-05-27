@@ -12,8 +12,6 @@ class APIClient {
       "Content-Type": "application/json",
       "Client-Service": AppConstants.appKey,
       "Auth-Key": AppConstants.appSecret,
-      // "uid" : "3",
-      // "token" : "640328ac60b35",
       if (SharedPreferenceSingleTon.getData("uid") != null)
         "uid": SharedPreferenceSingleTon.getData("uid") ?? "",
       if (SharedPreferenceSingleTon.getData("token") != null)

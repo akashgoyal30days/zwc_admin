@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/login_ctrl.dart';
-import '../routes.dart';
 import 'custom_text_field.dart';
 
 class PasswordLogin extends StatefulWidget {
@@ -23,9 +22,9 @@ class _PasswordLoginState extends State<PasswordLogin> {
   String? phoneNumberError, passwordError;
 
   validateInputs() {
-    phoneNumberError = widget.phoneNumberController.text.length != 10
-        ? "Should be 10 digits"
-        : null;
+    phoneNumberError = widget.phoneNumberController.text.contains("@")
+        ? null
+        : "Enter valid Email";
     passwordError =
         widget.passwordController.text.isEmpty ? "Password required" : null;
     setState(() {});
@@ -52,9 +51,9 @@ class _PasswordLoginState extends State<PasswordLogin> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CustomTextField(
-              hint: "Phone Number",
-              icon: Icons.phone,
-              inputType: TextInputType.phone,
+              hint: "Email",
+              icon: Icons.email,
+              inputType: TextInputType.name,
               error: phoneNumberError,
               enabled: !controller.showLoading,
               controller: widget.phoneNumberController,
@@ -78,9 +77,12 @@ class _PasswordLoginState extends State<PasswordLogin> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        TextButton(
-                          onPressed: widget.changetoOTP,
-                          child: const Text("Instead login with OTP"),
+                        // TextButton(
+                        //   onPressed: widget.changetoOTP,
+                        //   child: const Text("Instead login with OTP"),
+                        // ),
+                        SizedBox(
+                          height: 20,
                         ),
                         TextButton(
                           style: ButtonStyle(
@@ -97,26 +99,7 @@ class _PasswordLoginState extends State<PasswordLogin> {
                           onPressed: login,
                           child: const Text("Log in"),
                         ),
-                        Row(
-                          children: const [
-                            Expanded(child: Divider(endIndent: 8)),
-                            Text("or", style: TextStyle(color: Colors.grey)),
-                            Expanded(child: Divider(indent: 8)),
-                          ],
-                        ),
-                        TextButton(
-                          style: ButtonStyle(
-                            shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(6),
-                                  side: const BorderSide(color: Colors.green)),
-                            ),
-                          ),
-                          onPressed: () {
-                            Get.offNamed(ZWCRoutes.toRegistrationScreen);
-                          },
-                          child: const Text("Sign up"),
-                        ),
+                       
                         const SizedBox(height: 10),
                       ],
                     ),

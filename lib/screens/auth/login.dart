@@ -59,8 +59,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     const TopPart(
-                      titleWord: "Welcome",
-                      subTitleWord: "Back",
+                      titleWord: "Welcome to",
+                      subTitleWord: "ZWC Admin Panel",
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.5,

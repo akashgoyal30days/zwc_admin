@@ -2,22 +2,23 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:get/get.dart';
+import 'package:zwc/screens/dashboard/dashboard.dart';
 
 import '../api/api_client.dart';
 import '../api/urls.dart';
 import '../data/shared_preference.dart';
-import '../screens/auth/login_success.dart';
 
 class LoginController extends GetxController {
-  bool showLoading = false,
-      otpMode = false,
-      gettingOTP = false;
+  bool showLoading = false, otpMode = false, gettingOTP = false;
   String? errorMessage;
 
   loginSuccess(Map body) async {
     await SharedPreferenceSingleTon.setData("token", body["token"]);
     await SharedPreferenceSingleTon.setData("uid", body["uid"]);
-    Get.off(() => const LoginSuccess());
+    await SharedPreferenceSingleTon.setData("userroleid", body["user_role_id"]);
+    await SharedPreferenceSingleTon.setData("dashboard_branch_id", "0");
+
+    Get.off(() => const DashboardScreen());
   }
 
   passwordLogin(String phoneNumber, String password) async {

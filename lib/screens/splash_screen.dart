@@ -7,7 +7,6 @@ import 'package:zwc/routes.dart';
 
 // This screen is visible for less than 500 ms
 class SplashScreen extends StatelessWidget {
-  
   SplashScreen({super.key}) {
     initializeApp();
   }
@@ -17,13 +16,13 @@ class SplashScreen extends StatelessWidget {
     await SharedPreferenceSingleTon.initialize();
 
     // Navigates to screens based on user authorisation status
-    Get.offAllNamed(
-      SharedPreferenceFunctions.isUserLoggedin()
-          ? (SharedPreferenceFunctions.userNeedsRegistration()
-              ? ZWCRoutes.toNewUserProfile
-              : ZWCRoutes.toHomeScreen)
-          : ZWCRoutes.toWelcomeScreen,
-    );
+    Future.delayed(Duration(seconds: 1), () {
+      Get.offAllNamed(
+        SharedPreferenceFunctions.isUserLoggedin()
+            ? ZWCRoutes.toHomeScreen
+            : ZWCRoutes.toLoginScreen,
+      );
+    });
   }
 
   @override

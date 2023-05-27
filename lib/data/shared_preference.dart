@@ -22,6 +22,12 @@ class SharedPreferenceFunctions {
   static bool isUserLoggedin() =>
       SharedPreferenceSingleTon.getData("uid") != null;
 
+  Future<String?> getdashboardbranchid() async {
+    var dbbranchid =
+        await SharedPreferenceSingleTon.getData("dashboard_branch_id");
+    return dbbranchid;
+  }
+
   static bool userNeedsRegistration() =>
       SharedPreferenceFunctions.getUserData("is_address_ent") != "1";
 

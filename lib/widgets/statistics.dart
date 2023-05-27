@@ -7,8 +7,10 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import '../controllers/dashboard_controller.dart';
 
 class Statistics extends StatefulWidget {
-  const Statistics({super.key, required this.dateRange});
+  const Statistics(
+      {super.key, required this.dateRange, required this.wastecollected});
   final DateTimeRange dateRange;
+  final String wastecollected;
   @override
   State<Statistics> createState() => _StatisticsState();
 }
@@ -26,35 +28,91 @@ class _StatisticsState extends State<Statistics> {
           padding: const EdgeInsets.all(16),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(
-              "Statistics",
-              style: GoogleFonts.montserrat(
-                color: Colors.green,
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
-            ),
-            RichText(
-                text: TextSpan(
-                    style: const TextStyle(
-                      color: Colors.grey,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Statistics",
+                      style: GoogleFonts.montserrat(
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
                     ),
-                    children: [
-                  TextSpan(
-                      text:
-                          DateFormat("d MMMM").format(widget.dateRange.start)),
-                  const TextSpan(text: " - "),
-                  TextSpan(
-                      text: DateFormat("d MMMM").format(widget.dateRange.end)),
-                ])),
+                    RichText(
+                        text: TextSpan(
+                            style: const TextStyle(
+                              color: Colors.grey,
+                            ),
+                            children: [
+                          TextSpan(
+                              text: DateFormat("d MMMM")
+                                  .format(widget.dateRange.start)),
+                          const TextSpan(text: " - "),
+                          TextSpan(
+                              text: DateFormat("d MMMM")
+                                  .format(widget.dateRange.end)),
+                        ])),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.circle,
+                          size: 15,
+                          color: Colors.orange,
+                        ),
+                        SizedBox(
+                          width: 2,
+                        ),
+                        Text(
+                          "Dry Waste",
+                          style: GoogleFonts.montserrat(
+                            color: Colors.orange,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.circle,
+                          size: 15,
+                          color: Colors.yellow,
+                        ),
+                        SizedBox(
+                          width: 2,
+                        ),
+                        Text(
+                          "Wet Waste",
+                          style: GoogleFonts.montserrat(
+                            color: Colors.yellow,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                )
+              ],
+            ),
             const SizedBox(height: 12),
             Row(
               children: [
                 Expanded(
                   child: OutlinedButton(
                     onPressed: () {
-                      viewGraphIndex = 0;
-                      setState(() {});
+                      // viewGraphIndex = 0;
+                      // setState(() {});
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
@@ -62,69 +120,59 @@ class _StatisticsState extends State<Statistics> {
                       foregroundColor: MaterialStateProperty.all(
                           viewGraphIndex == 0 ? Colors.white : Colors.green),
                     ),
-                    child: const FittedBox(child: Text("Waste Deposited")),
+                    child: FittedBox(
+                        child: Text(widget.wastecollected.toString() == "null"
+                            ? "Waste Collected"
+                            : "${widget.wastecollected.toString()}")),
                   ),
                 ),
                 const SizedBox(width: 6),
-                Expanded(
-                  child: OutlinedButton(
-                    onPressed: () {
-                      viewGraphIndex = 1;
-                      setState(() {});
-                    },
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
-                          viewGraphIndex == 1 ? Colors.green : Colors.white),
-                      foregroundColor: MaterialStateProperty.all(
-                          viewGraphIndex == 1 ? Colors.white : Colors.green),
-                    ),
-                    child: const FittedBox(
-                      child: Text(
-                        "Category",
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                ),
+                // Expanded(
+                //   child: OutlinedButton(
+                //     onPressed: () {
+                //       viewGraphIndex = 1;
+                //       setState(() {});
+                //     },
+                //     style: ButtonStyle(
+                //       backgroundColor: MaterialStateProperty.all(
+                //           viewGraphIndex == 1 ? Colors.green : Colors.white),
+                //       foregroundColor: MaterialStateProperty.all(
+                //           viewGraphIndex == 1 ? Colors.white : Colors.green),
+                //     ),
+                //     child: const FittedBox(
+                //       child: Text(
+                //         "Dry waste Collection",
+                //         textAlign: TextAlign.center,
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
             const SizedBox(height: 16),
             Visibility(
               visible: viewGraphIndex == 0,
               child: SfCartesianChart(
-                // Initialize category axis
-
                 primaryXAxis: CategoryAxis(),
+                primaryYAxis: NumericAxis(
+                  isVisible: true
+                ),
                 series: [
-                  LineSeries<WasteCollectedModel, String>(
-                    color: Colors.green,
-                    // Bind data source
-                    dataSource: controller.wasteCollected,
-                    xValueMapper: (WasteCollectedModel sales, _) =>
-                        DateFormat("d/M").format(
-                      DateTime(
-                        int.parse(sales.label.substring(0, 4)),
-                        int.parse(sales.label.substring(5, 7)),
-                        int.parse(sales.label.substring(8)),
-                      ),
-                    ),
-                    yValueMapper: (WasteCollectedModel sales, _) => sales.data,
-                  )
-                ],
-              ),
-            ),
-            Visibility(
-              visible: viewGraphIndex == 1,
-              child: SfCartesianChart(
-                primaryXAxis: CategoryAxis(),
-                series: [
-                  BarSeries<CollectionModel, String>(
-                    color: Colors.green,
-                    dataSource: controller.collection,
-                    xValueMapper: (CollectionModel colections, _) =>
-                        colections.label,
-                    yValueMapper: (CollectionModel colections, _) =>
-                        colections.data,
+                  ColumnSeries<drywetWasteCollectedModel, String>(
+                    color: Colors.yellow,
+                    dataSource: controller.drywetwastecollection,
+                    xValueMapper: (drywetWasteCollectedModel sales, _) =>
+                        sales.label.toString(),
+                    yValueMapper: (drywetWasteCollectedModel sales, _) =>
+                        sales.data,
+                  ),
+                  ColumnSeries<drywetWasteCollectedModel, String>(
+                    color: Colors.orange,
+                    dataSource: controller.drywetwastecollection,
+                    xValueMapper: (drywetWasteCollectedModel sales, _) =>
+                        sales.label.toString(),
+                    yValueMapper: (drywetWasteCollectedModel sales, _) =>
+                        sales.data2,
                   )
                 ],
               ),

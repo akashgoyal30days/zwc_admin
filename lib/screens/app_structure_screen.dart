@@ -63,20 +63,10 @@ class _AppStructureScreenState extends State<AppStructureScreen> {
           controller: pageController,
           physics: const NeverScrollableScrollPhysics(),
           children: [
-            DashboardScreen(
-              toWalletScreen: () {
-                screen = 2;
-                setState(() {});
-                pageController.animateToPage(
-                  2,
-                  duration: const Duration(milliseconds: 250),
-                  curve: Curves.easeIn,
-                );
-              },
-            ),
-            const PickUpRequest(),
-            const RewardsScreen(),
-            const SettingsScreenNew()
+            DashboardScreen(),
+            // const PickUpRequest(),
+            // const RewardsScreen(),
+            // const SettingsScreenNew()
           ],
         ),
       ),
@@ -99,24 +89,24 @@ class _AppStructureScreenState extends State<AppStructureScreen> {
               selectedColor: Colors.green,
               unselectedColor: Colors.green,
             ),
-            SalomonBottomBarItem(
-              icon: const Icon(Icons.local_shipping),
-              title: const Text("Pickup"),
-              selectedColor: Colors.green,
-              unselectedColor: Colors.green,
-            ),
-            SalomonBottomBarItem(
-              icon: const Icon(Icons.account_balance_wallet_rounded),
-              title: const Text("Rewards"),
-              selectedColor: Colors.green,
-              unselectedColor: Colors.green,
-            ),
-            SalomonBottomBarItem(
-              icon: const Icon(Icons.settings),
-              title: const Text("Settings"),
-              selectedColor: Colors.grey,
-              unselectedColor: Colors.grey,
-            ),
+            // SalomonBottomBarItem(
+            //   icon: const Icon(Icons.local_shipping),
+            //   title: const Text("Pickup"),
+            //   selectedColor: Colors.green,
+            //   unselectedColor: Colors.green,
+            // ),
+            // SalomonBottomBarItem(
+            //   icon: const Icon(Icons.account_balance_wallet_rounded),
+            //   title: const Text("Rewards"),
+            //   selectedColor: Colors.green,
+            //   unselectedColor: Colors.green,
+            // ),
+            // SalomonBottomBarItem(
+            //   icon: const Icon(Icons.settings),
+            //   title: const Text("Settings"),
+            //   selectedColor: Colors.grey,
+            //   unselectedColor: Colors.grey,
+            // ),
           ]),
     );
   }

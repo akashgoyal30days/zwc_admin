@@ -1,43 +1,67 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:zwc/controllers/dashboard_controller.dart';
+import 'package:zwc/data/shared_preference.dart';
+import 'package:zwc/screens/Navigation_drawer.dart';
+import 'package:zwc/widgets/Members_data.dart';
 
 import '../../widgets/environment_saved.dart';
 import '../../widgets/statistics.dart';
 
 class DashboardScreen extends StatefulWidget {
-  const DashboardScreen({super.key, required this.toWalletScreen});
-  final VoidCallback toWalletScreen;
+  const DashboardScreen({
+    super.key,
+  });
   @override
   State<DashboardScreen> createState() => _DashboardScreenState();
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
   DateTimeRange dateRange = DateTimeRange(
-      start: DateTime(2023, DateTime.now().month, DateTime.now().day - 14),
+      start: DateTime(2023, DateTime.now().month, DateTime.now().day - 60),
       end: DateTime.now());
+
+  final DashboardController dashboardcontroller =
+      Get.put(DashboardController());
+  String? branchdropdownvalue;
+  String? apicallbranchid;
   @override
   void initState() {
-    var controller = Get.find<DashboardController>();
-    if (controller.wasteCollected.isEmpty) controller.getDashboard(dateRange);
+    dashboardcontroller.getallbranches().then((value) => {
+          getdashboardbranchid(),
+          if (branchdropdownvalue.toString() != "null" &&
+              branchdropdownvalue.toString() != "0")
+            {apicallbranchid = branchdropdownvalue.toString()}
+          else
+            {apicallbranchid = "0"},
+          if (dashboardcontroller.drywetwastecollection.isEmpty)
+            {
+              dashboardcontroller.getDashboard(
+                  dateRange, apicallbranchid.toString(), "month")
+            }
+        });
+
     super.initState();
+  }
+
+  getdashboardbranchid() async {
+    branchdropdownvalue =
+        SharedPreferenceSingleTon.getData("dashboard_branch_id").toString();
+    log(branchdropdownvalue.toString());
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DashboardController>(builder: (controller) {
       return Scaffold(
+        drawer: Navigationdrawer(),
         appBar: AppBar(
-          // leading: Padding(
-          //   padding: const EdgeInsets.all(8.0),
-          //   child: Image.asset(
-          //     "assets/images/logo_only.png",
-          //     color: Colors.white,
-          //   ),
-          // ),
           title: Text(
             "Dashboard",
             style: GoogleFonts.montserrat(
@@ -59,7 +83,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 if (dateRange.start != dates.start ||
                     dateRange.end != dates.end) {
                   dateRange = dates;
-                  controller.getDashboard(dateRange);
+                  controller.getDashboard(dateRange, "0", "month");
                   setState(() {});
                 }
               },
@@ -73,97 +97,119 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     padding: EdgeInsets.only(top: 18.0),
                     child: Center(child: CircularProgressIndicator()),
                   )
-                : ListView(
-                    children: [
-                      const SizedBox(height: 16),
-                      Wallet(
-                        controller.rewards,
-                        toWalletScreen: widget.toWalletScreen,
-                      ),
-                      EnvironmentSavedWidget(
-                        dateRange: dateRange,
-                        environmentSaving: controller.environmentSaved,
-                        environmentSavingLifetime:
-                            controller.environmentSavedLifetime,
-                      ),
-                      const SizedBox(height: 16),
-                      Statistics(dateRange: dateRange),
-                      if (controller.lastUpdatedOn != null)
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 16, right: 16, bottom: 8),
+                : RawScrollbar(
+                    thumbColor: Colors.green,
+                    trackVisibility: true,
+                    thickness: 5,
+                    child: ListView(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Card(
+                          elevation: 10,
+                          margin: EdgeInsets.symmetric(horizontal: 12),
+                          child: Container(
                               child: Center(
-                                child: Text(
-                                  "last updated at ${DateFormat("hh:mm").format(controller.lastUpdatedOn!)}",
-                                  style: TextStyle(
-                                      color: Colors.grey.shade400,
-                                      fontStyle: FontStyle.italic,
-                                      fontSize: 12),
+                            child: DropdownButton(
+                              value: branchdropdownvalue,
+                              underline: SizedBox(),
+                              style: GoogleFonts.montserrat(
+                                  color: Colors.green,
+                                  fontWeight: FontWeight.bold),
+                              hint: Text(
+                                "All Branches",
+                                style: GoogleFonts.montserrat(
+                                    color: Colors.green,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              items: dashboardcontroller.getallbranchdata!.data!
+                                  .map((item) {
+                                return DropdownMenuItem(
+                                  value: item.id,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "${item.branchName}",
+                                            style: GoogleFonts.montserrat(
+                                                color: Colors.green,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Text(
+                                            "${item.id}",
+                                            style: GoogleFonts.montserrat(
+                                                color: Colors.transparent,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 2,
+                                      ),
+                                      Text(
+                                        "${item.area}${item.city}",
+                                        style: TextStyle(color: Colors.black38),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }).toList(),
+                              onChanged: (value) async {
+                                await SharedPreferenceSingleTon.setData(
+                                    "dashboard_branch_id", value.toString());
+                                setState(() {
+                                  branchdropdownvalue = value;
+
+                                  dashboardcontroller.getDashboard(
+                                      dateRange, value.toString(), "month");
+                                });
+                              },
+                            ),
+                          )),
+                        ),
+                        const SizedBox(height: 16),
+                        MembersDataScreen(
+                            dateRange: dateRange,
+                            membersdata: controller.membersData),
+                        const SizedBox(height: 16),
+                        EnvironmentSavedWidget(
+                          dateRange: dateRange,
+                          environmentSaving: controller.environmentSaved,
+                        ),
+                        const SizedBox(height: 16),
+                        Statistics(
+                          dateRange: dateRange,
+                          wastecollected:
+                              controller.drywet_Waste_collected.toString(),
+                        ),
+                        if (controller.lastUpdatedOn != null)
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 16, right: 16, bottom: 8),
+                                child: Center(
+                                  child: Text(
+                                    "last updated at ${DateFormat("hh:mm").format(controller.lastUpdatedOn!)}",
+                                    style: TextStyle(
+                                        color: Colors.grey.shade400,
+                                        fontStyle: FontStyle.italic,
+                                        fontSize: 12),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                    ],
+                            ],
+                          ),
+                      ],
+                    ),
                   )),
       );
     });
-  }
-}
-
-class Wallet extends StatelessWidget {
-  const Wallet(
-    this.rewards, {
-    Key? key,
-    required this.toWalletScreen,
-  }) : super(key: key);
-  final String rewards;
-  final VoidCallback toWalletScreen;
-  @override
-  Widget build(BuildContext context) {
-    try {
-      if (double.parse(rewards) < 0.01) return SizedBox();
-    } catch (e) {}
-    return Card(
-      color: Colors.green,
-      elevation: 10,
-      margin: const EdgeInsets.only(left: 12, right: 12, bottom: 16),
-      child: ListTile(
-        onTap: toWalletScreen,
-        leading: Icon(
-          Icons.account_balance_wallet,
-          color: Colors.white,
-        ),
-        title: Text(
-          "My Rewards",
-          style: GoogleFonts.montserrat(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          ),
-        ),
-        subtitle: RichText(
-          text: TextSpan(
-            style: GoogleFonts.lato(color: Colors.white),
-            children: [
-              TextSpan(
-                text: rewards,
-                style: const TextStyle(
-                  fontSize: 20,
-                ),
-              ),
-              const TextSpan(text: " Pts"),
-            ],
-          ),
-        ),
-        trailing: const Icon(
-          Icons.arrow_forward_ios_rounded,
-          color: Colors.white,
-        ),
-      ),
-    );
   }
 }

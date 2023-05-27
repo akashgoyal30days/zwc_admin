@@ -1,5 +1,7 @@
 class URLS {
-  static const baseURL = r"https://api.zerowastecitizen.in/";
+  static const baseURL = "https://backend.zerowastecitizen.in/";
+    // static const baseURL = "https://api.zerowastecitizen.in/";
+
 
   // registration URL
   static const registerCustomer = "public/user/register",
@@ -7,12 +9,12 @@ class URLS {
       registrationResendOTP = "public/user/resend_otp";
 
   // login URL
-  static const userNameLogin = "public/user/login",
+  static const userNameLogin = "user/login",
       loginViaOTP = "public/user/getlogin_otp",
       verifyLoginOTP = "public/user/loginOTP";
 
   // get Users details
-  static const getUserDetails = "public/userDetail/get_profile";
+  static const getUserDetails = "user/profile";
 
   //certificate
   static const certificate = "public/userDetail/certificate";
@@ -28,7 +30,26 @@ class URLS {
       getAreas = "public/general/areas",
       updateUserProfile = "public/userDetail/update_user",
       updateBranch = "public/userDetail/assign_branch",
-      getBranches = "public/general/branch";
+      getBranches = "public/general/branch",
+      getalldashboardbranches = "dashboard/branches",
+      getallcitizenlist = "dashboard/users",
+      getallproductlist = "product",
+      getallwasteprocess = "wasteProcess",
+      uploaduserwastedata = "transaction/accept_waste",
+      uploadwasteprocessingdata  = "transaction/stock_journal",
+      adsegregationwaste = "transaction/addsegregate",
+      addsegregatedatabyQR = "transaction/addsegregateqr",
+      getallstocktransferslist = "transaction/transfers",
+      getallsaleslist = "transaction/sales",
+      getpurchselist = "transaction/purchases",
+      getallcollectionlist = "wastePickupRequests/deposits",
+      getallprocesswastelist = "transaction/sjournals",
+      getsegregatedlist = "transaction/segregates",
+      getstocktransferdetailsbyid = "transaction/get_transfer",
+      getmymodules = "userRole/get_modules",
+      uploadsaleswastedata  = "transaction/sale",
+      uploadpurchasewastedata = "transaction/purchase",
+      uploadstocktransferdata = "transaction/stock_transfer";
 
   //rewards
   static const currentBalance = "public/userPassbook/current_balance",
@@ -43,7 +64,7 @@ class URLS {
       newRequests = "public/wastePickupRequests/request";
 
   //dashboard
-  static const getDashboard = "public/dashboard";
+  static const getDashboard = "dashboard";
 
   //bank details
   static const updateBank = "public/userDetail/update_user_bank_details";
