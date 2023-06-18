@@ -39,8 +39,8 @@ class _UserBankDetailsState extends State<UserBankDetails> {
                   Center(
                     child: ElevatedButton.icon(
                       onPressed: () {
-                        Get.to(() =>
-                            UpdateBankDetailsScreen(BankModel(data: {})));
+                        Get.to(
+                            () => UpdateBankDetailsScreen(BankModel(data: {})));
                       },
                       icon: Icon(Icons.add),
                       label: Text("Add Bank Details"),
@@ -68,7 +68,7 @@ class _UserBankDetailsState extends State<UserBankDetails> {
                                 alignment: Alignment.centerLeft,
                                 child: Text(
                                   "Bank details",
-                                  style: GoogleFonts.montserrat(
+                                  style: GoogleFonts.roboto(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.green,
                                     fontSize: 18,

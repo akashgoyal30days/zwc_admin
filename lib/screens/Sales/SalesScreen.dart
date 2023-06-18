@@ -25,7 +25,7 @@ class _Collection_managementState extends State<SalesScreen> {
         centerTitle: true,
         title: Text(
           "Sales",
-          style: GoogleFonts.montserrat(
+          style: GoogleFonts.roboto(
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
@@ -49,7 +49,7 @@ class _Collection_managementState extends State<SalesScreen> {
                     children: [
                       Text(
                         "Get Sales Details",
-                        style: GoogleFonts.montserrat(
+                        style: GoogleFonts.roboto(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
@@ -80,7 +80,7 @@ class _Collection_managementState extends State<SalesScreen> {
                     children: [
                       Text(
                         "Add Sales Details",
-                        style: GoogleFonts.montserrat(
+                        style: GoogleFonts.roboto(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),

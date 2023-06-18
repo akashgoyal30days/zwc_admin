@@ -21,7 +21,7 @@ class _Collection_managementState extends State<Collection_management> {
         centerTitle: true,
         title: Text(
           "Collection Management",
-          style: GoogleFonts.montserrat(
+          style: GoogleFonts.roboto(
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
@@ -45,7 +45,7 @@ class _Collection_managementState extends State<Collection_management> {
                     children: [
                       Text(
                         "Get Collection Details",
-                        style: GoogleFonts.montserrat(
+                        style: GoogleFonts.roboto(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
@@ -76,7 +76,7 @@ class _Collection_managementState extends State<Collection_management> {
                     children: [
                       Text(
                         "Add Collection Details",
-                        style: GoogleFonts.montserrat(
+                        style: GoogleFonts.roboto(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),

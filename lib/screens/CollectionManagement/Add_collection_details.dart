@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:zwc/controllers/collection_management_controller.dart';
+import 'package:zwc/model/Getallcitizenlistmodel.dart';
 import 'package:zwc/screens/CollectionManagement/Add_Collection_waste_details.dart';
 
 import '../../data/shared_preference.dart';
@@ -21,6 +22,9 @@ class _addcollectiondetailsState extends State<addcollectiondetails> {
 
   final CollectionManagementController collectioncontroller =
       Get.put(CollectionManagementController());
+  final TextEditingController citizencontroller = TextEditingController();
+
+  List<Data> fileteredcictizenlist = [];
   Future<DateTime?> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
         context: context,
@@ -37,14 +41,42 @@ class _addcollectiondetailsState extends State<addcollectiondetails> {
 
   @override
   void initState() {
-    collectioncontroller.getallcitizen();
+    collectioncontroller.getallcitizen().then((value) => {setcitizen()});
     getdashboardbranchid();
     super.initState();
+  }
+
+  setcitizen() {
+    fileteredcictizenlist =
+        collectioncontroller.getallcitizenlist!.data!.toList();
+    setState(() {});
   }
 
   String? dbbranchid;
   getdashboardbranchid() async {
     dbbranchid = await SharedPreferenceSingleTon.getData("dashboard_branch_id");
+  }
+
+  void filterItems(String query) {
+    fileteredcictizenlist.clear();
+    if (query.isNotEmpty) {
+      collectioncontroller.getallcitizenlist!.data!.forEach((element) {
+        if (element.name
+                .toString()
+                .toLowerCase()
+                .contains(query.toString().toLowerCase()) ||
+            element.phoneNum
+                .toString()
+                .toLowerCase()
+                .contains(query.toString().toLowerCase())) {
+          fileteredcictizenlist.add(element);
+        }
+      });
+    } else {
+      fileteredcictizenlist
+          .addAll(collectioncontroller.getallcitizenlist!.data!);
+    }
+    setState(() {});
   }
 
   @override
@@ -55,7 +87,7 @@ class _addcollectiondetailsState extends State<addcollectiondetails> {
           centerTitle: true,
           title: Text(
             "Add Collection",
-            style: GoogleFonts.montserrat(
+            style: GoogleFonts.roboto(
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
@@ -79,7 +111,7 @@ class _addcollectiondetailsState extends State<addcollectiondetails> {
                                 horizontal: 10, vertical: 5),
                             child: Text(
                               "Select Date",
-                              style: GoogleFonts.montserrat(
+                              style: GoogleFonts.roboto(
                                   color: Colors.green,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 15),
@@ -103,7 +135,7 @@ class _addcollectiondetailsState extends State<addcollectiondetails> {
                                       Text(
                                         DateFormat("yyyy-MM-dd")
                                             .format(_selectdate),
-                                        style: GoogleFonts.montserrat(
+                                        style: GoogleFonts.roboto(
                                           color: Colors.green,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -129,7 +161,7 @@ class _addcollectiondetailsState extends State<addcollectiondetails> {
                           horizontal: 10, vertical: 5),
                       child: Text(
                         "Is Donation",
-                        style: GoogleFonts.montserrat(
+                        style: GoogleFonts.roboto(
                             color: Colors.green,
                             fontWeight: FontWeight.bold,
                             fontSize: 15),
@@ -143,11 +175,11 @@ class _addcollectiondetailsState extends State<addcollectiondetails> {
                         child: DropdownButton(
                           value: _isdonation,
                           underline: SizedBox(),
-                          style: GoogleFonts.montserrat(
+                          style: GoogleFonts.roboto(
                               color: Colors.green, fontWeight: FontWeight.bold),
                           hint: Text(
                             "Is Donation",
-                            style: GoogleFonts.montserrat(
+                            style: GoogleFonts.roboto(
                                 color: Colors.green,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -162,13 +194,13 @@ class _addcollectiondetailsState extends State<addcollectiondetails> {
                                     children: [
                                       Text(
                                         "${item}",
-                                        style: GoogleFonts.montserrat(
+                                        style: GoogleFonts.roboto(
                                             color: Colors.green,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
                                         "${item}",
-                                        style: GoogleFonts.montserrat(
+                                        style: GoogleFonts.roboto(
                                             color: Colors.transparent,
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -193,71 +225,58 @@ class _addcollectiondetailsState extends State<addcollectiondetails> {
                           horizontal: 10, vertical: 5),
                       child: Text(
                         "Select Citizen",
-                        style: GoogleFonts.montserrat(
+                        style: GoogleFonts.roboto(
                             color: Colors.green,
                             fontWeight: FontWeight.bold,
                             fontSize: 15),
                       ),
                     ),
-                    Card(
-                      elevation: 5,
-                      margin: EdgeInsets.symmetric(horizontal: 10),
-                      child: Container(
-                          child: Center(
-                        child: DropdownButton(
-                          value: _iscitizen,
-                          underline: SizedBox(),
-                          style: GoogleFonts.montserrat(
-                              color: Colors.green, fontWeight: FontWeight.bold),
-                          hint: Text(
-                            "Select Citizen",
-                            style: GoogleFonts.montserrat(
-                                color: Colors.green,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          items: collectioncontroller.getallcitizenlist!.data!
-                              .map((item) {
-                            return DropdownMenuItem(
-                              value: item.id,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "${item.name}",
-                                        style: GoogleFonts.montserrat(
-                                            color: Colors.green,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        "${item.id}",
-                                        style: GoogleFonts.montserrat(
-                                            color: Colors.transparent,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 2,
-                                  ),
-                                  Text(
-                                    "${item.phoneNum}",
-                                    style: GoogleFonts.montserrat(
-                                        color: Colors.black45,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                            );
-                          }).toList(),
-                          onChanged: (value) async {
-                            _iscitizen = value.toString();
-                            setState(() {});
-                          },
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: TextField(
+                        controller: citizencontroller,
+                        onChanged: (value) {
+                          filterItems(value.toString());
+                        },
+                        decoration: InputDecoration(
+                          labelText: 'Search Citizen',
+                          border: OutlineInputBorder(),
                         ),
-                      )),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Container(
+                          color: Colors.grey.shade200,
+                          child: ListView.builder(
+                            itemCount: fileteredcictizenlist.length,
+                            itemBuilder: (context, index) {
+                              return InkWell(
+                                onTap: () {
+                                  citizencontroller.text =
+                                      fileteredcictizenlist[index]
+                                          .name
+                                          .toString();
+
+                                  _iscitizen = fileteredcictizenlist[index]
+                                      .id
+                                      .toString();
+                                  setState(() {});
+                                },
+                                child: ListTile(
+                                  title: Text(fileteredcictizenlist[index]
+                                      .name
+                                      .toString()),
+                                  subtitle: Text(fileteredcictizenlist[index]
+                                      .phoneNum
+                                      .toString()),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
                     ),
                     Spacer(),
                     Container(

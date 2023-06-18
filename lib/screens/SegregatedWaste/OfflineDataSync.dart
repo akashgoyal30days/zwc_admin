@@ -49,7 +49,7 @@ class _OfflineDataSyncState extends State<OfflineDataSync> {
                     children: [
                       Text(
                         "You have ${localqrdata.length} Entries available",
-                        style: GoogleFonts.montserrat(
+                        style: GoogleFonts.roboto(
                             fontSize: 20,
                             color: Colors.green,
                             fontWeight: FontWeight.bold),
@@ -60,7 +60,7 @@ class _OfflineDataSyncState extends State<OfflineDataSync> {
                       Text(
                         "Please click on Data sync to upload data",
                         textAlign: TextAlign.center,
-                        style: GoogleFonts.montserrat(
+                        style: GoogleFonts.roboto(
                             fontSize: 18,
                             color: Colors.grey.shade400,
                             fontWeight: FontWeight.bold),
@@ -130,7 +130,7 @@ class _OfflineDataSyncState extends State<OfflineDataSync> {
                                 ),
                                 Text(
                                   "Data Sync",
-                                  style: GoogleFonts.montserrat(
+                                  style: GoogleFonts.roboto(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold),
                                 )

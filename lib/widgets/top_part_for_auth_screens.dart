@@ -30,7 +30,7 @@ class TopPart extends StatelessWidget {
             children: [
               Text(
                 titleWord,
-                style: GoogleFonts.montserrat(
+                style: GoogleFonts.roboto(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 30,
@@ -39,7 +39,7 @@ class TopPart extends StatelessWidget {
               const SizedBox(height: 4),
               Text(
                 subTitleWord,
-                style: GoogleFonts.montserrat(
+                style: GoogleFonts.roboto(
                   color: Colors.white,
                   fontWeight: FontWeight.w500,
                   fontSize: 30,

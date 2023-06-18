@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:zwc/screens/CollectionManagement/Add_collection_details.dart';
-import 'package:zwc/screens/CollectionManagement/Get_collection_details.dart';
 import 'package:zwc/screens/Navigation_drawer.dart';
 import 'package:zwc/screens/StockTransfer/Add_stocktransfer_details.dart';
 import 'package:zwc/screens/StockTransfer/getstocktransferdetails.dart';
@@ -23,7 +21,7 @@ class _Collection_managementState extends State<StockTransferScreen> {
         centerTitle: true,
         title: Text(
           "Stock Transfer",
-          style: GoogleFonts.montserrat(
+          style: GoogleFonts.roboto(
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
@@ -47,7 +45,7 @@ class _Collection_managementState extends State<StockTransferScreen> {
                     children: [
                       Text(
                         "Get Stock Transfer Details",
-                        style: GoogleFonts.montserrat(
+                        style: GoogleFonts.roboto(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
@@ -78,7 +76,7 @@ class _Collection_managementState extends State<StockTransferScreen> {
                     children: [
                       Text(
                         "Add Stock Transfer Details",
-                        style: GoogleFonts.montserrat(
+                        style: GoogleFonts.roboto(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),

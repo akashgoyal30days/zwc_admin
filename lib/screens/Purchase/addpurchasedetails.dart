@@ -56,7 +56,7 @@ class _addcollectiondetailsState extends State<AddPurchaseDeatils> {
           centerTitle: true,
           title: Text(
             "Add Purchase Details",
-            style: GoogleFonts.montserrat(
+            style: GoogleFonts.roboto(
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
@@ -80,7 +80,7 @@ class _addcollectiondetailsState extends State<AddPurchaseDeatils> {
                                 horizontal: 10, vertical: 5),
                             child: Text(
                               "Select Date",
-                              style: GoogleFonts.montserrat(
+                              style: GoogleFonts.roboto(
                                   color: Colors.green,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 15),
@@ -104,7 +104,7 @@ class _addcollectiondetailsState extends State<AddPurchaseDeatils> {
                                       Text(
                                         DateFormat("yyyy-MM-dd")
                                             .format(_selectdate),
-                                        style: GoogleFonts.montserrat(
+                                        style: GoogleFonts.roboto(
                                           color: Colors.green,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -133,7 +133,7 @@ class _addcollectiondetailsState extends State<AddPurchaseDeatils> {
                           horizontal: 10, vertical: 5),
                       child: Text(
                         "Select Branch",
-                        style: GoogleFonts.montserrat(
+                        style: GoogleFonts.roboto(
                             color: Colors.green,
                             fontWeight: FontWeight.bold,
                             fontSize: 15),
@@ -147,11 +147,11 @@ class _addcollectiondetailsState extends State<AddPurchaseDeatils> {
                         child: DropdownButton(
                           value: branchdropdownvalue,
                           underline: SizedBox(),
-                          style: GoogleFonts.montserrat(
+                          style: GoogleFonts.roboto(
                               color: Colors.green, fontWeight: FontWeight.bold),
                           hint: Text(
                             "Select Branch",
-                            style: GoogleFonts.montserrat(
+                            style: GoogleFonts.roboto(
                                 color: Colors.green,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -167,13 +167,13 @@ class _addcollectiondetailsState extends State<AddPurchaseDeatils> {
                                     children: [
                                       Text(
                                         "${item.branchName}",
-                                        style: GoogleFonts.montserrat(
+                                        style: GoogleFonts.roboto(
                                             color: Colors.green,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
                                         "${item.id}",
-                                        style: GoogleFonts.montserrat(
+                                        style: GoogleFonts.roboto(
                                             color: Colors.transparent,
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -225,7 +225,7 @@ class _addcollectiondetailsState extends State<AddPurchaseDeatils> {
 
                             Get.deleteAll();
                           } else {
-                            Get.snackbar("Collection", "Please Select Citizen",
+                            Get.snackbar("Purchase", "Please Select Branch",
                                 backgroundColor: Colors.green.shade900,
                                 colorText: Colors.white,
                                 borderColor: Colors.white,

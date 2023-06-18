@@ -36,7 +36,7 @@ class _StatisticsState extends State<Statistics> {
                   children: [
                     Text(
                       "Statistics",
-                      style: GoogleFonts.montserrat(
+                      style: GoogleFonts.roboto(
                         color: Colors.green,
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -72,7 +72,7 @@ class _StatisticsState extends State<Statistics> {
                         ),
                         Text(
                           "Dry Waste",
-                          style: GoogleFonts.montserrat(
+                          style: GoogleFonts.roboto(
                             color: Colors.orange,
                             fontWeight: FontWeight.bold,
                           ),
@@ -94,7 +94,7 @@ class _StatisticsState extends State<Statistics> {
                         ),
                         Text(
                           "Wet Waste",
-                          style: GoogleFonts.montserrat(
+                          style: GoogleFonts.roboto(
                             color: Colors.yellow,
                             fontWeight: FontWeight.bold,
                           ),
@@ -155,8 +155,11 @@ class _StatisticsState extends State<Statistics> {
               child: SfCartesianChart(
                 primaryXAxis: CategoryAxis(),
                 primaryYAxis: NumericAxis(
-                  isVisible: true
-                ),
+                    title: AxisTitle(
+                        text: "Kilograms (kgs)",
+                        textStyle: TextStyle(
+                            color: Colors.green, fontWeight: FontWeight.bold)),
+                    isVisible: true),
                 series: [
                   ColumnSeries<drywetWasteCollectedModel, String>(
                     color: Colors.yellow,

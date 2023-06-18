@@ -7,6 +7,7 @@ import 'package:zwc/model/Getallproductlistmodel.dart';
 import 'package:zwc/model/Getdashboardbranchesmodel.dart';
 import 'package:zwc/model/addstocktransferwastedatamodel.dart';
 import 'package:zwc/model/getallpurchselistmodel.dart';
+import 'package:zwc/model/getpurchaseviewdetailsmodel.dart';
 
 import '../api/api_client.dart';
 import '../api/urls.dart';
@@ -117,5 +118,24 @@ class PurchaseController extends GetxController {
       update();
     }
     return getallpurchaselist;
+  }
+
+  GetPurchaseViewDetailsModel? getpurchasedetailsdatabyid;
+  Future<GetPurchaseViewDetailsModel?> getpurchasedetailsbyid({
+    String? docid,
+  }) async {
+    update();
+    String? branchid =
+        await SharedPreferenceSingleTon.getData("dashboard_branch_id");
+
+    var response =
+        await APIClient.post(URLS.getpurchasedetailsbyid, body: {"id": docid});
+    var body = json.decode(response.body);
+    if (response.statusCode == 200) {
+      getpurchasedetailsdatabyid = GetPurchaseViewDetailsModel.fromJson(body);
+      log(body.toString());
+      update();
+    }
+    return getpurchasedetailsdatabyid;
   }
 }

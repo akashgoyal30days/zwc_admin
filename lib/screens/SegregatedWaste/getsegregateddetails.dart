@@ -77,7 +77,7 @@ class _GetCollectionDetailsScreenState extends State<GetSegregatedDetails> {
           centerTitle: true,
           title: Text(
             "Get Segregated Details",
-            style: GoogleFonts.montserrat(
+            style: GoogleFonts.roboto(
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
@@ -229,8 +229,8 @@ class _GetCollectionDetailsScreenState extends State<GetSegregatedDetails> {
                                                             .data![index]
                                                             .cdate
                                                             .toString(),
-                                                        style: GoogleFonts
-                                                            .montserrat(
+                                                        style:
+                                                            GoogleFonts.roboto(
                                                                 color: Colors
                                                                     .green,
                                                                 fontWeight:
@@ -273,7 +273,7 @@ class _GetCollectionDetailsScreenState extends State<GetSegregatedDetails> {
                                                     children: [
                                                       Text("Segregation Status",
                                                           style: GoogleFonts
-                                                              .montserrat(
+                                                              .roboto(
                                                             color: Colors.green,
                                                             fontWeight:
                                                                 FontWeight.bold,
@@ -289,7 +289,7 @@ class _GetCollectionDetailsScreenState extends State<GetSegregatedDetails> {
                                                               ? "YES"
                                                               : "No",
                                                           style: GoogleFonts
-                                                              .montserrat(
+                                                              .roboto(
                                                                   color: Colors
                                                                       .blue,
                                                                   fontWeight:

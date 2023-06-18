@@ -31,7 +31,7 @@ class _DepositsScreenState extends State<DepositsScreen> {
         appBar: AppBar(
           title: Text(
             "Deposits",
-            style: GoogleFonts.montserrat(
+            style: GoogleFonts.roboto(
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),

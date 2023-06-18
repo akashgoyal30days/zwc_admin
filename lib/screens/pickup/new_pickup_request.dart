@@ -99,7 +99,7 @@ class _NewPickupRequestState extends State<NewPickupRequest> {
         appBar: AppBar(
           title: Text(
             "New Request",
-            style: GoogleFonts.montserrat(
+            style: GoogleFonts.roboto(
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
@@ -135,7 +135,7 @@ class _NewPickupRequestState extends State<NewPickupRequest> {
               children: [
                 Text(
                   "Select Pickup Date",
-                  style: GoogleFonts.montserrat(
+                  style: GoogleFonts.roboto(
                       color: Colors.green,
                       fontWeight: FontWeight.bold,
                       fontSize: 16),
@@ -189,7 +189,7 @@ class _NewPickupRequestState extends State<NewPickupRequest> {
               children: [
                 Text(
                   "Attach an Image",
-                  style: GoogleFonts.montserrat(
+                  style: GoogleFonts.roboto(
                       color: Colors.green,
                       fontWeight: FontWeight.bold,
                       fontSize: 16),
@@ -257,7 +257,7 @@ class _NewPickupRequestState extends State<NewPickupRequest> {
             const SizedBox(height: 16),
             Text(
               "Tenative Weight",
-              style: GoogleFonts.montserrat(
+              style: GoogleFonts.roboto(
                   color: Colors.green,
                   fontWeight: FontWeight.bold,
                   fontSize: 16),
@@ -270,7 +270,7 @@ class _NewPickupRequestState extends State<NewPickupRequest> {
             SizedBox(height: 16),
             Text(
               "Time slot",
-              style: GoogleFonts.montserrat(
+              style: GoogleFonts.roboto(
                   color: Colors.green,
                   fontWeight: FontWeight.bold,
                   fontSize: 16),

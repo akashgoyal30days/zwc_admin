@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:zwc/controllers/Stock_transfer_controller.dart';
+import 'package:zwc/screens/StockTransfer/GetstockTransferViewdetails.dart';
+import 'package:zwc/widgets/progressloader.dart';
 
 import '../../data/shared_preference.dart';
 
@@ -77,7 +79,7 @@ class _GetCollectionDetailsScreenState extends State<GetStockTransferDetails> {
           centerTitle: true,
           title: Text(
             "Get Stock Details",
-            style: GoogleFonts.montserrat(
+            style: GoogleFonts.roboto(
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
@@ -231,8 +233,8 @@ class _GetCollectionDetailsScreenState extends State<GetStockTransferDetails> {
                                                             .data![index]
                                                             .tdate
                                                             .toString(),
-                                                        style: GoogleFonts
-                                                            .montserrat(
+                                                        style:
+                                                            GoogleFonts.roboto(
                                                                 color: Colors
                                                                     .green,
                                                                 fontWeight:
@@ -265,8 +267,8 @@ class _GetCollectionDetailsScreenState extends State<GetStockTransferDetails> {
                                                     children: [
                                                       Text(
                                                         "₹${controller.getallstocktransferlist!.data![index].transactionAmount.toString()}",
-                                                        style: GoogleFonts
-                                                            .montserrat(
+                                                        style:
+                                                            GoogleFonts.roboto(
                                                                 color: Colors
                                                                     .green,
                                                                 fontWeight:
@@ -275,17 +277,25 @@ class _GetCollectionDetailsScreenState extends State<GetStockTransferDetails> {
                                                       ),
                                                       InkWell(
                                                         onTap: () {
+                                                          Progressloaders
+                                                              .progressloaderdailog(
+                                                                  context);
                                                           stocktransfercontroller
                                                               .getstocktransferdetailsbyid(
                                                                   docid: controller
                                                                       .getallstocktransferlist!
                                                                       .data![
                                                                           index]
-                                                                      .id);
+                                                                      .id)
+                                                              .then((value) => {
+                                                                    Get.back(),
+                                                                    Get.to(
+                                                                        GetStockTransferViewDetailsScreen())
+                                                                  });
                                                         },
                                                         child: Text(
                                                           "View Details",
-                                                          style: GoogleFonts.montserrat(
+                                                          style: GoogleFonts.roboto(
                                                               color:
                                                                   Colors.green,
                                                               fontWeight:

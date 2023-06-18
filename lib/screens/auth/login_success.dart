@@ -15,7 +15,8 @@ class LoginSuccess extends StatefulWidget {
 class _LoginSuccessState extends State<LoginSuccess> {
   @override
   void initState() {
-    Get.put<LogInSuccessController>(LogInSuccessController()).getUserProfile(true);
+    Get.put<LogInSuccessController>(LogInSuccessController())
+        .getUserProfile(true);
     super.initState();
   }
 
@@ -52,7 +53,7 @@ class _LoginSuccessState extends State<LoginSuccess> {
                           fit: BoxFit.scaleDown,
                           child: Text(
                             "You're now part of the revolution",
-                            style: GoogleFonts.montserrat(
+                            style: GoogleFonts.roboto(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 30,
@@ -62,7 +63,7 @@ class _LoginSuccessState extends State<LoginSuccess> {
                         const SizedBox(height: 8),
                         Text(
                           "Request a pickup for your recyclable items, sit back and relax, and let us handle the rest. Together, we can create a greener tomorrow.",
-                          style: GoogleFonts.montserrat(
+                          style: GoogleFonts.roboto(
                             color: Colors.white54,
                           ),
                         ),

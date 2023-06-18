@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:zwc/controllers/purchasecontroller.dart';
+import 'package:zwc/screens/Purchase/GetpurchaseViewDeatils.dart';
+import 'package:zwc/widgets/progressloader.dart';
 
 import '../../data/shared_preference.dart';
 
@@ -17,7 +19,7 @@ class GetpurchasedetailsScreen extends StatefulWidget {
 }
 
 class _GetCollectionDetailsScreenState extends State<GetpurchasedetailsScreen> {
-  final PurchaseController salescontroller = Get.put(PurchaseController());
+  final PurchaseController purchasecontroller = Get.put(PurchaseController());
 
   String? FromDate = "From Date";
   String? ToDate = "To Date";
@@ -76,7 +78,7 @@ class _GetCollectionDetailsScreenState extends State<GetpurchasedetailsScreen> {
           centerTitle: true,
           title: Text(
             "Get Purchase Details",
-            style: GoogleFonts.montserrat(
+            style: GoogleFonts.roboto(
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
@@ -172,7 +174,7 @@ class _GetCollectionDetailsScreenState extends State<GetpurchasedetailsScreen> {
                                   borderColor: Colors.white,
                                   borderWidth: 1);
                             } else {
-                              salescontroller.getpurchaselist(
+                              purchasecontroller.getpurchaselist(
                                   fromdate: lfromdate, todate: ltodate);
                             }
                           },
@@ -182,7 +184,7 @@ class _GetCollectionDetailsScreenState extends State<GetpurchasedetailsScreen> {
                       SizedBox(
                         height: 10,
                       ),
-                      salescontroller.getallpurchaselist == null
+                      purchasecontroller.getallpurchaselist == null
                           ? SizedBox()
                           : Column(
                               children: [
@@ -193,7 +195,7 @@ class _GetCollectionDetailsScreenState extends State<GetpurchasedetailsScreen> {
                                     trackVisibility: true,
                                     thumbVisibility: true,
                                     child: ListView.builder(
-                                      itemCount: salescontroller
+                                      itemCount: purchasecontroller
                                           .getallpurchaselist!.data!.length,
                                       itemBuilder:
                                           (BuildContext context, int index) {
@@ -228,8 +230,8 @@ class _GetCollectionDetailsScreenState extends State<GetpurchasedetailsScreen> {
                                                             .data![index]
                                                             .tdate
                                                             .toString(),
-                                                        style: GoogleFonts
-                                                            .montserrat(
+                                                        style:
+                                                            GoogleFonts.roboto(
                                                                 color: Colors
                                                                     .green,
                                                                 fontWeight:
@@ -262,8 +264,8 @@ class _GetCollectionDetailsScreenState extends State<GetpurchasedetailsScreen> {
                                                     children: [
                                                       Text(
                                                         "₹${controller.getallpurchaselist!.data![index].transactionAmount.toString()}",
-                                                        style: GoogleFonts
-                                                            .montserrat(
+                                                        style:
+                                                            GoogleFonts.roboto(
                                                                 color: Colors
                                                                     .green,
                                                                 fontWeight:
@@ -271,12 +273,31 @@ class _GetCollectionDetailsScreenState extends State<GetpurchasedetailsScreen> {
                                                                         .bold),
                                                       ),
                                                       Visibility(
-                                                        visible: false,
+                                                        visible: true,
                                                         child: InkWell(
-                                                          onTap: () {},
+                                                          onTap: () {
+                                                            Progressloaders
+                                                                .progressloaderdailog(
+                                                                    context);
+
+                                                            purchasecontroller
+                                                                .getpurchasedetailsbyid(
+                                                                    docid: purchasecontroller
+                                                                        .getallpurchaselist!
+                                                                        .data![
+                                                                            index]
+                                                                        .id
+                                                                        .toString())
+                                                                .then((value) =>
+                                                                    {
+                                                                      Get.back(),
+                                                                      Get.to(
+                                                                          GetpurchaseViewDetailsScreen())
+                                                                    });
+                                                          },
                                                           child: Text(
                                                             "View Details",
-                                                            style: GoogleFonts.montserrat(
+                                                            style: GoogleFonts.roboto(
                                                                 color: Colors
                                                                     .green,
                                                                 fontWeight:

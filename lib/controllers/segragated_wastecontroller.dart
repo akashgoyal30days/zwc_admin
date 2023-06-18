@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:zwc/data/shared_preference.dart';
 import 'package:zwc/model/Getallcitizenlistmodel.dart';
 import 'package:zwc/model/getallsegregatedlistmodel.dart';
+import 'package:zwc/model/getuserqrdetailsmodel.dart';
 import 'package:zwc/screens/SegregatedWaste/OfflineDataSync.dart';
 
 import '../api/api_client.dart';
@@ -49,6 +50,27 @@ class SegragatedController extends GetxController {
       update();
     }
     return getallcitizenlist;
+  }
+
+  GetUserQrDetailsModel? getuserqrdata;
+
+  Future<GetUserQrDetailsModel?> getuserqrdetails(String? citizenid) async {
+    showloading = true;
+    update();
+    String? branchid =
+        await SharedPreferenceSingleTon.getData("dashboard_branch_id");
+
+    var response = await APIClient.post(URLS.getuserQrdetails, body: {
+      "id": citizenid,
+    });
+    var body = json.decode(response.body);
+    if (response.statusCode == 200) {
+      getuserqrdata = GetUserQrDetailsModel.fromJson(body);
+      showloading = false;
+      log(body.toString());
+      update();
+    }
+    return getuserqrdata;
   }
 
   Future<bool> addsegregationdetails(

@@ -21,7 +21,7 @@ class _Collection_managementState extends State<WasteProcessingScreen> {
         centerTitle: true,
         title: Text(
           "Waste Processing",
-          style: GoogleFonts.montserrat(
+          style: GoogleFonts.roboto(
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
@@ -45,7 +45,7 @@ class _Collection_managementState extends State<WasteProcessingScreen> {
                     children: [
                       Text(
                         "Get Waste Processing Details",
-                        style: GoogleFonts.montserrat(
+                        style: GoogleFonts.roboto(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
@@ -76,7 +76,7 @@ class _Collection_managementState extends State<WasteProcessingScreen> {
                     children: [
                       Text(
                         "Add Waste processing Details",
-                        style: GoogleFonts.montserrat(
+                        style: GoogleFonts.roboto(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),

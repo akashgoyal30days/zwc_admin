@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -37,7 +38,7 @@ class DashboardController extends GetxController {
   DashboardController();
 
   Future<GetDashboardAllBranches?> getallbranches() async {
-    showLoading = true;
+    showLoading = true;        
     update();
 
     var response = await APIClient.post(URLS.getalldashboardbranches);
@@ -55,7 +56,7 @@ class DashboardController extends GetxController {
       return getallbranchdata;
     }
     update();
-    return null;
+    return getallbranchdata;
   }
 
   getDashboard(DateTimeRange dateRange, String branchid, String gap) async {
@@ -83,6 +84,7 @@ class DashboardController extends GetxController {
     }
 
     var body = json.decode(response.body);
+    log(body.toString());
     List labels, data, data1;
     try {
       totalcitizen = body["data"]["citizens"].toString();

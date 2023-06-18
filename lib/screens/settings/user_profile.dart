@@ -66,8 +66,8 @@ class _UserProfileState extends State<UserProfile> {
                           : controller.image.isEmpty
                               ? Icon(
                                   Icons.person,
-                                  size: MediaQuery.of(context).size.width *
-                                      0.15,
+                                  size:
+                                      MediaQuery.of(context).size.width * 0.15,
                                   color: Colors.green,
                                 )
                               : SizedBox(),
@@ -114,7 +114,7 @@ class _UserProfileState extends State<UserProfile> {
                           alignment: Alignment.centerLeft,
                           child: Text(
                             "Personal details",
-                            style: GoogleFonts.montserrat(
+                            style: GoogleFonts.roboto(
                               fontWeight: FontWeight.bold,
                               color: Colors.green,
                               fontSize: 18,

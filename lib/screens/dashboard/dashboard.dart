@@ -62,9 +62,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
       return Scaffold(
         drawer: Navigationdrawer(),
         appBar: AppBar(
+          backgroundColor: Colors.green,
+          elevation: 0,
           title: Text(
             "Dashboard",
-            style: GoogleFonts.montserrat(
+            style: GoogleFonts.roboto(
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
@@ -114,12 +116,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             child: DropdownButton(
                               value: branchdropdownvalue,
                               underline: SizedBox(),
-                              style: GoogleFonts.montserrat(
+                              style: GoogleFonts.roboto(
                                   color: Colors.green,
                                   fontWeight: FontWeight.bold),
                               hint: Text(
                                 "All Branches",
-                                style: GoogleFonts.montserrat(
+                                style: GoogleFonts.roboto(
                                     color: Colors.green,
                                     fontWeight: FontWeight.bold),
                               ),
@@ -136,13 +138,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                         children: [
                                           Text(
                                             "${item.branchName}",
-                                            style: GoogleFonts.montserrat(
+                                            style: GoogleFonts.roboto(
                                                 color: Colors.green,
                                                 fontWeight: FontWeight.bold),
                                           ),
                                           Text(
                                             "${item.id}",
-                                            style: GoogleFonts.montserrat(
+                                            style: GoogleFonts.roboto(
                                                 color: Colors.transparent,
                                                 fontWeight: FontWeight.bold),
                                           ),

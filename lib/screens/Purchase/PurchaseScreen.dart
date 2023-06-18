@@ -27,7 +27,7 @@ class _Collection_managementState extends State<PurchaseScreen> {
         centerTitle: true,
         title: Text(
           "Purchase",
-          style: GoogleFonts.montserrat(
+          style: GoogleFonts.roboto(
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
@@ -51,7 +51,7 @@ class _Collection_managementState extends State<PurchaseScreen> {
                     children: [
                       Text(
                         "Get Purchase Details",
-                        style: GoogleFonts.montserrat(
+                        style: GoogleFonts.roboto(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
@@ -82,7 +82,7 @@ class _Collection_managementState extends State<PurchaseScreen> {
                     children: [
                       Text(
                         "Add Purchase Details",
-                        style: GoogleFonts.montserrat(
+                        style: GoogleFonts.roboto(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),

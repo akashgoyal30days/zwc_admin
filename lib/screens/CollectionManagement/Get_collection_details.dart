@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:zwc/controllers/collection_management_controller.dart';
+import 'package:zwc/screens/CollectionManagement/CollectionViewDeatilsScreen.dart';
+import 'package:zwc/widgets/progressloader.dart';
 
 import '../../data/shared_preference.dart';
 
@@ -78,7 +80,7 @@ class _GetCollectionDetailsScreenState
           centerTitle: true,
           title: Text(
             "Get Collection Details",
-            style: GoogleFonts.montserrat(
+            style: GoogleFonts.roboto(
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
@@ -230,8 +232,8 @@ class _GetCollectionDetailsScreenState
                                                             .data![index]
                                                             .transactionDate
                                                             .toString(),
-                                                        style: GoogleFonts
-                                                            .montserrat(
+                                                        style:
+                                                            GoogleFonts.roboto(
                                                                 color: Colors
                                                                     .green,
                                                                 fontWeight:
@@ -259,8 +261,8 @@ class _GetCollectionDetailsScreenState
                                                     children: [
                                                       Text(
                                                         "₹${controller.getallcollectionslist!.data![index].amount.toString()}",
-                                                        style: GoogleFonts
-                                                            .montserrat(
+                                                        style:
+                                                            GoogleFonts.roboto(
                                                                 color: Colors
                                                                     .green,
                                                                 fontWeight:
@@ -268,20 +270,29 @@ class _GetCollectionDetailsScreenState
                                                                         .bold),
                                                       ),
                                                       Visibility(
-                                                        visible: false,
+                                                        visible: true,
                                                         child: InkWell(
                                                           onTap: () {
-                                                            // stocktransfercontroller
-                                                            //     .getstocktransferdetailsbyid(
-                                                            //         docid: controller
-                                                            //             .getallstocktransferlist!
-                                                            //             .data![
-                                                            //                 index]
-                                                            //             .id);
+                                                            Progressloaders
+                                                                .progressloaderdailog(
+                                                                    context);
+                                                            collectioncontroller
+                                                                .getcollectiondetailsbyid(
+                                                                    docid: controller
+                                                                        .getallcollectionslist!
+                                                                        .data![
+                                                                            index]
+                                                                        .id)
+                                                                .then((value) =>
+                                                                    {
+                                                                      Get.back(),
+                                                                      Get.to(
+                                                                          CollectionViewDetailsScreen())
+                                                                    });
                                                           },
                                                           child: Text(
                                                             "View Details",
-                                                            style: GoogleFonts.montserrat(
+                                                            style: GoogleFonts.roboto(
                                                                 color: Colors
                                                                     .green,
                                                                 fontWeight:

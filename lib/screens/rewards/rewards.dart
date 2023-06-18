@@ -34,7 +34,7 @@ class _RewardsScreenState extends State<RewardsScreen> {
         appBar: AppBar(
           title: Text(
             "Rewards",
-            style: GoogleFonts.montserrat(
+            style: GoogleFonts.roboto(
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
@@ -235,7 +235,7 @@ class CurrentBalance extends StatelessWidget {
                   children: [
                     Text(
                       "Rewards Balance",
-                      style: GoogleFonts.montserrat(
+                      style: GoogleFonts.roboto(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,

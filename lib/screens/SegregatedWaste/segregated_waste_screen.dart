@@ -6,6 +6,7 @@ import 'package:zwc/screens/Navigation_drawer.dart';
 import 'package:zwc/screens/SegregatedWaste/addsegregatedbyQR.dart';
 import 'package:zwc/screens/SegregatedWaste/addsegregatedwaste.dart';
 import 'package:zwc/screens/SegregatedWaste/getsegregateddetails.dart';
+import 'package:zwc/screens/SegregatedWaste/getusersegregatedqr.dart';
 import 'package:zwc/screens/StockTransfer/Add_stocktransfer_details.dart';
 import 'package:zwc/screens/StockTransfer/getstocktransferdetails.dart';
 
@@ -37,7 +38,7 @@ class _Collection_managementState extends State<SegregatedWasteScreen> {
         centerTitle: true,
         title: Text(
           "Segrated Waste",
-          style: GoogleFonts.montserrat(
+          style: GoogleFonts.roboto(
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
@@ -61,7 +62,7 @@ class _Collection_managementState extends State<SegregatedWasteScreen> {
                     children: [
                       Text(
                         "Get Segregated Waste Details",
-                        style: GoogleFonts.montserrat(
+                        style: GoogleFonts.roboto(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
@@ -92,7 +93,7 @@ class _Collection_managementState extends State<SegregatedWasteScreen> {
                     children: [
                       Text(
                         "Add Segregated Waste Details",
-                        style: GoogleFonts.montserrat(
+                        style: GoogleFonts.roboto(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
@@ -123,7 +124,7 @@ class _Collection_managementState extends State<SegregatedWasteScreen> {
                     children: [
                       Text(
                         "Add Segregated via QR",
-                        style: GoogleFonts.montserrat(
+                        style: GoogleFonts.roboto(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
@@ -137,7 +138,38 @@ class _Collection_managementState extends State<SegregatedWasteScreen> {
                 ),
               ),
             ),
-          )
+          ),
+          // InkWell(
+          //   onTap: () {
+          //     Get.to(getusersegregatedqrdetails());
+          //   },
+          //   child: Padding(
+          //     padding: const EdgeInsets.all(8.0),
+          //     child: Container(
+          //       decoration: BoxDecoration(color: Colors.green),
+          //       child: Padding(
+          //         padding: const EdgeInsets.all(20.0),
+          //         child: Row(
+          //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //           crossAxisAlignment: CrossAxisAlignment.center,
+          //           children: [
+          //             Text(
+          //               "Get User Segregated QR",
+          //               style: GoogleFonts.roboto(
+          //                 color: Colors.white,
+          //                 fontWeight: FontWeight.bold,
+          //               ),
+          //             ),
+          //             Icon(
+          //               Icons.arrow_forward_ios_rounded,
+          //               color: Colors.white,
+          //             )
+          //           ],
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // )
         ],
       ),
     );

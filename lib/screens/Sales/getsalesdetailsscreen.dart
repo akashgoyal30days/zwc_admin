@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:zwc/controllers/salescpntroller.dart';
+import 'package:zwc/screens/Sales/Getsalesviewdetails.dart';
+import 'package:zwc/widgets/progressloader.dart';
 
 import '../../data/shared_preference.dart';
 
@@ -76,7 +78,7 @@ class _GetCollectionDetailsScreenState extends State<GetsalesdetailsScreen> {
           centerTitle: true,
           title: Text(
             "Get Sales Details",
-            style: GoogleFonts.montserrat(
+            style: GoogleFonts.roboto(
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
@@ -228,8 +230,8 @@ class _GetCollectionDetailsScreenState extends State<GetsalesdetailsScreen> {
                                                             .data![index]
                                                             .tdate
                                                             .toString(),
-                                                        style: GoogleFonts
-                                                            .montserrat(
+                                                        style:
+                                                            GoogleFonts.roboto(
                                                                 color: Colors
                                                                     .green,
                                                                 fontWeight:
@@ -262,8 +264,8 @@ class _GetCollectionDetailsScreenState extends State<GetsalesdetailsScreen> {
                                                     children: [
                                                       Text(
                                                         "₹${controller.getallsaleslist!.data![index].transactionAmount.toString()}",
-                                                        style: GoogleFonts
-                                                            .montserrat(
+                                                        style:
+                                                            GoogleFonts.roboto(
                                                                 color: Colors
                                                                     .green,
                                                                 fontWeight:
@@ -271,12 +273,31 @@ class _GetCollectionDetailsScreenState extends State<GetsalesdetailsScreen> {
                                                                         .bold),
                                                       ),
                                                       Visibility(
-                                                        visible: false,
+                                                        visible: true,
                                                         child: InkWell(
-                                                          onTap: () {},
+                                                          onTap: () {
+                                                            Progressloaders
+                                                                .progressloaderdailog(
+                                                                    context);
+
+                                                            salescontroller
+                                                                .getsalesdetailsbyid(
+                                                                    docid: salescontroller
+                                                                        .getallsaleslist!
+                                                                        .data![
+                                                                            index]
+                                                                        .id
+                                                                        .toString())
+                                                                .then((value) =>
+                                                                    {
+                                                                      Get.back(),
+                                                                      Get.to(
+                                                                          GetSalesViewDetailsScreen())
+                                                                    });
+                                                          },
                                                           child: Text(
                                                             "View Details",
-                                                            style: GoogleFonts.montserrat(
+                                                            style: GoogleFonts.roboto(
                                                                 color: Colors
                                                                     .green,
                                                                 fontWeight:

@@ -32,7 +32,7 @@ class _MembersDataScreenState extends State<MembersDataScreen> {
           children: [
             Text(
               "ZWC Members",
-              style: GoogleFonts.montserrat(
+              style: GoogleFonts.roboto(
                 color: Colors.green,
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
@@ -97,69 +97,6 @@ class _MembersDataScreenState extends State<MembersDataScreen> {
             )
           ],
         ),
-      ),
-    );
-  }
-}
-
-class EnvironmentalSavingWidgets extends StatelessWidget {
-  const EnvironmentalSavingWidgets({
-    Key? key,
-    required this.title,
-    required this.icon,
-    required this.units,
-    required this.value,
-    required this.color,
-  }) : super(key: key);
-  final String title, units;
-  final IconData icon;
-  final dynamic value;
-  final Color color;
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Icon(icon, color: color),
-          const SizedBox(width: 4),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(style: TextStyle(color: color), children: [
-                      TextSpan(
-                        text: value.toString(),
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      TextSpan(
-                        text: " $units",
-                        style: const TextStyle(fontSize: 14),
-                      ),
-                    ])),
-                const SizedBox(width: 6),
-                RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(children: [
-                      const TextSpan(
-                        text: "of ",
-                        style: TextStyle(
-                            fontStyle: FontStyle.italic, color: Colors.black),
-                      ),
-                      TextSpan(
-                        text: title,
-                        style: GoogleFonts.montserrat(color: Colors.black),
-                      ),
-                    ])),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }

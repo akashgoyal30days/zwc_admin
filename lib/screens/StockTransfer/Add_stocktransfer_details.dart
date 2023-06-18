@@ -54,7 +54,7 @@ class _addcollectiondetailsState extends State<Addstockytransferdetails> {
           centerTitle: true,
           title: Text(
             "Add Stock Transfer Details",
-            style: GoogleFonts.montserrat(
+            style: GoogleFonts.roboto(
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
@@ -78,7 +78,7 @@ class _addcollectiondetailsState extends State<Addstockytransferdetails> {
                                 horizontal: 10, vertical: 5),
                             child: Text(
                               "Select Date",
-                              style: GoogleFonts.montserrat(
+                              style: GoogleFonts.roboto(
                                   color: Colors.green,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 15),
@@ -102,7 +102,7 @@ class _addcollectiondetailsState extends State<Addstockytransferdetails> {
                                       Text(
                                         DateFormat("yyyy-MM-dd")
                                             .format(_selectdate),
-                                        style: GoogleFonts.montserrat(
+                                        style: GoogleFonts.roboto(
                                           color: Colors.green,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -131,7 +131,7 @@ class _addcollectiondetailsState extends State<Addstockytransferdetails> {
                           horizontal: 10, vertical: 5),
                       child: Text(
                         "Select Branch",
-                        style: GoogleFonts.montserrat(
+                        style: GoogleFonts.roboto(
                             color: Colors.green,
                             fontWeight: FontWeight.bold,
                             fontSize: 15),
@@ -145,11 +145,11 @@ class _addcollectiondetailsState extends State<Addstockytransferdetails> {
                         child: DropdownButton(
                           value: branchdropdownvalue,
                           underline: SizedBox(),
-                          style: GoogleFonts.montserrat(
+                          style: GoogleFonts.roboto(
                               color: Colors.green, fontWeight: FontWeight.bold),
                           hint: Text(
                             "Select Branch",
-                            style: GoogleFonts.montserrat(
+                            style: GoogleFonts.roboto(
                                 color: Colors.green,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -165,13 +165,13 @@ class _addcollectiondetailsState extends State<Addstockytransferdetails> {
                                     children: [
                                       Text(
                                         "${item.branchName}",
-                                        style: GoogleFonts.montserrat(
+                                        style: GoogleFonts.roboto(
                                             color: Colors.green,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
                                         "${item.id}",
-                                        style: GoogleFonts.montserrat(
+                                        style: GoogleFonts.roboto(
                                             color: Colors.transparent,
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -223,7 +223,8 @@ class _addcollectiondetailsState extends State<Addstockytransferdetails> {
 
                             Get.deleteAll();
                           } else {
-                            Get.snackbar("Collection", "Please Select Citizen",
+                            Get.snackbar(
+                                "Stock Transfer", "Please Select Branch",
                                 backgroundColor: Colors.green.shade900,
                                 colorText: Colors.white,
                                 borderColor: Colors.white,

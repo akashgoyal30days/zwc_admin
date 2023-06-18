@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'dart:developer';
 
@@ -9,6 +8,7 @@ import 'package:zwc/model/Getdashboardbranchesmodel.dart';
 import 'package:zwc/model/addstocktransferwastedatamodel.dart';
 import 'package:zwc/model/getallsaleslistmodel.dart';
 import 'package:zwc/model/getallstocktransferlistmoidel.dart';
+import 'package:zwc/model/getssalesviewdetailsmodel.dart';
 import 'package:zwc/model/getstocktransferdetailbyidmodel.dart';
 
 import '../api/api_client.dart';
@@ -122,5 +122,23 @@ class SalesController extends GetxController {
     return getallsaleslist;
   }
 
- 
+  GetSalesViewDetailsModel? getsalesdetailsdatabyid;
+  Future<GetSalesViewDetailsModel?> getsalesdetailsbyid({
+    String? docid,
+  }) async {
+    update();
+    String? branchid =
+        await SharedPreferenceSingleTon.getData("dashboard_branch_id");
+
+    var response =
+        await APIClient.post(URLS.getsalesdetailsbyid, body: {"id": docid});
+    var body = json.decode(response.body);
+    if (response.statusCode == 200) {
+      getsalesdetailsdatabyid =
+          GetSalesViewDetailsModel.fromJson(body);
+      log(body.toString());
+      update();
+    }
+    return getsalesdetailsdatabyid;
+  }
 }

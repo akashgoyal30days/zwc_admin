@@ -21,7 +21,7 @@ class _NoBranchselectedscreenState extends State<NoBranchselectedscreen> {
             children: [
               Text(
                 "Oops!!",
-                style: GoogleFonts.montserrat(
+                style: GoogleFonts.roboto(
                     fontSize: 25,
                     color: Colors.green,
                     fontWeight: FontWeight.bold),
@@ -31,7 +31,7 @@ class _NoBranchselectedscreenState extends State<NoBranchselectedscreen> {
               ),
               Text(
                 "Branch Not Selected",
-                style: GoogleFonts.montserrat(
+                style: GoogleFonts.roboto(
                     fontSize: 20,
                     color: Colors.green,
                     fontWeight: FontWeight.bold),
@@ -42,7 +42,7 @@ class _NoBranchselectedscreenState extends State<NoBranchselectedscreen> {
               Text(
                 "Please Select a Branch to view Contents",
                 textAlign: TextAlign.center,
-                style: GoogleFonts.montserrat(
+                style: GoogleFonts.roboto(
                     fontSize: 20,
                     color: Colors.grey.shade400,
                     fontWeight: FontWeight.bold),
@@ -71,7 +71,7 @@ class _NoBranchselectedscreenState extends State<NoBranchselectedscreen> {
                         ),
                         Text(
                           "Back to Dashboard",
-                          style: GoogleFonts.montserrat(
+                          style: GoogleFonts.roboto(
                               color: Colors.white, fontWeight: FontWeight.bold),
                         )
                       ],

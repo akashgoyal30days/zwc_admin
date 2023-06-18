@@ -7,6 +7,7 @@ import 'package:zwc/model/Getallproductlistmodel.dart';
 import 'package:zwc/model/Geteallwasteprocess.dart';
 import 'package:zwc/model/addconsumptiondetailsproductdetails.dart';
 import 'package:zwc/model/getallprocessedwastelistmodel.dart';
+import 'package:zwc/model/getwasteprocessviewdetailsmodel.dart';
 
 import '../api/api_client.dart';
 import '../api/urls.dart';
@@ -133,5 +134,26 @@ class WasteProcessingController extends GetxController {
       }
     }
     return null;
+  }
+
+
+  GetWasteProcessViewDetailsModel? getwasteprocessdatabyid;
+  Future getwasteprocessdetailsbyid({
+    String? docid,
+  }) async {
+    update();
+    String? branchid =
+        await SharedPreferenceSingleTon.getData("dashboard_branch_id");
+
+    var response = await APIClient.post(URLS.getwasteprocessingdetailsbyid,
+        body: {"id": docid});
+    var body = json.decode(response.body);
+    if (response.statusCode == 200) {
+      getwasteprocessdatabyid =
+          GetWasteProcessViewDetailsModel.fromJson(body);
+      log(response.body.toString());
+      update();
+    }
+    return getwasteprocessdatabyid;
   }
 }

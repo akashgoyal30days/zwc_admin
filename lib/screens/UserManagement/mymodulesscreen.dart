@@ -39,7 +39,7 @@ class _GetCollectionDetailsScreenState extends State<MyModeulesScreen> {
           centerTitle: true,
           title: Text(
             "My Modules",
-            style: GoogleFonts.montserrat(
+            style: GoogleFonts.roboto(
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
@@ -74,7 +74,7 @@ class _GetCollectionDetailsScreenState extends State<MyModeulesScreen> {
                                 ),
                                 Text(
                                   "Active",
-                                  style: GoogleFonts.montserrat(
+                                  style: GoogleFonts.roboto(
                                       color: Colors.green,
                                       fontWeight: FontWeight.bold),
                                 ),
@@ -94,7 +94,7 @@ class _GetCollectionDetailsScreenState extends State<MyModeulesScreen> {
                                 ),
                                 Text(
                                   "Not Acive",
-                                  style: GoogleFonts.montserrat(
+                                  style: GoogleFonts.roboto(
                                       color: Colors.red,
                                       fontWeight: FontWeight.bold),
                                 ),
@@ -119,32 +119,32 @@ class _GetCollectionDetailsScreenState extends State<MyModeulesScreen> {
                                           0.25,
                                       child: Text(
                                         "Modules",
-                                        style: GoogleFonts.montserrat(
+                                        style: GoogleFonts.roboto(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ),
                                     Text(
                                       "Add",
-                                      style: GoogleFonts.montserrat(
+                                      style: GoogleFonts.roboto(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     Text(
                                       "Edit",
-                                      style: GoogleFonts.montserrat(
+                                      style: GoogleFonts.roboto(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     Text(
                                       "View",
-                                      style: GoogleFonts.montserrat(
+                                      style: GoogleFonts.roboto(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     Text(
                                       "Delete",
-                                      style: GoogleFonts.montserrat(
+                                      style: GoogleFonts.roboto(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold),
                                     )
@@ -199,13 +199,10 @@ class _GetCollectionDetailsScreenState extends State<MyModeulesScreen> {
                                                           .name
                                                           .toString(),
                                                       maxLines: 3,
-                                                      style: GoogleFonts
-                                                          .montserrat(
-                                                              color:
-                                                                  Colors.green,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
+                                                      style: GoogleFonts.roboto(
+                                                          color: Colors.green,
+                                                          fontWeight:
+                                                              FontWeight.bold),
                                                     ),
                                                   ),
                                                   Container(

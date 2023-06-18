@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:zwc/controllers/waste_processing_controller.dart';
+import 'package:zwc/screens/WasteProcessing/Wasteprocessingviewdetails.dart';
+import 'package:zwc/widgets/progressloader.dart';
 
 import '../../data/shared_preference.dart';
 
@@ -77,7 +79,7 @@ class _GetCollectionDetailsScreenState extends State<GetWasteProcessingScreen> {
           centerTitle: true,
           title: Text(
             "Get Processed Waste Details",
-            style: GoogleFonts.montserrat(
+            style: GoogleFonts.roboto(
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
@@ -226,8 +228,8 @@ class _GetCollectionDetailsScreenState extends State<GetWasteProcessingScreen> {
                                                             .data![index]
                                                             .branch
                                                             .toString(),
-                                                        style: GoogleFonts
-                                                            .montserrat(
+                                                        style:
+                                                            GoogleFonts.roboto(
                                                                 color: Colors
                                                                     .black,
                                                                 fontWeight:
@@ -240,8 +242,8 @@ class _GetCollectionDetailsScreenState extends State<GetWasteProcessingScreen> {
                                                             .data![index]
                                                             .tdate
                                                             .toString(),
-                                                        style: GoogleFonts
-                                                            .montserrat(
+                                                        style:
+                                                            GoogleFonts.roboto(
                                                                 color: Colors
                                                                     .green,
                                                                 fontWeight:
@@ -260,7 +262,7 @@ class _GetCollectionDetailsScreenState extends State<GetWasteProcessingScreen> {
                                                     children: [
                                                       Text("Process",
                                                           style: GoogleFonts
-                                                              .montserrat(
+                                                              .roboto(
                                                                   color: Colors
                                                                       .blue,
                                                                   fontWeight:
@@ -273,7 +275,7 @@ class _GetCollectionDetailsScreenState extends State<GetWasteProcessingScreen> {
                                                               .processName
                                                               .toString(),
                                                           style: GoogleFonts
-                                                              .montserrat(
+                                                              .roboto(
                                                                   color: Colors
                                                                       .blue,
                                                                   fontWeight:
@@ -291,8 +293,8 @@ class _GetCollectionDetailsScreenState extends State<GetWasteProcessingScreen> {
                                                     children: [
                                                       Text(
                                                         "Solution",
-                                                        style: GoogleFonts
-                                                            .montserrat(
+                                                        style:
+                                                            GoogleFonts.roboto(
                                                                 color: Colors
                                                                     .black,
                                                                 fontWeight:
@@ -305,8 +307,8 @@ class _GetCollectionDetailsScreenState extends State<GetWasteProcessingScreen> {
                                                             .data![index]
                                                             .machineName
                                                             .toString(),
-                                                        style: GoogleFonts
-                                                            .montserrat(
+                                                        style:
+                                                            GoogleFonts.roboto(
                                                                 color:
                                                                     Colors.blue,
                                                                 fontWeight:
@@ -314,20 +316,29 @@ class _GetCollectionDetailsScreenState extends State<GetWasteProcessingScreen> {
                                                                         .bold),
                                                       ),
                                                       Visibility(
-                                                        visible: false,
+                                                        visible: true,
                                                         child: InkWell(
                                                           onTap: () {
-                                                            // stocktransfercontroller
-                                                            //     .getstocktransferdetailsbyid(
-                                                            //         docid: controller
-                                                            //             .getallstocktransferlist!
-                                                            //             .data![
-                                                            //                 index]
-                                                            //             .id);
+                                                            Progressloaders
+                                                                .progressloaderdailog(
+                                                                    context);
+                                                            wastecontroller
+                                                                .getwasteprocessdetailsbyid(
+                                                                    docid: controller
+                                                                        .getallprocessedwastelist!
+                                                                        .data![
+                                                                            index]
+                                                                        .id)
+                                                                .then((value) =>
+                                                                    {
+                                                                      Get.back(),
+                                                                      Get.to(
+                                                                          WasteProcessingViewDetailsScreen())
+                                                                    });
                                                           },
                                                           child: Text(
                                                             "View Details",
-                                                            style: GoogleFonts.montserrat(
+                                                            style: GoogleFonts.roboto(
                                                                 color: Colors
                                                                     .green,
                                                                 fontWeight:

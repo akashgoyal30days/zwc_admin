@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-import 'package:zwc/screens/settings/settings.dart';
 
 import '../controllers/dashboard_controller.dart';
 import 'dashboard/dashboard.dart';
@@ -64,9 +63,7 @@ class _AppStructureScreenState extends State<AppStructureScreen> {
           physics: const NeverScrollableScrollPhysics(),
           children: [
             DashboardScreen(),
-            // const PickUpRequest(),
-            // const RewardsScreen(),
-            // const SettingsScreenNew()
+           
           ],
         ),
       ),

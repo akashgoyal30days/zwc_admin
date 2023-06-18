@@ -21,8 +21,7 @@ class AddSalesWasteScreen extends StatefulWidget {
 }
 
 class _addwastedetailsState extends State<AddSalesWasteScreen> {
-  final SalesController salescontroller =
-      Get.put(SalesController());
+  final SalesController salescontroller = Get.put(SalesController());
 
   String? selectwastedropdownvalue;
   String? quantityhinttext = "Quantity";
@@ -52,7 +51,7 @@ class _addwastedetailsState extends State<AddSalesWasteScreen> {
           centerTitle: true,
           title: Text(
             "Add Sales Waste Details",
-            style: GoogleFonts.montserrat(
+            style: GoogleFonts.roboto(
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
@@ -82,7 +81,7 @@ class _addwastedetailsState extends State<AddSalesWasteScreen> {
                             horizontal: 10, vertical: 5),
                         child: Text(
                           "Select Waste",
-                          style: GoogleFonts.montserrat(
+                          style: GoogleFonts.roboto(
                               color: Colors.green,
                               fontWeight: FontWeight.bold,
                               fontSize: 15),
@@ -96,12 +95,12 @@ class _addwastedetailsState extends State<AddSalesWasteScreen> {
                           child: DropdownButton(
                             value: selectwastedropdownvalue,
                             underline: SizedBox(),
-                            style: GoogleFonts.montserrat(
+                            style: GoogleFonts.roboto(
                                 color: Colors.green,
                                 fontWeight: FontWeight.bold),
                             hint: Text(
                               "Select Waste",
-                              style: GoogleFonts.montserrat(
+                              style: GoogleFonts.roboto(
                                   color: Colors.green,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -117,13 +116,13 @@ class _addwastedetailsState extends State<AddSalesWasteScreen> {
                                       children: [
                                         Text(
                                           "${item.productName})",
-                                          style: GoogleFonts.montserrat(
+                                          style: GoogleFonts.roboto(
                                               color: Colors.green,
                                               fontWeight: FontWeight.bold),
                                         ),
                                         Text(
                                           "${item.id}",
-                                          style: GoogleFonts.montserrat(
+                                          style: GoogleFonts.roboto(
                                               color: Colors.transparent,
                                               fontWeight: FontWeight.bold),
                                         ),
@@ -134,7 +133,7 @@ class _addwastedetailsState extends State<AddSalesWasteScreen> {
                                     ),
                                     Text(
                                       "(${item.category})",
-                                      style: GoogleFonts.montserrat(
+                                      style: GoogleFonts.roboto(
                                           color: Colors.black45,
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -219,22 +218,21 @@ class _addwastedetailsState extends State<AddSalesWasteScreen> {
                             if (ratescontroller.text.isNotEmpty) {
                               if (quantitycontroller.text.isNotEmpty) {
                                 if (selectwastedropdownvalue != null) {
-                                  WasteDetailsData.add(
-                                      AddsaleswasteData(
-                                          Date: widget.selecteddate,
-                                          tobrannchid: widget.selecttobranch,
-                                          Productid: selectwastedropdownvalue,
-                                          Productname: salescontroller
-                                              .getallproductlist!.data!
-                                              .where((element) =>
-                                                  element.id.toString() ==
-                                                  selectwastedropdownvalue
-                                                      .toString())
-                                              .first
-                                              .productName
-                                              .toString(),
-                                          Quantity: quantitycontroller.text,
-                                          Rates: ratescontroller.text));
+                                  WasteDetailsData.add(AddsaleswasteData(
+                                      Date: widget.selecteddate,
+                                      tobrannchid: widget.selecttobranch,
+                                      Productid: selectwastedropdownvalue,
+                                      Productname: salescontroller
+                                          .getallproductlist!.data!
+                                          .where((element) =>
+                                              element.id.toString() ==
+                                              selectwastedropdownvalue
+                                                  .toString())
+                                          .first
+                                          .productName
+                                          .toString(),
+                                      Quantity: quantitycontroller.text,
+                                      Rates: ratescontroller.text));
                                   setState(() {});
                                 } else {
                                   Get.snackbar("Add Waste Details",
@@ -277,31 +275,31 @@ class _addwastedetailsState extends State<AddSalesWasteScreen> {
                             children: [
                               Text(
                                 "Product",
-                                style: GoogleFonts.montserrat(
+                                style: GoogleFonts.roboto(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
                               ),
                               Text(
                                 "Quantity",
-                                style: GoogleFonts.montserrat(
+                                style: GoogleFonts.roboto(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
                               ),
                               Text(
                                 "Rates",
-                                style: GoogleFonts.montserrat(
+                                style: GoogleFonts.roboto(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
                               ),
                               Text(
                                 "Total",
-                                style: GoogleFonts.montserrat(
+                                style: GoogleFonts.roboto(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
                               ),
                               Text(
                                 "Action",
-                                style: GoogleFonts.montserrat(
+                                style: GoogleFonts.roboto(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
                               )

@@ -54,7 +54,7 @@ class _addcollectiondetailsState extends State<addwasteprocessing> {
           centerTitle: true,
           title: Text(
             "Add Waste Processing",
-            style: GoogleFonts.montserrat(
+            style: GoogleFonts.roboto(
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
@@ -78,7 +78,7 @@ class _addcollectiondetailsState extends State<addwasteprocessing> {
                                 horizontal: 10, vertical: 5),
                             child: Text(
                               "Select Date",
-                              style: GoogleFonts.montserrat(
+                              style: GoogleFonts.roboto(
                                   color: Colors.green,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 15),
@@ -102,7 +102,7 @@ class _addcollectiondetailsState extends State<addwasteprocessing> {
                                       Text(
                                         DateFormat("yyyy-MM-dd")
                                             .format(_selectdate),
-                                        style: GoogleFonts.montserrat(
+                                        style: GoogleFonts.roboto(
                                           color: Colors.green,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -128,7 +128,7 @@ class _addcollectiondetailsState extends State<addwasteprocessing> {
                           horizontal: 10, vertical: 5),
                       child: Text(
                         "Select Waste Processs",
-                        style: GoogleFonts.montserrat(
+                        style: GoogleFonts.roboto(
                             color: Colors.green,
                             fontWeight: FontWeight.bold,
                             fontSize: 15),
@@ -142,11 +142,11 @@ class _addcollectiondetailsState extends State<addwasteprocessing> {
                         child: DropdownButton(
                           value: _wasteprocessvalue,
                           underline: SizedBox(),
-                          style: GoogleFonts.montserrat(
+                          style: GoogleFonts.roboto(
                               color: Colors.green, fontWeight: FontWeight.bold),
                           hint: Text(
                             "Select Waste Process",
-                            style: GoogleFonts.montserrat(
+                            style: GoogleFonts.roboto(
                                 color: Colors.green,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -162,13 +162,13 @@ class _addcollectiondetailsState extends State<addwasteprocessing> {
                                     children: [
                                       Text(
                                         "${item.processName}",
-                                        style: GoogleFonts.montserrat(
+                                        style: GoogleFonts.roboto(
                                             color: Colors.green,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
                                         "${item.id}",
-                                        style: GoogleFonts.montserrat(
+                                        style: GoogleFonts.roboto(
                                             color: Colors.transparent,
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -179,7 +179,7 @@ class _addcollectiondetailsState extends State<addwasteprocessing> {
                                   ),
                                   Text(
                                     "(${item.machineName})",
-                                    style: GoogleFonts.montserrat(
+                                    style: GoogleFonts.roboto(
                                         color: Colors.black45,
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -222,7 +222,8 @@ class _addcollectiondetailsState extends State<addwasteprocessing> {
                                 selecteddate: selectdate,
                                 wasteprocess: wasteprocessvalue));
                           } else {
-                            Get.snackbar("Collection", "Please Select Citizen",
+                            Get.snackbar(
+                                "Waste Processing", "Please Select Waste",
                                 backgroundColor: Colors.green.shade900,
                                 colorText: Colors.white,
                                 borderColor: Colors.white,

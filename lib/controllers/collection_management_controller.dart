@@ -6,6 +6,7 @@ import 'package:zwc/data/shared_preference.dart';
 import 'package:zwc/model/Getallproductlistmodel.dart';
 import 'package:zwc/model/addwastedetailsmoodel.dart';
 import 'package:zwc/model/getallcollectionlistmodel.dart';
+import 'package:zwc/model/getcollectionviewdetailsmodel.dart';
 
 import '../api/api_client.dart';
 import '../api/urls.dart';
@@ -127,6 +128,7 @@ class CollectionManagementController extends GetxController {
     return getallcollectionslist;
   }
 
+  GetCollectionviewDetailsModel? getcollectiondatabyid;
   Future getcollectiondetailsbyid({
     String? docid,
   }) async {
@@ -134,15 +136,15 @@ class CollectionManagementController extends GetxController {
     String? branchid =
         await SharedPreferenceSingleTon.getData("dashboard_branch_id");
 
-    var response = await APIClient.post(URLS.getstocktransferdetailsbyid,
+    var response = await APIClient.post(URLS.getcollectiondetailsbyid,
         body: {"id": docid});
     var body = json.decode(response.body);
     if (response.statusCode == 200) {
-      // getstocktransfersdetailsbyid =
-      //     Getstocktransferdetailsbyidmodel.fromJson(body);
+      getcollectiondatabyid =
+          GetCollectionviewDetailsModel.fromJson(body);
       log(response.body.toString());
       update();
     }
-    // return getstocktransfersdetailsbyid;
+    return getcollectiondatabyid;
   }
 }

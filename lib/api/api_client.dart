@@ -18,4 +18,14 @@ class APIClient {
         "token": SharedPreferenceSingleTon.getData("token") ?? "",
     });
   }
+
+  static var apiheaders = {
+    "Content-Type": "application/json",
+    "Client-Service": AppConstants.appKey,
+    "Auth-Key": AppConstants.appSecret,
+    if (SharedPreferenceSingleTon.getData("uid") != null)
+      "uid": SharedPreferenceSingleTon.getData("uid") ?? "",
+    if (SharedPreferenceSingleTon.getData("token") != null)
+      "token": SharedPreferenceSingleTon.getData("token") ?? "",
+  };
 }
