@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'package:zwc/controllers/DatabaseHelper.dart';
@@ -32,6 +33,13 @@ class _QRScannerScreenState extends State<AddSegregateByQR> {
   @override
   void initState() {
     super.initState();
+    askpermission();
+  }
+
+  askpermission() async {
+    Map<Permission, PermissionStatus> statuses = await [
+      Permission.camera,
+    ].request();
   }
 
   @override

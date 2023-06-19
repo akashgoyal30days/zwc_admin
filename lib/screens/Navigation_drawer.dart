@@ -4,11 +4,16 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zwc/controllers/Branchcontroller.dart';
 import 'package:zwc/controllers/DatabaseHelper.dart';
+import 'package:zwc/controllers/Stock_transfer_controller.dart';
 import 'package:zwc/controllers/areamastercontroller.dart';
 import 'package:zwc/controllers/collection_management_controller.dart';
 import 'package:zwc/controllers/dashboard_controller.dart';
+import 'package:zwc/controllers/purchasecontroller.dart';
 import 'package:zwc/controllers/resourcemanagemntcontroller.dart';
+import 'package:zwc/controllers/salescpntroller.dart';
+import 'package:zwc/controllers/segragated_wastecontroller.dart';
 import 'package:zwc/controllers/stockreportcontroller.dart';
+import 'package:zwc/controllers/waste_processing_controller.dart';
 import 'package:zwc/data/shared_preference.dart';
 import 'package:zwc/screens/AreaMaster/Area/getareadetails.dart';
 import 'package:zwc/screens/AreaMaster/City/getcitydetails.dart';
@@ -19,18 +24,24 @@ import 'package:zwc/screens/BranchManagement/Branchestypes/getallbranchestypes.d
 import 'package:zwc/screens/CollectionManagement/Collection.dart';
 import 'package:zwc/screens/ErrorScreens/Nobranchselectedscreen.dart';
 import 'package:zwc/screens/IECProrams/GetIECprograms.dart';
-import 'package:zwc/screens/Purchase/PurchaseScreen.dart';
+import 'package:zwc/screens/Purchase/addpurchasedetails.dart';
+import 'package:zwc/screens/Purchase/getpurchasedetailsscreen.dart';
 import 'package:zwc/screens/ResouceManagement/WasteProcess/wasteprocesslistscreen.dart';
 import 'package:zwc/screens/ResouceManagement/wasteCategory/wastecategoiry.dart';
 import 'package:zwc/screens/ResouceManagement/wasteproduct/getallwasteproducts.dart';
-import 'package:zwc/screens/Sales/SalesScreen.dart';
+import 'package:zwc/screens/Sales/addsalesdeatils.dart';
+import 'package:zwc/screens/Sales/getsalesdetailsscreen.dart';
 import 'package:zwc/screens/SegregatedWaste/OfflineDataSync.dart';
-import 'package:zwc/screens/SegregatedWaste/segregated_waste_screen.dart';
+import 'package:zwc/screens/SegregatedWaste/addsegregatedbyQR.dart';
+import 'package:zwc/screens/SegregatedWaste/addsegregatedwaste.dart';
+import 'package:zwc/screens/SegregatedWaste/getsegregateddetails.dart';
 import 'package:zwc/screens/StockReport/getstockreportbycategory.dart';
 import 'package:zwc/screens/StockReport/getstockreportbywastetype.dart';
 import 'package:zwc/screens/StockReport/gettotalstockreport.dart';
-import 'package:zwc/screens/StockTransfer/StockTransfer.dart';
-import 'package:zwc/screens/WasteProcessing/wasteprocessingscreen.dart';
+import 'package:zwc/screens/StockTransfer/Add_stocktransfer_details.dart';
+import 'package:zwc/screens/StockTransfer/getstocktransferdetails.dart';
+import 'package:zwc/screens/WasteProcessing/addwasteprocessing.dart';
+import 'package:zwc/screens/WasteProcessing/getwasteprocessing.dart';
 import 'package:zwc/screens/auth/login.dart';
 import 'package:zwc/screens/dashboard/dashboard.dart';
 
@@ -364,7 +375,7 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                 ),
               ],
             ),
-            ListTile(
+            ExpansionTile(
               leading: Icon(
                 Icons.dashboard,
                 color: Colors.green,
@@ -375,18 +386,46 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                 style: GoogleFonts.roboto(
                     color: Colors.green, fontWeight: FontWeight.bold),
               ),
-              onTap: () {
-                if (dbbranchid.toString() == "null" ||
-                    dbbranchid.toString() == "0") {
-                  Get.to(NoBranchselectedscreen());
-                } else {
-                  Get.back();
-
-                  Get.to(WasteProcessingScreen());
-                }
-              },
+              children: [
+                ListTile(
+                  title: Center(
+                    child: Text(
+                      "Waste Processsing Details",
+                      style: GoogleFonts.roboto(
+                          color: Colors.green, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  onTap: () {
+                    if (dbbranchid.toString() == "null" ||
+                        dbbranchid.toString() == "0") {
+                      Get.to(NoBranchselectedscreen());
+                    } else {
+                      Get.delete<WasteProcessingController>();
+                      Get.to(GetWasteProcessingScreen);
+                    }
+                  },
+                ),
+                ListTile(
+                  title: Center(
+                    child: Text(
+                      "Add Waste Processing",
+                      style: GoogleFonts.roboto(
+                          color: Colors.green, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  onTap: () {
+                    if (dbbranchid.toString() == "null" ||
+                        dbbranchid.toString() == "0") {
+                      Get.to(NoBranchselectedscreen());
+                    } else {
+                      Get.delete<WasteProcessingController>();
+                      Get.to(addwasteprocessing());
+                    }
+                  },
+                ),
+              ],
             ),
-            ListTile(
+            ExpansionTile(
               leading: Icon(
                 Icons.dashboard,
                 color: Colors.green,
@@ -397,18 +436,50 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                 style: GoogleFonts.roboto(
                     color: Colors.green, fontWeight: FontWeight.bold),
               ),
-              onTap: () {
-                if (dbbranchid.toString() == "null" ||
-                    dbbranchid.toString() == "0") {
-                  Get.to(NoBranchselectedscreen());
-                } else {
-                  Get.back();
+              children: [
+                ListTile(
+                  title: Center(
+                    child: Text(
+                      "Stock Transfer Details",
+                      style: GoogleFonts.roboto(
+                          color: Colors.green, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  onTap: () {
+                    if (dbbranchid.toString() == "null" ||
+                        dbbranchid.toString() == "0") {
+                      Get.to(NoBranchselectedscreen());
+                    } else {
+                      Get.back();
+                      Get.delete<StockTransferController>();
 
-                  Get.to(StockTransferScreen());
-                }
-              },
+                      Get.to(GetStockTransferDetails());
+                    }
+                  },
+                ),
+                ListTile(
+                  title: Center(
+                    child: Text(
+                      "Add Stock Transfer",
+                      style: GoogleFonts.roboto(
+                          color: Colors.green, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  onTap: () {
+                    if (dbbranchid.toString() == "null" ||
+                        dbbranchid.toString() == "0") {
+                      Get.to(NoBranchselectedscreen());
+                    } else {
+                      Get.back();
+                      Get.delete<StockTransferController>();
+
+                      Get.to(Addstockytransferdetails());
+                    }
+                  },
+                ),
+              ],
             ),
-            ListTile(
+            ExpansionTile(
               leading: Icon(
                 Icons.dashboard,
                 color: Colors.green,
@@ -419,18 +490,50 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                 style: GoogleFonts.roboto(
                     color: Colors.green, fontWeight: FontWeight.bold),
               ),
-              onTap: () {
-                if (dbbranchid.toString() == "null" ||
-                    dbbranchid.toString() == "0") {
-                  Get.to(NoBranchselectedscreen());
-                } else {
-                  Get.back();
+              children: [
+                ListTile(
+                  title: Center(
+                    child: Text(
+                      "Sales Details",
+                      style: GoogleFonts.roboto(
+                          color: Colors.green, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  onTap: () {
+                    if (dbbranchid.toString() == "null" ||
+                        dbbranchid.toString() == "0") {
+                      Get.to(NoBranchselectedscreen());
+                    } else {
+                      Get.back();
+                      Get.delete<SalesController>();
 
-                  Get.to(SalesScreen());
-                }
-              },
+                      Get.to(GetsalesdetailsScreen());
+                    }
+                  },
+                ),
+                ListTile(
+                  title: Center(
+                    child: Text(
+                      "Add Sales",
+                      style: GoogleFonts.roboto(
+                          color: Colors.green, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  onTap: () {
+                    if (dbbranchid.toString() == "null" ||
+                        dbbranchid.toString() == "0") {
+                      Get.to(NoBranchselectedscreen());
+                    } else {
+                      Get.back();
+                      Get.delete<SalesController>();
+
+                      Get.to(Addsalesdetails());
+                    }
+                  },
+                ),
+              ],
             ),
-            ListTile(
+            ExpansionTile(
               leading: Icon(
                 Icons.dashboard,
                 color: Colors.green,
@@ -441,18 +544,50 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                 style: GoogleFonts.roboto(
                     color: Colors.green, fontWeight: FontWeight.bold),
               ),
-              onTap: () {
-                if (dbbranchid.toString() == "null" ||
-                    dbbranchid.toString() == "0") {
-                  Get.to(NoBranchselectedscreen());
-                } else {
-                  Get.back();
+              children: [
+                ListTile(
+                  title: Center(
+                    child: Text(
+                      "Purchase Details",
+                      style: GoogleFonts.roboto(
+                          color: Colors.green, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  onTap: () {
+                    if (dbbranchid.toString() == "null" ||
+                        dbbranchid.toString() == "0") {
+                      Get.to(NoBranchselectedscreen());
+                    } else {
+                      Get.back();
+                      Get.delete<PurchaseController>();
 
-                  Get.to(PurchaseScreen());
-                }
-              },
+                      Get.to(GetpurchasedetailsScreen());
+                    }
+                  },
+                ),
+                ListTile(
+                  title: Center(
+                    child: Text(
+                      "Add Purchase",
+                      style: GoogleFonts.roboto(
+                          color: Colors.green, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  onTap: () {
+                    if (dbbranchid.toString() == "null" ||
+                        dbbranchid.toString() == "0") {
+                      Get.to(NoBranchselectedscreen());
+                    } else {
+                      Get.back();
+                      Get.delete<PurchaseController>();
+
+                      Get.to(AddPurchaseDeatils());
+                    }
+                  },
+                ),
+              ],
             ),
-            ListTile(
+            ExpansionTile(
               leading: Icon(
                 Icons.dashboard,
                 color: Colors.green,
@@ -463,16 +598,68 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                 style: GoogleFonts.roboto(
                     color: Colors.green, fontWeight: FontWeight.bold),
               ),
-              onTap: () {
-                if (dbbranchid.toString() == "null" ||
-                    dbbranchid.toString() == "0") {
-                  Get.to(NoBranchselectedscreen());
-                } else {
-                  Get.back();
+              children: [
+                ListTile(
+                  title: Center(
+                    child: Text(
+                      "Segregated Details",
+                      style: GoogleFonts.roboto(
+                          color: Colors.green, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  onTap: () {
+                    if (dbbranchid.toString() == "null" ||
+                        dbbranchid.toString() == "0") {
+                      Get.to(NoBranchselectedscreen());
+                    } else {
+                      Get.back();
+                      Get.delete<SegragatedController>();
 
-                  Get.to(SegregatedWasteScreen());
-                }
-              },
+                      Get.to(GetSegregatedDetails());
+                    }
+                  },
+                ),
+                ListTile(
+                  title: Center(
+                    child: Text(
+                      "Add Segregation Details",
+                      style: GoogleFonts.roboto(
+                          color: Colors.green, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  onTap: () {
+                    if (dbbranchid.toString() == "null" ||
+                        dbbranchid.toString() == "0") {
+                      Get.to(NoBranchselectedscreen());
+                    } else {
+                      Get.back();
+                      Get.delete<SegragatedController>();
+
+                      Get.to(addsegregationdetails());
+                    }
+                  },
+                ),
+                ListTile(
+                  title: Center(
+                    child: Text(
+                      "Add Details by QR",
+                      style: GoogleFonts.roboto(
+                          color: Colors.green, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  onTap: () {
+                    if (dbbranchid.toString() == "null" ||
+                        dbbranchid.toString() == "0") {
+                      Get.to(NoBranchselectedscreen());
+                    } else {
+                      Get.back();
+                      Get.delete<SegragatedController>();
+
+                      Get.to(AddSegregateByQR());
+                    }
+                  },
+                ),
+              ],
             ),
             ExpansionTile(
               leading: Icon(
