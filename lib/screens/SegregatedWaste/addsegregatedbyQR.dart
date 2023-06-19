@@ -128,7 +128,7 @@ class _QRScannerScreenState extends State<AddSegregateByQR> {
               flex: 1,
               child: Center(
                 child: Text(
-                  'Make sure your internet is working',
+                  'Data will be saved locally',
                   style: TextStyle(fontSize: 18.0, color: Colors.black54),
                 ),
               ),
