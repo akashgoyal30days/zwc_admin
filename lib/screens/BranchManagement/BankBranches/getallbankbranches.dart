@@ -105,107 +105,148 @@ class _GetCollectionDetailsScreenState extends State<Getallbankbranches> {
                                     thumbColor: Colors.green,
                                     trackVisibility: true,
                                     thumbVisibility: true,
-                                    child: ListView.builder(
+                                    child: ListView.separated(
+                                      separatorBuilder: (context, index) =>
+                                          SizedBox(
+                                        height: 10,
+                                      ),
                                       itemCount: bcontroller
                                           .getallbankbrancheslist!.data!.length,
                                       itemBuilder:
                                           (BuildContext context, int index) {
-                                        return Container(
+                                        return Card(
+                                          elevation: 5,
+                                          shape: RoundedRectangleBorder(
+                                              side: BorderSide(
+                                                  color: Colors.green),
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
                                           margin: EdgeInsets.symmetric(
                                               horizontal: 10),
-                                          color: index.isOdd
-                                              ? Colors.white
-                                              : Colors.grey.shade300,
-                                          child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 5,
-                                                      vertical: 10),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Expanded(
-                                                        child: Text(
-                                                          controller
-                                                              .getallbankbrancheslist!
-                                                              .data![index]
-                                                              .branchName
-                                                              .toString(),
+                                          child: Container(
+                                            child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 5,
+                                                        vertical: 10),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Expanded(
+                                                          child: Text(
+                                                            controller
+                                                                .getallbankbrancheslist!
+                                                                .data![index]
+                                                                .branchName
+                                                                .toString(),
+                                                            style: TextStyle(
+                                                                color:
+                                                                    Colors.blue,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
                                                         ),
-                                                      ),
-                                                      Text(controller
-                                                          .getallbankbrancheslist!
-                                                          .data![index]
-                                                          .branchType
-                                                          .toString()),
-                                                    ],
-                                                  ),
-                                                  Divider(),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Expanded(
-                                                        child: Text("Contact"),
-                                                      ),
-                                                      Text(controller
-                                                          .getallbankbrancheslist!
-                                                          .data![index]
-                                                          .branchContact
-                                                          .toString()),
-                                                    ],
-                                                  ),
-                                                  Divider(),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Expanded(
-                                                        child: Text(
-                                                            "Email Address"),
-                                                      ),
-                                                      Text(controller
-                                                          .getallbankbrancheslist!
-                                                          .data![index]
-                                                          .branchEmail
-                                                          .toString()),
-                                                    ],
-                                                  ),
-                                                  Divider(),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(controller
-                                                              .getallbankbrancheslist!
-                                                              .data![index]
-                                                              .area
-                                                              .toString() +
-                                                          " " +
-                                                          controller
-                                                              .getallbankbrancheslist!
-                                                              .data![index]
-                                                              .city
-                                                              .toString() +
-                                                          " " +
-                                                          controller
-                                                              .getallbankbrancheslist!
-                                                              .data![index]
-                                                              .state
-                                                              .toString()),
-                                                    ],
-                                                  ),
-                                                ],
-                                              )),
+                                                        Text(controller
+                                                            .getallbankbrancheslist!
+                                                            .data![index]
+                                                            .branchType
+                                                            .toString()),
+                                                      ],
+                                                    ),
+                                                    Divider(),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Expanded(
+                                                          child: Text(
+                                                            "Contact",
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .green,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                        ),
+                                                        Text(controller
+                                                            .getallbankbrancheslist!
+                                                            .data![index]
+                                                            .branchContact
+                                                            .toString()),
+                                                      ],
+                                                    ),
+                                                    Divider(),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Expanded(
+                                                          child: Text(
+                                                            "Email address",
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .green,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                        ),
+                                                        Text(controller
+                                                            .getallbankbrancheslist!
+                                                            .data![index]
+                                                            .branchEmail
+                                                            .toString()),
+                                                      ],
+                                                    ),
+                                                    Divider(),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Expanded(
+                                                          child: Text(
+                                                            "Address",
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .green,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                        ),
+                                                        Text(controller
+                                                                .getallbankbrancheslist!
+                                                                .data![index]
+                                                                .area
+                                                                .toString() +
+                                                            " " +
+                                                            controller
+                                                                .getallbankbrancheslist!
+                                                                .data![index]
+                                                                .city
+                                                                .toString() +
+                                                            " " +
+                                                            controller
+                                                                .getallbankbrancheslist!
+                                                                .data![index]
+                                                                .state
+                                                                .toString()),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                )),
+                                          ),
                                         );
                                       },
                                     ),

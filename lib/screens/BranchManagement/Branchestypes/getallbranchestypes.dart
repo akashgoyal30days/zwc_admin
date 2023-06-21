@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zwc/controllers/Branchcontroller.dart';
 import 'package:zwc/data/shared_preference.dart';
 import 'package:zwc/screens/BranchManagement/Branchestypes/addbranchestypes.dart';
-import 'package:zwc/screens/IECProrams/addprogram_iecprogram.dart';
 
 class GetBranchestypesDetails extends StatefulWidget {
   GetBranchestypesDetails({
@@ -143,11 +142,15 @@ class _GetCollectionDetailsScreenState extends State<GetBranchestypesDetails> {
                                       itemBuilder:
                                           (BuildContext context, int index) {
                                         return Container(
+                                          decoration: BoxDecoration(
+                                              color: index.isOdd
+                                                  ? Colors.white
+                                                  : Colors.grey.shade200,
+                                              border: Border.all(
+                                                  color:
+                                                      Colors.green.shade200)),
                                           margin: EdgeInsets.symmetric(
                                               horizontal: 10),
-                                          color: index.isOdd
-                                              ? Colors.white
-                                              : Colors.grey.shade300,
                                           child: Padding(
                                               padding:
                                                   const EdgeInsets.symmetric(

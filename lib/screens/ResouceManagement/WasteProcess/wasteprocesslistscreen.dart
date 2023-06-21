@@ -250,94 +250,129 @@ class _GetCollectionDetailsScreenState extends State<GetWasteProcessDetails> {
                                     thumbColor: Colors.green,
                                     trackVisibility: true,
                                     thumbVisibility: true,
-                                    child: ListView.builder(
+                                    child: ListView.separated(
+                                      separatorBuilder: (context, index) =>
+                                          SizedBox(
+                                        height: 10,
+                                      ),
                                       itemCount: rcontroller
                                           .getallwasteprocess!.data!.length,
                                       itemBuilder:
                                           (BuildContext context, int index) {
-                                        return Container(
+                                        return Card(
+                                          shape: RoundedRectangleBorder(
+                                              side: BorderSide(
+                                                  color: Colors.green),
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          elevation: 5,
                                           margin: EdgeInsets.symmetric(
                                               horizontal: 10),
-                                          color: index.isOdd
-                                              ? Colors.white
-                                              : Colors.grey.shade300,
-                                          child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 5,
-                                                      vertical: 10),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(controller
-                                                          .getallwasteprocess!
-                                                          .data![index]
-                                                          .processName
-                                                          .toString()),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(controller
-                                                          .getallwasteprocess!
-                                                          .data![index]
-                                                          .machineName
-                                                          .toString()),
-                                                      InkWell(
-                                                        onTap: () {
-                                                          setState(() {
-                                                            editprocesscontroller
-                                                                    .text =
-                                                                controller
-                                                                    .getallwasteprocess!
-                                                                    .data![
-                                                                        index]
-                                                                    .processName
-                                                                    .toString();
-                                                            editsolutioncontroller
-                                                                    .text =
-                                                                controller
-                                                                    .getallwasteprocess!
-                                                                    .data![
-                                                                        index]
-                                                                    .machineName
-                                                                    .toString();
-                                                            selectedprocessid =
-                                                                controller
-                                                                    .getallwasteprocess!
-                                                                    .data![
-                                                                        index]
-                                                                    .id;
-                                                          });
-                                                          editpeocessdetailspopup(
-                                                              context);
-                                                        },
-                                                        child: Text(
-                                                          "Edit Details",
+                                          child: Container(
+                                            child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 5,
+                                                        vertical: 10),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "Process name",
                                                           style: TextStyle(
                                                               color:
-                                                                  Colors.blue,
-                                                              decoration:
-                                                                  TextDecoration
-                                                                      .underline,
+                                                                  Colors.green,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold),
                                                         ),
-                                                      )
-                                                    ],
-                                                  ),
-                                                ],
-                                              )),
+                                                        Text(controller
+                                                            .getallwasteprocess!
+                                                            .data![index]
+                                                            .processName
+                                                            .toString()),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "Solution",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.green,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                        Text(controller
+                                                            .getallwasteprocess!
+                                                            .data![index]
+                                                            .machineName
+                                                            .toString()),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        SizedBox(),
+                                                        InkWell(
+                                                          onTap: () {
+                                                            setState(() {
+                                                              editprocesscontroller
+                                                                      .text =
+                                                                  controller
+                                                                      .getallwasteprocess!
+                                                                      .data![
+                                                                          index]
+                                                                      .processName
+                                                                      .toString();
+                                                              editsolutioncontroller
+                                                                      .text =
+                                                                  controller
+                                                                      .getallwasteprocess!
+                                                                      .data![
+                                                                          index]
+                                                                      .machineName
+                                                                      .toString();
+                                                              selectedprocessid =
+                                                                  controller
+                                                                      .getallwasteprocess!
+                                                                      .data![
+                                                                          index]
+                                                                      .id;
+                                                            });
+                                                            editpeocessdetailspopup(
+                                                                context);
+                                                          },
+                                                          child: Text(
+                                                            "Edit Details",
+                                                            style: TextStyle(
+                                                                color:
+                                                                    Colors.blue,
+                                                                decoration:
+                                                                    TextDecoration
+                                                                        .underline,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                        )
+                                                      ],
+                                                    )
+                                                  ],
+                                                )),
+                                          ),
                                         );
                                       },
                                     ),

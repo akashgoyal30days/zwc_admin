@@ -194,125 +194,178 @@ class _GetCollectionDetailsScreenState extends State<GetsalesdetailsScreen> {
                                     thumbColor: Colors.green,
                                     trackVisibility: true,
                                     thumbVisibility: true,
-                                    child: ListView.builder(
+                                    child: ListView.separated(
+                                      separatorBuilder: (context, index) =>
+                                          SizedBox(
+                                        height: 10,
+                                      ),
                                       itemCount: salescontroller
                                           .getallsaleslist!.data!.length,
                                       itemBuilder:
                                           (BuildContext context, int index) {
-                                        return Container(
+                                        return Card(
+                                          elevation: 5,
+                                          shape: RoundedRectangleBorder(
+                                              side: BorderSide(
+                                                  color: Colors.green),
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
                                           margin: EdgeInsets.symmetric(
                                               horizontal: 10),
-                                          color: index.isOdd
-                                              ? Colors.white
-                                              : Colors.grey.shade300,
-                                          child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 5,
-                                                      vertical: 10),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(controller
-                                                          .getallsaleslist!
-                                                          .data![index]
-                                                          .fromBranch
-                                                          .toString()),
-                                                      Text(
-                                                        controller
+                                          child: Container(
+                                            child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 5,
+                                                        vertical: 10),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "Date",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.green,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                        Text(
+                                                          controller
+                                                              .getallsaleslist!
+                                                              .data![index]
+                                                              .tdate
+                                                              .toString(),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "From Branch",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.green,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                        Text(controller
                                                             .getallsaleslist!
                                                             .data![index]
-                                                            .tdate
-                                                            .toString(),
-                                                        style:
-                                                            GoogleFonts.roboto(
-                                                                color: Colors
-                                                                    .green,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Icon(Icons.forward),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Text(controller
-                                                          .getallsaleslist!
-                                                          .data![index]
-                                                          .toBranch
-                                                          .toString()),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: 10,
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        "₹${controller.getallsaleslist!.data![index].transactionAmount.toString()}",
-                                                        style:
-                                                            GoogleFonts.roboto(
-                                                                color: Colors
-                                                                    .green,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                      ),
-                                                      Visibility(
-                                                        visible: true,
-                                                        child: InkWell(
-                                                          onTap: () {
-                                                            Progressloaders
-                                                                .progressloaderdailog(
-                                                                    context);
+                                                            .fromBranch
+                                                            .toString()),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "To Branch",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.green,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                        Text(controller
+                                                            .getallsaleslist!
+                                                            .data![index]
+                                                            .toBranch
+                                                            .toString()),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "Transaction amount",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.green,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                        Text(
+                                                          "₹${controller.getallsaleslist!.data![index].transactionAmount.toString()}",
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        SizedBox(),
+                                                        Visibility(
+                                                          visible: true,
+                                                          child: InkWell(
+                                                            onTap: () {
+                                                              Progressloaders
+                                                                  .progressloaderdailog(
+                                                                      context);
 
-                                                            salescontroller
-                                                                .getsalesdetailsbyid(
-                                                                    docid: salescontroller
-                                                                        .getallsaleslist!
-                                                                        .data![
-                                                                            index]
-                                                                        .id
-                                                                        .toString())
-                                                                .then((value) =>
-                                                                    {
-                                                                      Get.back(),
-                                                                      Get.to(
-                                                                          GetSalesViewDetailsScreen())
-                                                                    });
-                                                          },
-                                                          child: Text(
-                                                            "View Details",
-                                                            style: GoogleFonts.roboto(
-                                                                color: Colors
-                                                                    .green,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                decoration:
-                                                                    TextDecoration
-                                                                        .underline),
+                                                              salescontroller
+                                                                  .getsalesdetailsbyid(
+                                                                      docid: salescontroller
+                                                                          .getallsaleslist!
+                                                                          .data![
+                                                                              index]
+                                                                          .id
+                                                                          .toString())
+                                                                  .then(
+                                                                      (value) =>
+                                                                          {
+                                                                            Get.back(),
+                                                                            Get.to(GetSalesViewDetailsScreen())
+                                                                          });
+                                                            },
+                                                            child: Text(
+                                                              "View Details",
+                                                              style: GoogleFonts.roboto(
+                                                                  color: Colors
+                                                                      .green,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  decoration:
+                                                                      TextDecoration
+                                                                          .underline),
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ],
-                                                  )
-                                                ],
-                                              )),
+                                                      ],
+                                                    )
+                                                  ],
+                                                )),
+                                          ),
                                         );
                                       },
                                     ),

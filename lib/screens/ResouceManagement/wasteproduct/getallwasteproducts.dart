@@ -77,12 +77,6 @@ class _GetCollectionDetailsScreenState extends State<GetAllProducts> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [],
-                        ),
-                      ),
                       SizedBox(
                         height: 5,
                       ),
@@ -91,7 +85,7 @@ class _GetCollectionDetailsScreenState extends State<GetAllProducts> {
                           : Column(
                               children: [
                                 Text(
-                                  "Waste Profduct Details",
+                                  "Waste Product Details",
                                   style: GoogleFonts.roboto(
                                       color: Colors.green,
                                       fontWeight: FontWeight.bold,
@@ -106,146 +100,158 @@ class _GetCollectionDetailsScreenState extends State<GetAllProducts> {
                                     thumbColor: Colors.green,
                                     trackVisibility: true,
                                     thumbVisibility: true,
-                                    child: ListView.builder(
+                                    child: ListView.separated(
+                                      separatorBuilder: (context, index) =>
+                                          SizedBox(
+                                        height: 10,
+                                      ),
                                       itemCount: rcontroller
                                           .getallproductlist!.data!.length,
                                       itemBuilder:
                                           (BuildContext context, int index) {
-                                        return Container(
+                                        return Card(
+                                          elevation: 5,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
                                           margin: EdgeInsets.symmetric(
                                               horizontal: 10),
-                                          color: index.isOdd
-                                              ? Colors.white
-                                              : Colors.grey.shade300,
-                                          child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 5,
-                                                      vertical: 10),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        controller
-                                                            .getallproductlist!
-                                                            .data![index]
-                                                            .productName
-                                                            .toString(),
-                                                        style:
-                                                            GoogleFonts.roboto(
-                                                          color: Colors.green,
-                                                          fontWeight:
-                                                              FontWeight.bold,
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    color: Colors.green),
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 5,
+                                                        vertical: 10),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          controller
+                                                              .getallproductlist!
+                                                              .data![index]
+                                                              .productName
+                                                              .toString(),
+                                                          style: GoogleFonts
+                                                              .roboto(
+                                                            color: Colors.green,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
                                                         ),
-                                                      ),
-                                                      Text(
-                                                        controller
-                                                            .getallproductlist!
-                                                            .data![index]
-                                                            .category
-                                                            .toString(),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: 20,
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        "Unit",
-                                                        style:
-                                                            GoogleFonts.roboto(
-                                                          color: Colors.blue,
-                                                          fontWeight:
-                                                              FontWeight.bold,
+                                                        Text(
+                                                          controller
+                                                              .getallproductlist!
+                                                              .data![index]
+                                                              .category
+                                                              .toString(),
                                                         ),
-                                                      ),
-                                                      Text(
-                                                        controller
-                                                            .getallproductlist!
-                                                            .data![index]
-                                                            .unit
-                                                            .toString(),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        "Sale Price",
-                                                        style:
-                                                            GoogleFonts.roboto(
-                                                          color: Colors.blue,
-                                                          fontWeight:
-                                                              FontWeight.bold,
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 20,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "Unit",
+                                                          style: GoogleFonts
+                                                              .roboto(
+                                                            color: Colors.blue,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
                                                         ),
-                                                      ),
-                                                      Text(
-                                                        controller
-                                                            .getallproductlist!
-                                                            .data![index]
-                                                            .salePrice
-                                                            .toString(),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        "Purchase Price",
-                                                        style:
-                                                            GoogleFonts.roboto(
-                                                          color: Colors.blue,
-                                                          fontWeight:
-                                                              FontWeight.bold,
+                                                        Text(
+                                                          controller
+                                                              .getallproductlist!
+                                                              .data![index]
+                                                              .unit
+                                                              .toString(),
                                                         ),
-                                                      ),
-                                                      Text(
-                                                        controller
-                                                            .getallproductlist!
-                                                            .data![index]
-                                                            .purchasePrice
-                                                            .toString(),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        "GST",
-                                                        style:
-                                                            GoogleFonts.roboto(
-                                                          color: Colors.blue,
-                                                          fontWeight:
-                                                              FontWeight.bold,
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "Sale Price",
+                                                          style: GoogleFonts
+                                                              .roboto(
+                                                            color: Colors.blue,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
                                                         ),
-                                                      ),
-                                                      Text(
-                                                        "${controller.getallproductlist!.data![index].gst.toString()}%",
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              )),
+                                                        Text(
+                                                          controller
+                                                              .getallproductlist!
+                                                              .data![index]
+                                                              .salePrice
+                                                              .toString(),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "Purchase Price",
+                                                          style: GoogleFonts
+                                                              .roboto(
+                                                            color: Colors.blue,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          controller
+                                                              .getallproductlist!
+                                                              .data![index]
+                                                              .purchasePrice
+                                                              .toString(),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "GST",
+                                                          style: GoogleFonts
+                                                              .roboto(
+                                                            color: Colors.blue,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          "${controller.getallproductlist!.data![index].gst.toString()}%",
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                )),
+                                          ),
                                         );
                                       },
                                     ),

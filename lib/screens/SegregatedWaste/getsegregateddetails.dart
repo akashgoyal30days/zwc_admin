@@ -193,112 +193,165 @@ class _GetCollectionDetailsScreenState extends State<GetSegregatedDetails> {
                                     thumbColor: Colors.green,
                                     trackVisibility: true,
                                     thumbVisibility: true,
-                                    child: ListView.builder(
+                                    child: ListView.separated(
+                                      separatorBuilder: (context, index) =>
+                                          SizedBox(
+                                        height: 10,
+                                      ),
                                       itemCount: segregatedcontroller
                                           .getallsegregatedlist!.data!.length,
                                       itemBuilder:
                                           (BuildContext context, int index) {
-                                        return Container(
+                                        return Card(
+                                          elevation: 5,
                                           margin: EdgeInsets.symmetric(
                                               horizontal: 10),
-                                          color: index.isOdd
-                                              ? Colors.white
-                                              : Colors.grey.shade300,
-                                          child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 5,
-                                                      vertical: 10),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(controller
-                                                          .getallsegregatedlist!
-                                                          .data![index]
-                                                          .name
-                                                          .toString()),
-                                                      Text(
-                                                        controller
+                                          shape: RoundedRectangleBorder(
+                                              side: BorderSide(
+                                                  color: Colors.green),
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          child: Container(
+                                            child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 5,
+                                                        vertical: 10),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "Date",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.green,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                        Text(
+                                                          controller
+                                                              .getallsegregatedlist!
+                                                              .data![index]
+                                                              .cdate
+                                                              .toString(),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "Name",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.green,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                        Text(controller
                                                             .getallsegregatedlist!
                                                             .data![index]
-                                                            .cdate
-                                                            .toString(),
-                                                        style:
-                                                            GoogleFonts.roboto(
-                                                                color: Colors
-                                                                    .green,
+                                                            .name
+                                                            .toString()),
+                                                       
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                      children: [
+                                                         Text(
+                                                          "Email",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.green,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                        Text(controller
+                                                            .getallsegregatedlist!
+                                                            .data![index]
+                                                            .email
+                                                            .toString()),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                      children: [
+                                                         Text(
+                                                          "Contact",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.green,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                        Text(controller
+                                                            .getallsegregatedlist!
+                                                            .data![index]
+                                                            .phoneNum
+                                                            .toString()),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                            "Segregation Status",
+                                                            style: GoogleFonts
+                                                                .roboto(
+                                                              color:
+                                                                  Colors.green,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            )),
+                                                        Text(
+                                                            controller
+                                                                        .getallsegregatedlist!
+                                                                        .data![
+                                                                            index]
+                                                                        .status
+                                                                        .toString() ==
+                                                                    "1"
+                                                                ? "YES"
+                                                                : "No",
+                                                            style: GoogleFonts.roboto(
+                                                                color:
+                                                                    Colors.blue,
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .bold),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Text(controller
-                                                          .getallsegregatedlist!
-                                                          .data![index]
-                                                          .email
-                                                          .toString()),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Text(controller
-                                                          .getallsegregatedlist!
-                                                          .data![index]
-                                                          .phoneNum
-                                                          .toString()),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: 10,
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text("Segregation Status",
-                                                          style: GoogleFonts
-                                                              .roboto(
-                                                            color: Colors.green,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                          )),
-                                                      Text(
-                                                          controller
-                                                                      .getallsegregatedlist!
-                                                                      .data![
-                                                                          index]
-                                                                      .status
-                                                                      .toString() ==
-                                                                  "1"
-                                                              ? "YES"
-                                                              : "No",
-                                                          style: GoogleFonts
-                                                              .roboto(
-                                                                  color: Colors
-                                                                      .blue,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold)),
-                                                    ],
-                                                  ),
-                                                ],
-                                              )),
+                                                                        .bold)),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                )),
+                                          ),
                                         );
                                       },
                                     ),

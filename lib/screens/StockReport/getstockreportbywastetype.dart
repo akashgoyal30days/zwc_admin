@@ -256,183 +256,167 @@ class _GetCollectionDetailsScreenState
                                     thumbColor: Colors.green,
                                     trackVisibility: true,
                                     thumbVisibility: true,
-                                    child: ListView.builder(
+                                    child: ListView.separated(
+                                      separatorBuilder: (context, index) =>
+                                          SizedBox(
+                                        height: 10,
+                                      ),
                                       itemCount: stockcontroller
                                           .getstockdatabywaste!.data!.length,
                                       itemBuilder:
                                           (BuildContext context, int index) {
-                                        return Container(
+                                        return Card(
+                                          shape: RoundedRectangleBorder(
+                                              side: BorderSide(
+                                                  color: Colors.green),
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          elevation: 5,
                                           margin: EdgeInsets.symmetric(
                                               horizontal: 10),
-                                          color: index.isOdd
-                                              ? Colors.white
-                                              : Colors.grey.shade300,
-                                          child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 5,
-                                                      vertical: 10),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        "Waste",
-                                                        style:
-                                                            GoogleFonts.roboto(
-                                                                color:
-                                                                    Colors.grey,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                      ),
-                                                      Text(
-                                                        controller
-                                                            .getstockdatabywaste!
-                                                            .data![index]
-                                                            .productName
-                                                            .toString(),
-                                                        style:
-                                                            GoogleFonts.roboto(
-                                                                color: Colors
-                                                                    .green,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        "Opening",
-                                                        style:
-                                                            GoogleFonts.roboto(
-                                                                color:
-                                                                    Colors.grey,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                      ),
-                                                      Text(
-                                                        controller
-                                                            .getstockdatabywaste!
-                                                            .data![index]
-                                                            .opening
-                                                            .toString(),
-                                                        style:
-                                                            GoogleFonts.roboto(
-                                                                color: Colors
-                                                                    .green,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        "Collection",
-                                                        style:
-                                                            GoogleFonts.roboto(
-                                                                color:
-                                                                    Colors.grey,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                      ),
-                                                      Text(
-                                                        controller
-                                                            .getstockdatabywaste!
-                                                            .data![index]
-                                                            .inQuantity
-                                                            .toString(),
-                                                        style:
-                                                            GoogleFonts.roboto(
-                                                                color: Colors
-                                                                    .green,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        "Disposed/Recycled",
-                                                        style:
-                                                            GoogleFonts.roboto(
-                                                                color:
-                                                                    Colors.grey,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                      ),
-                                                      Text(
-                                                        controller
-                                                            .getstockdatabywaste!
-                                                            .data![index]
-                                                            .outQuantity
-                                                            .toString(),
-                                                        style:
-                                                            GoogleFonts.roboto(
-                                                                color: Colors
-                                                                    .green,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        "Balance",
-                                                        style:
-                                                            GoogleFonts.roboto(
-                                                                color:
-                                                                    Colors.grey,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                      ),
-                                                      Text(
-                                                        controller
-                                                            .getstockdatabywaste!
-                                                            .data![index]
-                                                            .balance
-                                                            .toString(),
-                                                        style:
-                                                            GoogleFonts.roboto(
-                                                                color: Colors
-                                                                    .green,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              )),
+                                          child: Container(
+                                            child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 5,
+                                                        vertical: 10),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "Waste Type",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.green,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                        Text(
+                                                          controller
+                                                              .getstockdatabywaste!
+                                                              .data![index]
+                                                              .productName
+                                                              .toString(),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "Opening",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.green,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                        Text(
+                                                          controller
+                                                              .getstockdatabywaste!
+                                                              .data![index]
+                                                              .opening
+                                                              .toString(),
+                                                          style: GoogleFonts
+                                                              .roboto(
+                                                                  color: Colors
+                                                                      .green,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "Collection",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.green,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                        Text(
+                                                          controller
+                                                              .getstockdatabywaste!
+                                                              .data![index]
+                                                              .inQuantity
+                                                              .toString(),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "Disposed/Recycled",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.green,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                        Text(
+                                                          controller
+                                                              .getstockdatabywaste!
+                                                              .data![index]
+                                                              .outQuantity
+                                                              .toString(),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "Balance",
+                                                          style: GoogleFonts
+                                                              .roboto(
+                                                                  color: Colors
+                                                                      .blue,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                        ),
+                                                        Text(
+                                                          controller
+                                                              .getstockdatabywaste!
+                                                              .data![index]
+                                                              .balance
+                                                              .toString(),
+                                                          style: GoogleFonts
+                                                              .roboto(
+                                                                  color: Colors
+                                                                      .blue,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                )),
+                                          ),
                                         );
                                       },
                                     ),

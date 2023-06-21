@@ -195,165 +195,168 @@ class _GetCollectionDetailsScreenState extends State<GetWasteProcessingScreen> {
                                     thumbColor: Colors.green,
                                     trackVisibility: true,
                                     thumbVisibility: true,
-                                    child: ListView.builder(
+                                    child: ListView.separated(
+                                      separatorBuilder: (context, index) =>
+                                          SizedBox(
+                                        height: 10,
+                                      ),
                                       itemCount: wastecontroller
                                           .getallprocessedwastelist!
                                           .data!
                                           .length,
                                       itemBuilder:
                                           (BuildContext context, int index) {
-                                        return Container(
+                                        return Card(
+                                          elevation: 5,
                                           margin: EdgeInsets.symmetric(
                                               horizontal: 10),
-                                          color: index.isOdd
-                                              ? Colors.white
-                                              : Colors.grey.shade300,
-                                          child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 5,
-                                                      vertical: 10),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        controller
-                                                            .getallprocessedwastelist!
-                                                            .data![index]
-                                                            .branch
-                                                            .toString(),
-                                                        style:
-                                                            GoogleFonts.roboto(
-                                                                color: Colors
-                                                                    .black,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                      ),
-                                                      Text(
-                                                        controller
-                                                            .getallprocessedwastelist!
-                                                            .data![index]
-                                                            .tdate
-                                                            .toString(),
-                                                        style:
-                                                            GoogleFonts.roboto(
-                                                                color: Colors
-                                                                    .green,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text("Process",
+                                          shape: RoundedRectangleBorder(
+                                              side: BorderSide(
+                                                  color: Colors.green),
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          child: Container(
+                                            child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 5,
+                                                        vertical: 10),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          controller
+                                                              .getallprocessedwastelist!
+                                                              .data![index]
+                                                              .branch
+                                                              .toString(),
                                                           style: GoogleFonts
                                                               .roboto(
                                                                   color: Colors
-                                                                      .blue,
+                                                                      .green,
                                                                   fontWeight:
                                                                       FontWeight
-                                                                          .bold)),
-                                                      Text(
+                                                                          .bold),
+                                                        ),
+                                                        Text(
+                                                          controller
+                                                              .getallprocessedwastelist!
+                                                              .data![index]
+                                                              .tdate
+                                                              .toString(),
+                                                          style: GoogleFonts
+                                                              .roboto(
+                                                                  color: Colors
+                                                                      .green,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text("Process",
+                                                            style: GoogleFonts.roboto(
+                                                                color:
+                                                                    Colors.blue,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold)),
+                                                        Text(
                                                           controller
                                                               .getallprocessedwastelist!
                                                               .data![index]
                                                               .processName
                                                               .toString(),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "Solution",
                                                           style: GoogleFonts
                                                               .roboto(
                                                                   color: Colors
                                                                       .blue,
                                                                   fontWeight:
                                                                       FontWeight
-                                                                          .bold)),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: 10,
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        "Solution",
-                                                        style:
-                                                            GoogleFonts.roboto(
-                                                                color: Colors
-                                                                    .black,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                      ),
-                                                      Text(
-                                                        controller
-                                                            .getallprocessedwastelist!
-                                                            .data![index]
-                                                            .machineName
-                                                            .toString(),
-                                                        style:
-                                                            GoogleFonts.roboto(
-                                                                color:
-                                                                    Colors.blue,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                      ),
-                                                      Visibility(
-                                                        visible: true,
-                                                        child: InkWell(
-                                                          onTap: () {
-                                                            Progressloaders
-                                                                .progressloaderdailog(
-                                                                    context);
-                                                            wastecontroller
-                                                                .getwasteprocessdetailsbyid(
-                                                                    docid: controller
-                                                                        .getallprocessedwastelist!
-                                                                        .data![
-                                                                            index]
-                                                                        .id)
-                                                                .then((value) =>
-                                                                    {
-                                                                      Get.back(),
-                                                                      Get.to(
-                                                                          WasteProcessingViewDetailsScreen())
-                                                                    });
-                                                          },
-                                                          child: Text(
-                                                            "View Details",
-                                                            style: GoogleFonts.roboto(
-                                                                color: Colors
-                                                                    .green,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                decoration:
-                                                                    TextDecoration
-                                                                        .underline),
+                                                                          .bold),
+                                                        ),
+                                                        Text(
+                                                          controller
+                                                              .getallprocessedwastelist!
+                                                              .data![index]
+                                                              .machineName
+                                                              .toString(),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        SizedBox(),
+                                                        Visibility(
+                                                          visible: true,
+                                                          child: InkWell(
+                                                            onTap: () {
+                                                              Progressloaders
+                                                                  .progressloaderdailog(
+                                                                      context);
+                                                              wastecontroller
+                                                                  .getwasteprocessdetailsbyid(
+                                                                      docid: controller
+                                                                          .getallprocessedwastelist!
+                                                                          .data![
+                                                                              index]
+                                                                          .id)
+                                                                  .then(
+                                                                      (value) =>
+                                                                          {
+                                                                            Get.back(),
+                                                                            Get.to(WasteProcessingViewDetailsScreen())
+                                                                          });
+                                                            },
+                                                            child: Text(
+                                                              "View Details",
+                                                              style: GoogleFonts.roboto(
+                                                                  color: Colors
+                                                                      .blue,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  decoration:
+                                                                      TextDecoration
+                                                                          .underline),
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ],
-                                                  )
-                                                ],
-                                              )),
+                                                      ],
+                                                    )
+                                                  ],
+                                                )),
+                                          ),
                                         );
                                       },
                                     ),

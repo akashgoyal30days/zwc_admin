@@ -199,120 +199,169 @@ class _GetCollectionDetailsScreenState extends State<GetpurchasedetailsScreen> {
                                           .getallpurchaselist!.data!.length,
                                       itemBuilder:
                                           (BuildContext context, int index) {
-                                        return Container(
+                                        return Card(
+                                          shape: RoundedRectangleBorder(
+                                              side: BorderSide(
+                                                  color: Colors.green),
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          elevation: 5,
                                           margin: EdgeInsets.symmetric(
                                               horizontal: 10),
-                                          color: index.isOdd
-                                              ? Colors.white
-                                              : Colors.grey.shade300,
-                                          child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 5,
-                                                      vertical: 10),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(controller
-                                                          .getallpurchaselist!
-                                                          .data![index]
-                                                          .fromBranch
-                                                          .toString()),
-                                                      Text(
-                                                        controller
+                                          child: Container(
+                                            child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 5,
+                                                        vertical: 10),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "Date",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.green,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                        Text(
+                                                          controller
+                                                              .getallpurchaselist!
+                                                              .data![index]
+                                                              .tdate
+                                                              .toString(),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "From Branch",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.green,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                        Text(controller
                                                             .getallpurchaselist!
                                                             .data![index]
-                                                            .tdate
-                                                            .toString(),
-                                                        style:
-                                                            GoogleFonts.roboto(
-                                                                color: Colors
-                                                                    .green,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Icon(Icons.forward),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Text(controller
-                                                          .getallpurchaselist!
-                                                          .data![index]
-                                                          .toBranch
-                                                          .toString()),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: 10,
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        "₹${controller.getallpurchaselist!.data![index].transactionAmount.toString()}",
-                                                        style:
-                                                            GoogleFonts.roboto(
-                                                                color: Colors
-                                                                    .green,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                      ),
-                                                      Visibility(
-                                                        visible: true,
-                                                        child: InkWell(
-                                                          onTap: () {
-                                                            Progressloaders
-                                                                .progressloaderdailog(
-                                                                    context);
+                                                            .fromBranch
+                                                            .toString()),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "To Branch",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.green,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                        Text(controller
+                                                            .getallpurchaselist!
+                                                            .data![index]
+                                                            .toBranch
+                                                            .toString()),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "Transaction amount",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.green,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                        Text(
+                                                          "₹${controller.getallpurchaselist!.data![index].transactionAmount.toString()}",
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        SizedBox(),
+                                                        Visibility(
+                                                          visible: true,
+                                                          child: InkWell(
+                                                            onTap: () {
+                                                              Progressloaders
+                                                                  .progressloaderdailog(
+                                                                      context);
 
-                                                            purchasecontroller
-                                                                .getpurchasedetailsbyid(
-                                                                    docid: purchasecontroller
-                                                                        .getallpurchaselist!
-                                                                        .data![
-                                                                            index]
-                                                                        .id
-                                                                        .toString())
-                                                                .then((value) =>
-                                                                    {
-                                                                      Get.back(),
-                                                                      Get.to(
-                                                                          GetpurchaseViewDetailsScreen())
-                                                                    });
-                                                          },
-                                                          child: Text(
-                                                            "View Details",
-                                                            style: GoogleFonts.roboto(
-                                                                color: Colors
-                                                                    .green,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                decoration:
-                                                                    TextDecoration
-                                                                        .underline),
+                                                              purchasecontroller
+                                                                  .getpurchasedetailsbyid(
+                                                                      docid: purchasecontroller
+                                                                          .getallpurchaselist!
+                                                                          .data![
+                                                                              index]
+                                                                          .id
+                                                                          .toString())
+                                                                  .then(
+                                                                      (value) =>
+                                                                          {
+                                                                            Get.back(),
+                                                                            Get.to(GetpurchaseViewDetailsScreen())
+                                                                          });
+                                                            },
+                                                            child: Text(
+                                                              "View Details",
+                                                              style: GoogleFonts.roboto(
+                                                                  color: Colors
+                                                                      .green,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  decoration:
+                                                                      TextDecoration
+                                                                          .underline),
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ],
-                                                  )
-                                                ],
-                                              )),
+                                                      ],
+                                                    )
+                                                  ],
+                                                )),
+                                          ),
                                         );
                                       },
                                     ),

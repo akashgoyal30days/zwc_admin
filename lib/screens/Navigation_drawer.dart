@@ -21,7 +21,8 @@ import 'package:zwc/screens/AreaMaster/District/getdistrictlist.dart';
 import 'package:zwc/screens/AreaMaster/State/getstatedetails.dart';
 import 'package:zwc/screens/BranchManagement/BankBranches/getallbankbranches.dart';
 import 'package:zwc/screens/BranchManagement/Branchestypes/getallbranchestypes.dart';
-import 'package:zwc/screens/CollectionManagement/Collection.dart';
+import 'package:zwc/screens/CollectionManagement/Add_collection_details.dart';
+import 'package:zwc/screens/CollectionManagement/Get_collection_details.dart';
 import 'package:zwc/screens/ErrorScreens/Nobranchselectedscreen.dart';
 import 'package:zwc/screens/IECProrams/GetIECprograms.dart';
 import 'package:zwc/screens/Purchase/addpurchasedetails.dart';
@@ -356,7 +357,7 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                 ListTile(
                   title: Center(
                     child: Text(
-                      "Collection",
+                      "Collection Details",
                       style: GoogleFonts.roboto(
                           color: Colors.green, fontWeight: FontWeight.bold),
                     ),
@@ -366,10 +367,26 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                         dbbranchid.toString() == "0") {
                       Get.to(NoBranchselectedscreen());
                     } else {
-                      Get.back();
                       Get.delete<CollectionManagementController>();
-
-                      Get.to(Collection_management());
+                      Get.to(GetCollectionDetailsScreen());
+                    }
+                  },
+                ),
+                ListTile(
+                  title: Center(
+                    child: Text(
+                      "Add Collection Details",
+                      style: GoogleFonts.roboto(
+                          color: Colors.green, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  onTap: () {
+                    if (dbbranchid.toString() == "null" ||
+                        dbbranchid.toString() == "0") {
+                      Get.to(NoBranchselectedscreen());
+                    } else {
+                      Get.delete<CollectionManagementController>();
+                      Get.to(addcollectiondetails());
                     }
                   },
                 ),
@@ -401,7 +418,7 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                       Get.to(NoBranchselectedscreen());
                     } else {
                       Get.delete<WasteProcessingController>();
-                      Get.to(GetWasteProcessingScreen);
+                      Get.to(GetWasteProcessingScreen());
                     }
                   },
                 ),
