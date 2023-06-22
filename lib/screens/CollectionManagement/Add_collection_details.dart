@@ -17,7 +17,7 @@ class addcollectiondetails extends StatefulWidget {
 
 class _addcollectiondetailsState extends State<addcollectiondetails> {
   DateTime _selectdate = DateTime.now();
-  String? _isdonation = "NO";
+  bool? _isdonation = false;
   String? _iscitizen;
 
   final CollectionManagementController collectioncontroller =
@@ -167,55 +167,24 @@ class _addcollectiondetailsState extends State<addcollectiondetails> {
                             fontSize: 15),
                       ),
                     ),
-                    Card(
-                      elevation: 5,
-                      margin: EdgeInsets.symmetric(horizontal: 10),
-                      child: Container(
-                          child: Center(
-                        child: DropdownButton(
-                          value: _isdonation,
-                          underline: SizedBox(),
-                          style: GoogleFonts.roboto(
-                              color: Colors.green, fontWeight: FontWeight.bold),
-                          hint: Text(
-                            "Is Donation",
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Card(
+                        child: CheckboxListTile(
+                          title: Text(
+                            "Is Donation?",
                             style: GoogleFonts.roboto(
                                 color: Colors.green,
                                 fontWeight: FontWeight.bold),
                           ),
-                          items: ["YES", "NO"].map((item) {
-                            return DropdownMenuItem(
-                              value: item,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "${item}",
-                                        style: GoogleFonts.roboto(
-                                            color: Colors.green,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        "${item}",
-                                        style: GoogleFonts.roboto(
-                                            color: Colors.transparent,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            );
-                          }).toList(),
-                          onChanged: (value) async {
-                            _isdonation = value.toString();
+                          value: _isdonation,
+                          onChanged: (newValue) {
+                            _isdonation = newValue;
                             setState(() {});
                           },
+                          controlAffinity: ListTileControlAffinity.trailing,
                         ),
-                      )),
+                      ),
                     ),
                     SizedBox(
                       height: 5,
@@ -249,36 +218,40 @@ class _addcollectiondetailsState extends State<addcollectiondetails> {
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: Container(
                           color: Colors.grey.shade200,
-                          child: ListView.builder(
-                            itemCount: fileteredcictizenlist.length,
-                            itemBuilder: (context, index) {
-                              return InkWell(
-                                onTap: () {
-                                  citizencontroller.text =
-                                      fileteredcictizenlist[index]
-                                          .name
-                                          .toString();
+                          child: RawScrollbar(
+                            thumbColor: Colors.green,
+                            trackVisibility: true,
+                            thumbVisibility: true,
+                            child: ListView.builder(
+                              itemCount: fileteredcictizenlist.length,
+                              itemBuilder: (context, index) {
+                                return InkWell(
+                                  onTap: () {
+                                    citizencontroller.text =
+                                        fileteredcictizenlist[index]
+                                            .name
+                                            .toString();
 
-                                  _iscitizen = fileteredcictizenlist[index]
-                                      .id
-                                      .toString();
-                                  setState(() {});
-                                },
-                                child: ListTile(
-                                  title: Text(fileteredcictizenlist[index]
-                                      .name
-                                      .toString()),
-                                  subtitle: Text(fileteredcictizenlist[index]
-                                      .phoneNum
-                                      .toString()),
-                                ),
-                              );
-                            },
+                                    _iscitizen = fileteredcictizenlist[index]
+                                        .id
+                                        .toString();
+                                    setState(() {});
+                                  },
+                                  child: ListTile(
+                                    title: Text(fileteredcictizenlist[index]
+                                        .name
+                                        .toString()),
+                                    subtitle: Text(fileteredcictizenlist[index]
+                                        .phoneNum
+                                        .toString()),
+                                  ),
+                                );
+                              },
+                            ),
                           ),
                         ),
                       ),
                     ),
-                    Spacer(),
                     Container(
                       width: double.infinity,
                       height: 50,
@@ -300,7 +273,7 @@ class _addcollectiondetailsState extends State<addcollectiondetails> {
                                 DateFormat("yyyy-MM-dd").format(_selectdate);
                             String citizenid = _iscitizen.toString();
                             String donationvalue =
-                                _isdonation == "YES" ? "1" : "0";
+                                _isdonation == true ? "1" : "0";
                             Get.deleteAll();
                             Get.to(AddCollectionWasteDetails(
                               selecteddate: selectdate,

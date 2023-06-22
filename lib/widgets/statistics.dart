@@ -65,7 +65,7 @@ class _StatisticsState extends State<Statistics> {
                         Icon(
                           Icons.circle,
                           size: 15,
-                          color: Colors.orange,
+                          color: Colors.blue,
                         ),
                         SizedBox(
                           width: 2,
@@ -73,7 +73,7 @@ class _StatisticsState extends State<Statistics> {
                         Text(
                           "Dry Waste",
                           style: GoogleFonts.roboto(
-                            color: Colors.orange,
+                            color: Colors.blue,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -87,7 +87,7 @@ class _StatisticsState extends State<Statistics> {
                         Icon(
                           Icons.circle,
                           size: 15,
-                          color: Colors.yellow,
+                          color: Colors.green,
                         ),
                         SizedBox(
                           width: 2,
@@ -95,7 +95,7 @@ class _StatisticsState extends State<Statistics> {
                         Text(
                           "Wet Waste",
                           style: GoogleFonts.roboto(
-                            color: Colors.yellow,
+                            color: Colors.green,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -162,7 +162,7 @@ class _StatisticsState extends State<Statistics> {
                     isVisible: true),
                 series: [
                   ColumnSeries<drywetWasteCollectedModel, String>(
-                    color: Colors.yellow,
+                    color: Colors.green,
                     dataSource: controller.drywetwastecollection,
                     xValueMapper: (drywetWasteCollectedModel sales, _) =>
                         sales.label.toString(),
@@ -170,7 +170,7 @@ class _StatisticsState extends State<Statistics> {
                         sales.data,
                   ),
                   ColumnSeries<drywetWasteCollectedModel, String>(
-                    color: Colors.orange,
+                    color: Colors.blue,
                     dataSource: controller.drywetwastecollection,
                     xValueMapper: (drywetWasteCollectedModel sales, _) =>
                         sales.label.toString(),

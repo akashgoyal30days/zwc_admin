@@ -40,7 +40,7 @@ class _CollectionViewDetailsScreenState
                         style: GoogleFonts.roboto(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 18)),
+                            fontSize: 16)),
                   ),
                 ),
                 SizedBox(
@@ -53,52 +53,52 @@ class _CollectionViewDetailsScreenState
                       children: [
                         Text("Name",
                             style: GoogleFonts.roboto(
-                                color: Colors.green, fontSize: 18)),
+                                color: Colors.green, fontSize: 16)),
                         Text(
                             collectioncontroller
                                 .getcollectiondatabyid!.data!.name
                                 .toString(),
                             style: GoogleFonts.roboto(
-                                color: Colors.grey, fontSize: 18)),
+                                color: Colors.grey, fontSize: 16)),
                       ],
                     ),
                     TableRow(
                       children: [
                         Text("Email",
                             style: GoogleFonts.roboto(
-                                color: Colors.green, fontSize: 18)),
+                                color: Colors.green, fontSize: 16)),
                         Text(
                             collectioncontroller
                                 .getcollectiondatabyid!.data!.email
                                 .toString(),
                             style: GoogleFonts.roboto(
-                                color: Colors.grey, fontSize: 18)),
+                                color: Colors.grey, fontSize: 16)),
                       ],
                     ),
                     TableRow(
                       children: [
                         Text("Contact",
                             style: GoogleFonts.roboto(
-                                color: Colors.green, fontSize: 18)),
+                                color: Colors.green, fontSize: 16)),
                         Text(
                             collectioncontroller
                                 .getcollectiondatabyid!.data!.phoneNum
                                 .toString(),
                             style: GoogleFonts.roboto(
-                                color: Colors.grey, fontSize: 18)),
+                                color: Colors.grey, fontSize: 16)),
                       ],
                     ),
                     TableRow(
                       children: [
                         Text("Address",
                             style: GoogleFonts.roboto(
-                                color: Colors.green, fontSize: 18)),
+                                color: Colors.green, fontSize: 16)),
                         Text(
                             collectioncontroller
                                 .getcollectiondatabyid!.data!.address
                                 .toString(),
                             style: GoogleFonts.roboto(
-                                color: Colors.grey, fontSize: 18)),
+                                color: Colors.grey, fontSize: 16)),
                       ],
                     ),
                   ],
@@ -121,7 +121,7 @@ class _CollectionViewDetailsScreenState
                         style: GoogleFonts.roboto(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 18)),
+                            fontSize: 16)),
                   ),
                 ),
                 Table(
@@ -131,52 +131,52 @@ class _CollectionViewDetailsScreenState
                       children: [
                         Text("Name",
                             style: GoogleFonts.roboto(
-                                color: Colors.green, fontSize: 18)),
+                                color: Colors.green, fontSize: 16)),
                         Text(
                             collectioncontroller
                                 .getcollectiondatabyid!.data!.branchName
                                 .toString(),
                             style: GoogleFonts.roboto(
-                                color: Colors.grey, fontSize: 18)),
+                                color: Colors.grey, fontSize: 16)),
                       ],
                     ),
                     TableRow(
                       children: [
                         Text("Email",
                             style: GoogleFonts.roboto(
-                                color: Colors.green, fontSize: 18)),
+                                color: Colors.green, fontSize: 16)),
                         Text(
                             collectioncontroller
                                 .getcollectiondatabyid!.data!.branchEmail
                                 .toString(),
                             style: GoogleFonts.roboto(
-                                color: Colors.grey, fontSize: 18)),
+                                color: Colors.grey, fontSize: 16)),
                       ],
                     ),
                     TableRow(
                       children: [
                         Text("Contact",
                             style: GoogleFonts.roboto(
-                                color: Colors.green, fontSize: 18)),
+                                color: Colors.green, fontSize: 16)),
                         Text(
                             collectioncontroller
                                 .getcollectiondatabyid!.data!.branchContact
                                 .toString(),
                             style: GoogleFonts.roboto(
-                                color: Colors.grey, fontSize: 18)),
+                                color: Colors.grey, fontSize: 16)),
                       ],
                     ),
                     TableRow(
                       children: [
                         Text("Address",
                             style: GoogleFonts.roboto(
-                                color: Colors.green, fontSize: 18)),
+                                color: Colors.green, fontSize: 16)),
                         Text(
                             collectioncontroller
                                 .getcollectiondatabyid!.data!.branchAddress
                                 .toString(),
                             style: GoogleFonts.roboto(
-                                color: Colors.grey, fontSize: 18)),
+                                color: Colors.grey, fontSize: 16)),
                       ],
                     ),
                   ],
@@ -199,7 +199,7 @@ class _CollectionViewDetailsScreenState
                         style: GoogleFonts.roboto(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 18)),
+                            fontSize: 16)),
                   ),
                 ),
                 SizedBox(
@@ -212,10 +212,10 @@ class _CollectionViewDetailsScreenState
                       children: [
                         Text("Products",
                             style: GoogleFonts.roboto(
-                                color: Colors.black, fontSize: 18)),
+                                color: Colors.black, fontSize: 16)),
                         Text("Quantity",
                             style: GoogleFonts.roboto(
-                                color: Colors.black, fontSize: 18)),
+                                color: Colors.black, fontSize: 16)),
                       ],
                     ),
                     for (var i = 0;
@@ -230,13 +230,13 @@ class _CollectionViewDetailsScreenState
                                   .categoryWiseCollection![i].param
                                   .toString(),
                               style: GoogleFonts.roboto(
-                                  color: Colors.green, fontSize: 18)),
+                                  color: Colors.green, fontSize: 16)),
                           Text(
                               collectioncontroller.getcollectiondatabyid!.data!
                                   .categoryWiseCollection![i].amount
                                   .toString(),
                               style: GoogleFonts.roboto(
-                                  color: Colors.grey, fontSize: 18)),
+                                  color: Colors.grey, fontSize: 16)),
                         ],
                       ),
                   ],
@@ -259,7 +259,7 @@ class _CollectionViewDetailsScreenState
                         style: GoogleFonts.roboto(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 18)),
+                            fontSize: 16)),
                   ),
                 ),
                 SizedBox(
@@ -272,16 +272,16 @@ class _CollectionViewDetailsScreenState
                       children: [
                         Text("Products",
                             style: GoogleFonts.roboto(
-                                color: Colors.black, fontSize: 18)),
+                                color: Colors.black, fontSize: 16)),
                         Text("Quantity",
                             style: GoogleFonts.roboto(
-                                color: Colors.black, fontSize: 18)),
+                                color: Colors.black, fontSize: 16)),
                         Text("Rates",
                             style: GoogleFonts.roboto(
-                                color: Colors.black, fontSize: 18)),
+                                color: Colors.black, fontSize: 16)),
                         Text("Total",
                             style: GoogleFonts.roboto(
-                                color: Colors.black, fontSize: 18)),
+                                color: Colors.black, fontSize: 16)),
                       ],
                     ),
                     for (var i = 0;
@@ -296,25 +296,25 @@ class _CollectionViewDetailsScreenState
                                   .products![i].productName
                                   .toString(),
                               style: GoogleFonts.roboto(
-                                  color: Colors.green, fontSize: 18)),
+                                  color: Colors.green, fontSize: 16)),
                           Text(
                               collectioncontroller.getcollectiondatabyid!.data!
                                   .products![i].quom
                                   .toString(),
                               style: GoogleFonts.roboto(
-                                  color: Colors.grey, fontSize: 18)),
+                                  color: Colors.grey, fontSize: 16)),
                           Text(
                               collectioncontroller.getcollectiondatabyid!.data!
                                   .products![i].rate
                                   .toString(),
                               style: GoogleFonts.roboto(
-                                  color: Colors.green, fontSize: 18)),
+                                  color: Colors.green, fontSize: 16)),
                           Text(
                               collectioncontroller.getcollectiondatabyid!.data!
                                   .products![i].totalAmount
                                   .toString(),
                               style: GoogleFonts.roboto(
-                                  color: Colors.grey, fontSize: 18)),
+                                  color: Colors.grey, fontSize: 16)),
                         ],
                       ),
                   ],
@@ -337,7 +337,7 @@ class _CollectionViewDetailsScreenState
                         style: GoogleFonts.roboto(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 18)),
+                            fontSize: 16)),
                   ),
                 ),
                 SizedBox(
@@ -350,10 +350,10 @@ class _CollectionViewDetailsScreenState
                       children: [
                         Text("Parameter",
                             style: GoogleFonts.roboto(
-                                color: Colors.black, fontSize: 18)),
+                                color: Colors.black, fontSize: 16)),
                         Text("Value",
                             style: GoogleFonts.roboto(
-                                color: Colors.black, fontSize: 18)),
+                                color: Colors.black, fontSize: 16)),
                       ],
                     ),
                     for (var i = 0;
@@ -368,13 +368,13 @@ class _CollectionViewDetailsScreenState
                                   .environmentSaved![i].environmentParameter
                                   .toString(),
                               style: GoogleFonts.roboto(
-                                  color: Colors.green, fontSize: 18)),
+                                  color: Colors.green, fontSize: 16)),
                           Text(
                               collectioncontroller.getcollectiondatabyid!.data!
                                   .environmentSaved![i].paramAmount
                                   .toString(),
                               style: GoogleFonts.roboto(
-                                  color: Colors.grey, fontSize: 18)),
+                                  color: Colors.grey, fontSize: 16)),
                         ],
                       ),
                   ],

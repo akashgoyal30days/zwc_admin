@@ -39,7 +39,7 @@ class _GetCollectionDetailsScreenState extends State<GetStateDetails> {
         appBar: AppBar(
           centerTitle: true,
           title: Text(
-            "States Details",
+            "State Details",
             style: GoogleFonts.roboto(
               color: Colors.white,
               fontWeight: FontWeight.bold,

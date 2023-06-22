@@ -39,39 +39,39 @@ class _CollectionViewDetailsScreenState
                       children: [
                         Text("From Branch",
                             style: GoogleFonts.roboto(
-                                color: Colors.green, fontSize: 18)),
+                                color: Colors.green, fontSize: 16)),
                         Text(
                             stockTransferController
                                 .getstocktransfersdetailsbyid!.data!.fromBranch
                                 .toString(),
                             style: GoogleFonts.roboto(
-                                color: Colors.grey, fontSize: 18)),
+                                color: Colors.grey, fontSize: 16)),
                       ],
                     ),
                     TableRow(
                       children: [
                         Text("To Branch",
                             style: GoogleFonts.roboto(
-                                color: Colors.green, fontSize: 18)),
+                                color: Colors.green, fontSize: 16)),
                         Text(
                             stockTransferController
                                 .getstocktransfersdetailsbyid!.data!.toBranch
                                 .toString(),
                             style: GoogleFonts.roboto(
-                                color: Colors.grey, fontSize: 18)),
+                                color: Colors.grey, fontSize: 16)),
                       ],
                     ),
                     TableRow(
                       children: [
                         Text("Date",
                             style: GoogleFonts.roboto(
-                                color: Colors.green, fontSize: 18)),
+                                color: Colors.green, fontSize: 16)),
                         Text(
                             stockTransferController
                                 .getstocktransfersdetailsbyid!.data!.tdate
                                 .toString(),
                             style: GoogleFonts.roboto(
-                                color: Colors.grey, fontSize: 18)),
+                                color: Colors.grey, fontSize: 16)),
                       ],
                     ),
                   ],
@@ -95,7 +95,7 @@ class _CollectionViewDetailsScreenState
                         style: GoogleFonts.roboto(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 18)),
+                            fontSize: 16)),
                   ),
                 ),
                 SizedBox(
@@ -108,16 +108,16 @@ class _CollectionViewDetailsScreenState
                       children: [
                         Text("Products",
                             style: GoogleFonts.roboto(
-                                color: Colors.black, fontSize: 18)),
+                                color: Colors.black, fontSize: 16)),
                         Text("Quantity",
                             style: GoogleFonts.roboto(
-                                color: Colors.black, fontSize: 18)),
+                                color: Colors.black, fontSize: 16)),
                         Text("Rates",
                             style: GoogleFonts.roboto(
-                                color: Colors.black, fontSize: 18)),
+                                color: Colors.black, fontSize: 16)),
                         Text("Total",
                             style: GoogleFonts.roboto(
-                                color: Colors.black, fontSize: 18)),
+                                color: Colors.black, fontSize: 16)),
                       ],
                     ),
                     for (var i = 0;
@@ -138,7 +138,7 @@ class _CollectionViewDetailsScreenState
                                   .productName
                                   .toString(),
                               style: GoogleFonts.roboto(
-                                  color: Colors.green, fontSize: 18)),
+                                  color: Colors.green, fontSize: 16)),
                           Text(
                               stockTransferController
                                   .getstocktransfersdetailsbyid!
@@ -147,7 +147,7 @@ class _CollectionViewDetailsScreenState
                                   .quom
                                   .toString(),
                               style: GoogleFonts.roboto(
-                                  color: Colors.grey, fontSize: 18)),
+                                  color: Colors.grey, fontSize: 16)),
                           Text(
                               stockTransferController
                                   .getstocktransfersdetailsbyid!
@@ -156,7 +156,7 @@ class _CollectionViewDetailsScreenState
                                   .rate
                                   .toString(),
                               style: GoogleFonts.roboto(
-                                  color: Colors.green, fontSize: 18)),
+                                  color: Colors.green, fontSize: 16)),
                           Text(
                               stockTransferController
                                   .getstocktransfersdetailsbyid!
@@ -165,7 +165,7 @@ class _CollectionViewDetailsScreenState
                                   .totalAmount
                                   .toString(),
                               style: GoogleFonts.roboto(
-                                  color: Colors.grey, fontSize: 18)),
+                                  color: Colors.grey, fontSize: 16)),
                         ],
                       ),
                   ],

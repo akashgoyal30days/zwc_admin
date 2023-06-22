@@ -17,6 +17,8 @@ class LoginController extends GetxController {
     await SharedPreferenceSingleTon.setData("uid", body["uid"]);
     await SharedPreferenceSingleTon.setData("userroleid", body["user_role_id"]);
     await SharedPreferenceSingleTon.setData("dashboard_branch_id", "0");
+        await SharedPreferenceSingleTon.setData("username",  body["name"]);
+
 
     Get.off(() => const DashboardScreen());
   }
@@ -62,7 +64,6 @@ class LoginController extends GetxController {
     );
 
     var body = json.decode(response.body) ?? {};
-    log(body.toString());
     otpMode = response.statusCode == 200;
 
     if (response.statusCode != 200) {

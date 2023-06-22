@@ -64,8 +64,10 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
   }
 
   String? dbbranchid;
+  String? username;
   getdashboardbranchid() async {
     dbbranchid = await SharedPreferenceSingleTon.getData("dashboard_branch_id");
+    username = await SharedPreferenceSingleTon.getData("username");
   }
 
   int? localqrdatalength;
@@ -83,12 +85,12 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
           children: [
             UserAccountsDrawerHeader(
               accountName: Text(
-                "",
-                style: TextStyle(fontSize: 15),
+                "Hey! there ${username.toString()}",
+                style: TextStyle(fontSize: 16),
               ),
               accountEmail: Text(
-                "",
-                style: TextStyle(fontSize: 15),
+                "Welcome to Admin Panel",
+                style: TextStyle(fontSize: 17),
               ),
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Colors.white,
@@ -135,7 +137,7 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                 ListTile(
                   title: Center(
                     child: Text(
-                      "States",
+                      "State",
                       style: GoogleFonts.roboto(
                           color: Colors.green, fontWeight: FontWeight.bold),
                     ),

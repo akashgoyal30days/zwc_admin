@@ -18,7 +18,7 @@ class addsegregationdetails extends StatefulWidget {
 
 class _addcollectiondetailsState extends State<addsegregationdetails> {
   DateTime _selectdate = DateTime.now();
-  String? _issegregated = "NO";
+  bool? _issegregated = true;
   String? _iscitizen;
 
   final SegragatedController segregatedcontroller =
@@ -169,55 +169,24 @@ class _addcollectiondetailsState extends State<addsegregationdetails> {
                             fontSize: 15),
                       ),
                     ),
-                    Card(
-                      elevation: 5,
-                      margin: EdgeInsets.symmetric(horizontal: 10),
-                      child: Container(
-                          child: Center(
-                        child: DropdownButton(
-                          value: _issegregated,
-                          underline: SizedBox(),
-                          style: GoogleFonts.roboto(
-                              color: Colors.green, fontWeight: FontWeight.bold),
-                          hint: Text(
-                            "Is Segregated",
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Card(
+                        child: CheckboxListTile(
+                          title: Text(
+                            "Is Segregated?",
                             style: GoogleFonts.roboto(
                                 color: Colors.green,
                                 fontWeight: FontWeight.bold),
                           ),
-                          items: ["YES", "NO"].map((item) {
-                            return DropdownMenuItem(
-                              value: item,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "${item}",
-                                        style: GoogleFonts.roboto(
-                                            color: Colors.green,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        "${item}",
-                                        style: GoogleFonts.roboto(
-                                            color: Colors.transparent,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            );
-                          }).toList(),
-                          onChanged: (value) async {
-                            _issegregated = value.toString();
+                          value: _issegregated,
+                          onChanged: (newValue) {
+                            _issegregated = newValue;
                             setState(() {});
                           },
+                          controlAffinity: ListTileControlAffinity.trailing,
                         ),
-                      )),
+                      ),
                     ),
                     SizedBox(
                       height: 5,
@@ -241,7 +210,7 @@ class _addcollectiondetailsState extends State<addsegregationdetails> {
                           filterItems(value.toString());
                         },
                         decoration: InputDecoration(
-                          labelText: 'Search Citizen',
+                          hintText: "Search by name or phone no",
                           border: OutlineInputBorder(),
                         ),
                       ),
@@ -251,36 +220,40 @@ class _addcollectiondetailsState extends State<addsegregationdetails> {
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: Container(
                           color: Colors.grey.shade200,
-                          child: ListView.builder(
-                            itemCount: fileteredcictizenlist.length,
-                            itemBuilder: (context, index) {
-                              return InkWell(
-                                onTap: () {
-                                  citizencontroller.text =
-                                      fileteredcictizenlist[index]
-                                          .name
-                                          .toString();
+                          child: RawScrollbar(
+                            thumbColor: Colors.green,
+                            trackVisibility: true,
+                            thumbVisibility: true,
+                            child: ListView.builder(
+                              itemCount: fileteredcictizenlist.length,
+                              itemBuilder: (context, index) {
+                                return InkWell(
+                                  onTap: () {
+                                    citizencontroller.text =
+                                        fileteredcictizenlist[index]
+                                            .name
+                                            .toString();
 
-                                  _iscitizen = fileteredcictizenlist[index]
-                                      .id
-                                      .toString();
-                                  setState(() {});
-                                },
-                                child: ListTile(
-                                  title: Text(fileteredcictizenlist[index]
-                                      .name
-                                      .toString()),
-                                  subtitle: Text(fileteredcictizenlist[index]
-                                      .phoneNum
-                                      .toString()),
-                                ),
-                              );
-                            },
+                                    _iscitizen = fileteredcictizenlist[index]
+                                        .id
+                                        .toString();
+                                    setState(() {});
+                                  },
+                                  child: ListTile(
+                                    title: Text(fileteredcictizenlist[index]
+                                        .name
+                                        .toString()),
+                                    subtitle: Text(fileteredcictizenlist[index]
+                                        .phoneNum
+                                        .toString()),
+                                  ),
+                                );
+                              },
+                            ),
                           ),
                         ),
                       ),
                     ),
-                    Spacer(),
                     Container(
                       width: double.infinity,
                       height: 50,
@@ -302,7 +275,7 @@ class _addcollectiondetailsState extends State<addsegregationdetails> {
                                 DateFormat("yyyy-MM-dd").format(_selectdate);
                             String citizenid = _iscitizen.toString();
                             String segregatedvalue =
-                                _issegregated == "YES" ? "1" : "0";
+                                _issegregated == true ? "1" : "0";
                             segregatedcontroller
                                 .addsegregationdetails(
                               citizenid: citizenid,
@@ -318,7 +291,7 @@ class _addcollectiondetailsState extends State<addsegregationdetails> {
                                     borderColor: Colors.white,
                                     borderWidth: 1);
                                 _iscitizen = null;
-                                _issegregated = "NO";
+                                _issegregated = true;
                               } else {
                                 Get.snackbar("Error", "Data Not Saved",
                                     backgroundColor: Colors.red,
