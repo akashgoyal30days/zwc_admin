@@ -47,8 +47,15 @@ class _addcollectiondetailsState extends State<addsegregationdetails> {
         if (element.name
                 .toString()
                 .toLowerCase()
-                .contains(query.toString().toLowerCase()) ||
+                .contains(query.toString().toLowerCase()) 
+                ||
             element.phoneNum
+                .toString()
+                .toLowerCase()
+                .contains(query.toString().toLowerCase())
+                
+                   ||
+            element.ad1
                 .toString()
                 .toLowerCase()
                 .contains(query.toString().toLowerCase())) {
@@ -239,13 +246,43 @@ class _addcollectiondetailsState extends State<addsegregationdetails> {
                                         .toString();
                                     setState(() {});
                                   },
-                                  child: ListTile(
-                                    title: Text(fileteredcictizenlist[index]
-                                        .name
-                                        .toString()),
-                                    subtitle: Text(fileteredcictizenlist[index]
-                                        .phoneNum
-                                        .toString()),
+                                  child:
+                                  
+                                    Container(
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 5),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(fileteredcictizenlist[index]
+                                              .name
+                                              .toString()),
+                                          Text(
+                                            fileteredcictizenlist[index]
+                                                .phoneNum
+                                                .toString(),
+                                            style: TextStyle(
+                                                color: Colors.black45),
+                                          ),
+                                          Text(
+                                            fileteredcictizenlist[index]
+                                                        .ad1
+                                                        .toString() ==
+                                                    ""
+                                                ? ""
+                                                : "Admission No ${fileteredcictizenlist[index].ad1.toString()}",
+                                            style: TextStyle(
+                                                color: Colors.black45),
+                                          ),
+                                          Divider(
+                                            color: Colors.green,
+                                            height: 5,
+                                          )
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                 );
                               },
