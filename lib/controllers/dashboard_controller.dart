@@ -84,7 +84,6 @@ class DashboardController extends GetxController {
     }
 
     var body = json.decode(response.body);
-    log(body.toString());
     List labels, data, data1;
     try {
       totalcitizen = body["data"]["citizens"].toString();

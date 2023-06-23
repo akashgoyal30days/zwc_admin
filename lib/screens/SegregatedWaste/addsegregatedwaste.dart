@@ -260,7 +260,7 @@ class _addcollectiondetailsState extends State<addsegregationdetails> {
                                                         .toString() ==
                                                     ""
                                                 ? ""
-                                                : "${fileteredcictizenlist[index].ad1.toString()}",
+                                                : "${controller.getallcitizenlist!.additional!.first.ad1.toString()} : ${fileteredcictizenlist[index].ad1.toString()}",
                                             style: TextStyle(
                                                 color: Colors.black45),
                                           ),

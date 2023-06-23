@@ -258,7 +258,7 @@ class _addcollectiondetailsState extends State<addcollectiondetails> {
                                                         .toString() ==
                                                     ""
                                                 ? ""
-                                                : "${fileteredcictizenlist[index].ad1.toString()}",
+                                                : "${collectioncontroller.getallcitizenlist!.additional!.first.ad1.toString()} : ${fileteredcictizenlist[index].ad1.toString()}",
                                             style: TextStyle(
                                                 color: Colors.black45),
                                           ),
