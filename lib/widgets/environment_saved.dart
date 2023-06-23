@@ -39,7 +39,7 @@ class _EnvironmentSavedWidgetState extends State<EnvironmentSavedWidget> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              "Environmental Saving",
+              "Environmental Savings",
               style: GoogleFonts.roboto(
                 color: Colors.green,
                 fontWeight: FontWeight.bold,

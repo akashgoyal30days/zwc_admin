@@ -47,14 +47,11 @@ class _addcollectiondetailsState extends State<addsegregationdetails> {
         if (element.name
                 .toString()
                 .toLowerCase()
-                .contains(query.toString().toLowerCase()) 
-                ||
+                .contains(query.toString().toLowerCase()) ||
             element.phoneNum
                 .toString()
                 .toLowerCase()
-                .contains(query.toString().toLowerCase())
-                
-                   ||
+                .contains(query.toString().toLowerCase()) ||
             element.ad1
                 .toString()
                 .toLowerCase()
@@ -246,9 +243,7 @@ class _addcollectiondetailsState extends State<addsegregationdetails> {
                                         .toString();
                                     setState(() {});
                                   },
-                                  child:
-                                  
-                                    Container(
+                                  child: Container(
                                     child: Padding(
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 10, vertical: 5),
@@ -256,23 +251,16 @@ class _addcollectiondetailsState extends State<addsegregationdetails> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(fileteredcictizenlist[index]
-                                              .name
-                                              .toString()),
                                           Text(
-                                            fileteredcictizenlist[index]
-                                                .phoneNum
-                                                .toString(),
-                                            style: TextStyle(
-                                                color: Colors.black45),
-                                          ),
+                                              "${fileteredcictizenlist[index].name.toString()}"
+                                              "(${fileteredcictizenlist[index].phoneNum.toString()})"),
                                           Text(
                                             fileteredcictizenlist[index]
                                                         .ad1
                                                         .toString() ==
                                                     ""
                                                 ? ""
-                                                : "Admission No ${fileteredcictizenlist[index].ad1.toString()}",
+                                                : "${fileteredcictizenlist[index].ad1.toString()}",
                                             style: TextStyle(
                                                 color: Colors.black45),
                                           ),

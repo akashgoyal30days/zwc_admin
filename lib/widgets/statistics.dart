@@ -155,6 +155,7 @@ class _StatisticsState extends State<Statistics> {
               child: SfCartesianChart(
                 primaryXAxis: CategoryAxis(),
                 primaryYAxis: NumericAxis(
+                    labelFormat: '{value}\nkgs',
                     title: AxisTitle(
                         text: "Kilograms (kgs)",
                         textStyle: TextStyle(
@@ -162,21 +163,58 @@ class _StatisticsState extends State<Statistics> {
                     isVisible: true),
                 series: [
                   ColumnSeries<drywetWasteCollectedModel, String>(
-                    color: Colors.green,
-                    dataSource: controller.drywetwastecollection,
-                    xValueMapper: (drywetWasteCollectedModel sales, _) =>
-                        sales.label.toString(),
-                    yValueMapper: (drywetWasteCollectedModel sales, _) =>
-                        sales.data,
-                  ),
+                      color: Colors.green,
+                      dataSource: controller.drywetwastecollection,
+                      xValueMapper: (drywetWasteCollectedModel sales, _) =>
+                          sales.label.toString(),
+                      yValueMapper: (drywetWasteCollectedModel sales, _) =>
+                          sales.data,
+                      dataLabelSettings: DataLabelSettings(
+                          builder:
+                              (data, point, series, pointIndex, seriesIndex) {
+                            return Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Colors.green,
+                                  ),
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(5)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: Text(
+                                    "${controller.drywetwastecollection[pointIndex].data.toString()} Kgs",
+                                    style: TextStyle(
+                                        fontSize: 8, color: Colors.green)),
+                              ),
+                            );
+                          },
+                          isVisible: true)),
                   ColumnSeries<drywetWasteCollectedModel, String>(
-                    color: Colors.blue,
-                    dataSource: controller.drywetwastecollection,
-                    xValueMapper: (drywetWasteCollectedModel sales, _) =>
-                        sales.label.toString(),
-                    yValueMapper: (drywetWasteCollectedModel sales, _) =>
-                        sales.data2,
-                  )
+                      color: Colors.blue,
+                      dataSource: controller.drywetwastecollection,
+                      xValueMapper: (drywetWasteCollectedModel sales, _) =>
+                          sales.label.toString(),
+                      yValueMapper: (drywetWasteCollectedModel sales, _) =>
+                          sales.data2,
+                      dataLabelSettings: DataLabelSettings(
+                        isVisible: true,
+                        builder:
+                            (data, point, series, pointIndex, seriesIndex) {
+                          return Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.blue),
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Text(
+                                  "${controller.drywetwastecollection[pointIndex].data2.toString()} Kgs",
+                                  style: TextStyle(
+                                      fontSize: 8, color: Colors.blue)),
+                            ),
+                          );
+                        },
+                      ))
                 ],
               ),
             ),
