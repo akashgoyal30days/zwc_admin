@@ -30,7 +30,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       Get.put(DashboardController());
   String? branchdropdownvalue;
   String? apicallbranchid;
-  String? loginbranchid;
+  String? loginbranchid ;
   @override
   void initState() {
     dashboardcontroller.getallbranches().then((value) => {
@@ -39,7 +39,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               branchdropdownvalue.toString() != "0")
             {apicallbranchid = branchdropdownvalue.toString()}
           else
-            {apicallbranchid = loginbranchid},
+            {apicallbranchid = loginbranchid??"0"},
           if (dashboardcontroller.drywetwastecollection.isEmpty)
             {
               dashboardcontroller.getDashboard(
