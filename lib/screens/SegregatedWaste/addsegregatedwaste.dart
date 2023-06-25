@@ -227,7 +227,7 @@ class _addcollectiondetailsState extends State<addsegregationdetails> {
                           filterItems(value.toString());
                         },
                         decoration: InputDecoration(
-                          hintText: "Search by name or phone no",
+                          hintText: "Search by name or phone no or additional fields",
                           border: OutlineInputBorder(),
                         ),
                       ),

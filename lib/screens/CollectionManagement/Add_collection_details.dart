@@ -224,7 +224,7 @@ class _addcollectiondetailsState extends State<addcollectiondetails> {
                           filterItems(value.toString());
                         },
                         decoration: InputDecoration(
-                          labelText: 'Search Citizen',
+                          hintText: "Search by name or phone no or additional fields",
                           border: OutlineInputBorder(),
                         ),
                       ),
