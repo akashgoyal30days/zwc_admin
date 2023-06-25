@@ -272,7 +272,7 @@ class _addcollectiondetailsState extends State<addcollectiondetails> {
                                                             .toString() ==
                                                         ""
                                                     ? ""
-                                                    : " ${fileteredcictizenlist[index].ad1.toString()}",
+                                                    : " ${fileteredcictizenlist[index].ad1??""}",
                                                 style: TextStyle(
                                                     color: Colors.black45),
                                               ),
@@ -283,7 +283,7 @@ class _addcollectiondetailsState extends State<addcollectiondetails> {
                                                             .toString() ==
                                                         ""
                                                     ? ""
-                                                    : " ${fileteredcictizenlist[index].ad2.toString()}",
+                                                    : " ${fileteredcictizenlist[index].ad2??""}",
                                                 style: TextStyle(
                                                     color: Colors.black45),
                                               ),
@@ -294,7 +294,7 @@ class _addcollectiondetailsState extends State<addcollectiondetails> {
                                                             .toString() ==
                                                         ""
                                                     ? ""
-                                                    : " ${fileteredcictizenlist[index].ad3.toString()}",
+                                                    : " ${fileteredcictizenlist[index].ad3??""}",
                                                 style: TextStyle(
                                                     color: Colors.black45),
                                               ),
@@ -305,22 +305,11 @@ class _addcollectiondetailsState extends State<addcollectiondetails> {
                                                             .toString() ==
                                                         ""
                                                     ? ""
-                                                    : " ${fileteredcictizenlist[index].ad4.toString()}",
+                                                    : " ${fileteredcictizenlist[index].ad4??""}",
                                                 style: TextStyle(
                                                     color: Colors.black45),
                                               ),
-                                              VerticalDivider(),
-                                              Text(
-                                                fileteredcictizenlist[index]
-                                                            .ad4
-                                                            .toString() ==
-                                                        ""
-                                                    ? ""
-                                                    : " ${fileteredcictizenlist[index].ad4.toString()}",
-                                                style: TextStyle(
-                                                    color: Colors.black45),
-                                              ),
-                                              VerticalDivider(),
+                                             
                                             ],
                                           ),
                                           Divider(
