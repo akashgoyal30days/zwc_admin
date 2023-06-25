@@ -55,6 +55,19 @@ class _addcollectiondetailsState extends State<addsegregationdetails> {
             element.ad1
                 .toString()
                 .toLowerCase()
+                .contains(query.toString().toLowerCase())
+                ||
+            element.ad2
+                .toString()
+                .toLowerCase()
+                .contains(query.toString().toLowerCase())||
+            element.ad3
+                .toString()
+                .toLowerCase()
+                .contains(query.toString().toLowerCase())||
+            element.ad4
+                .toString()
+                .toLowerCase()
                 .contains(query.toString().toLowerCase())) {
           fileteredcictizenlist.add(element);
         }
@@ -254,15 +267,64 @@ class _addcollectiondetailsState extends State<addsegregationdetails> {
                                           Text(
                                               "${fileteredcictizenlist[index].name.toString()}"
                                               "(${fileteredcictizenlist[index].phoneNum.toString()})"),
-                                          Text(
-                                            fileteredcictizenlist[index]
-                                                        .ad1
-                                                        .toString() ==
-                                                    ""
-                                                ? ""
-                                                : "${controller.getallcitizenlist!.additional!.first.ad1.toString()} : ${fileteredcictizenlist[index].ad1.toString()}",
-                                            style: TextStyle(
-                                                color: Colors.black45),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                fileteredcictizenlist[index]
+                                                            .ad1
+                                                            .toString() ==
+                                                        ""
+                                                    ? ""
+                                                    : " ${fileteredcictizenlist[index].ad1.toString()}",
+                                                style: TextStyle(
+                                                    color: Colors.black45),
+                                              ),
+                                              VerticalDivider(),
+                                              Text(
+                                                fileteredcictizenlist[index]
+                                                            .ad2
+                                                            .toString() ==
+                                                        ""
+                                                    ? ""
+                                                    : " ${fileteredcictizenlist[index].ad2.toString()}",
+                                                style: TextStyle(
+                                                    color: Colors.black45),
+                                              ),
+                                              VerticalDivider(),
+                                              Text(
+                                                fileteredcictizenlist[index]
+                                                            .ad3
+                                                            .toString() ==
+                                                        ""
+                                                    ? ""
+                                                    : " ${fileteredcictizenlist[index].ad3.toString()}",
+                                                style: TextStyle(
+                                                    color: Colors.black45),
+                                              ),
+                                              VerticalDivider(),
+                                              Text(
+                                                fileteredcictizenlist[index]
+                                                            .ad4
+                                                            .toString() ==
+                                                        ""
+                                                    ? ""
+                                                    : " ${fileteredcictizenlist[index].ad4.toString()}",
+                                                style: TextStyle(
+                                                    color: Colors.black45),
+                                              ),
+                                              VerticalDivider(),
+                                              Text(
+                                                fileteredcictizenlist[index]
+                                                            .ad4
+                                                            .toString() ==
+                                                        ""
+                                                    ? ""
+                                                    : " ${fileteredcictizenlist[index].ad4.toString()}",
+                                                style: TextStyle(
+                                                    color: Colors.black45),
+                                              ),
+                                              VerticalDivider(),
+                                            ],
                                           ),
                                           Divider(
                                             color: Colors.green,
