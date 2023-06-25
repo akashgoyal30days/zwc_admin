@@ -16,7 +16,7 @@ class LoginController extends GetxController {
     await SharedPreferenceSingleTon.setData("token", body["token"]);
     await SharedPreferenceSingleTon.setData("uid", body["uid"]);
     await SharedPreferenceSingleTon.setData("userroleid", body["user_role_id"]);
-    await SharedPreferenceSingleTon.setData("dashboard_branch_id", "0");
+    await SharedPreferenceSingleTon.setData("dashboard_branch_id", "branch_id");
     await SharedPreferenceSingleTon.setData("username", body["name"]);
     await SharedPreferenceSingleTon.setData("loginbranchid", body["branch_id"]);
 
