@@ -53,7 +53,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   getdashboardbranchid() async {
     branchdropdownvalue =
         SharedPreferenceSingleTon.getData("dashboard_branch_id").toString();
-    loginbranchid = SharedPreferenceSingleTon.getData("branch_id").toString();
+    loginbranchid = SharedPreferenceSingleTon.getData("loginbranchid").toString();
     log(branchdropdownvalue.toString());
     setState(() {});
   }
