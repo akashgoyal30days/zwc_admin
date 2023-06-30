@@ -36,7 +36,6 @@ import 'package:zwc/screens/SegregatedWaste/OfflineDataSync.dart';
 import 'package:zwc/screens/SegregatedWaste/addsegregatedbyQR.dart';
 import 'package:zwc/screens/SegregatedWaste/addsegregatedwaste.dart';
 import 'package:zwc/screens/SegregatedWaste/getsegregateddetails.dart';
-import 'package:zwc/screens/StockReport/getstockreportbycategory.dart';
 import 'package:zwc/screens/StockReport/getstockreportbywastetype.dart';
 import 'package:zwc/screens/StockReport/gettotalstockreport.dart';
 import 'package:zwc/screens/StockTransfer/Add_stocktransfer_details.dart';
@@ -712,26 +711,26 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                     }
                   },
                 ),
-                ListTile(
-                  title: Center(
-                    child: Text(
-                      "Stock Report by Category",
-                      style: GoogleFonts.roboto(
-                          color: Colors.green, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  onTap: () {
-                    if (dbbranchid.toString() == "null" ||
-                        dbbranchid.toString() == "0") {
-                      Get.to(NoBranchselectedscreen());
-                    } else {
-                      Get.back();
-                      Get.delete<StockReportController>();
+                // ListTile(
+                //   title: Center(
+                //     child: Text(
+                //       "Stock Report by Category",
+                //       style: GoogleFonts.roboto(
+                //           color: Colors.green, fontWeight: FontWeight.bold),
+                //     ),
+                //   ),
+                //   onTap: () {
+                //     if (dbbranchid.toString() == "null" ||
+                //         dbbranchid.toString() == "0") {
+                //       Get.to(NoBranchselectedscreen());
+                //     } else {
+                //       Get.back();
+                //       Get.delete<StockReportController>();
 
-                      Get.to(GetstockreportbyCategoryScreen());
-                    }
-                  },
-                ),
+                //       Get.to(GetstockreportbyCategoryScreen());
+                //     }
+                //   },
+                // ),
                 ListTile(
                   title: Center(
                     child: Text(
@@ -781,7 +780,7 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                 Icons.dashboard,
                 color: Colors.green,
                 size: 25,
-              ),
+              ), 
               title: Text(
                 "Offline Data Sync",
                 style: GoogleFonts.roboto(

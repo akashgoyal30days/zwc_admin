@@ -299,8 +299,13 @@ class _CollectionViewDetailsScreenState
                                   color: Colors.green, fontSize: 16)),
                           Text(
                               collectioncontroller.getcollectiondatabyid!.data!
-                                  .products![i].quom
-                                  .toString(),
+                                      .products![i].quom
+                                      .toString() +
+                                  " " +
+                                  collectioncontroller.getcollectiondatabyid!
+                                      .data!.products![i].uom
+                                      .toString()
+                                      .toLowerCase(),
                               style: GoogleFonts.roboto(
                                   color: Colors.grey, fontSize: 16)),
                           Text(
@@ -311,8 +316,13 @@ class _CollectionViewDetailsScreenState
                                   color: Colors.green, fontSize: 16)),
                           Text(
                               collectioncontroller.getcollectiondatabyid!.data!
-                                  .products![i].totalAmount
-                                  .toString(),
+                                      .products![i].totalAmount
+                                      .toString() +
+                                  " " +
+                                  collectioncontroller.getcollectiondatabyid!
+                                      .data!.products![i].uom
+                                      .toString()
+                                      .toLowerCase(),
                               style: GoogleFonts.roboto(
                                   color: Colors.grey, fontSize: 16)),
                         ],
