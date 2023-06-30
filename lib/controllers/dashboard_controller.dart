@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -84,7 +83,6 @@ class DashboardController extends GetxController {
     }
 
     var body = json.decode(response.body);
-    log(body.toString());
     List labels, data, data1;
     try {
       totalcitizen = body["data"]["citizens"].toString();
