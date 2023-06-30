@@ -38,7 +38,7 @@ class DashboardController extends GetxController {
   DashboardController();
 
   Future<GetDashboardAllBranches?> getallbranches() async {
-    showLoading = true;        
+    showLoading = true;
     update();
 
     var response = await APIClient.post(URLS.getalldashboardbranches);
@@ -84,6 +84,7 @@ class DashboardController extends GetxController {
     }
 
     var body = json.decode(response.body);
+    log(body.toString());
     List labels, data, data1;
     try {
       totalcitizen = body["data"]["citizens"].toString();
