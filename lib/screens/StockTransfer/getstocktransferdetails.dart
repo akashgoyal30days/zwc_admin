@@ -344,18 +344,32 @@ class _GetCollectionDetailsScreenState extends State<GetStockTransferDetails> {
                                                                           GetStockTransferViewDetailsScreen())
                                                                     });
                                                           },
-                                                          child: Text(
-                                                            "View Details",
-                                                            style: GoogleFonts.roboto(
-                                                                color: Colors
-                                                                    .green,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                decoration:
-                                                                    TextDecoration
-                                                                        .underline),
-                                                          ),
+                                                          child: 
+                                                            Row(
+                                                              children: [
+                                                                Icon(
+                                                                  Icons
+                                                                      .visibility,
+                                                                  color: Colors
+                                                                      .green,
+                                                                ),
+                                                                SizedBox(
+                                                                  width: 2,
+                                                                ),
+                                                                Text(
+                                                                  "View Details",
+                                                                  style:
+                                                                      GoogleFonts
+                                                                          .roboto(
+                                                                    color: Colors
+                                                                        .green,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
                                                         ),
                                                       ],
                                                     )

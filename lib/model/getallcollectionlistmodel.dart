@@ -33,6 +33,7 @@ class Data {
   String? name;
   String? email;
   String? phoneNum;
+  String? totalquantity;
 
   Data(
       {this.id,
@@ -41,6 +42,7 @@ class Data {
       this.amount,
       this.isDonation,
       this.name,
+      this.totalquantity,
       this.email,
       this.phoneNum});
 
@@ -50,6 +52,7 @@ class Data {
     transactionDate = json['transaction_date'];
     amount = json['amount'];
     isDonation = json['is_donation'];
+    totalquantity = json['total'];
     name = json['name'];
     email = json['email'];
     phoneNum = json['phone_num'];
@@ -63,6 +66,7 @@ class Data {
     data['amount'] = this.amount;
     data['is_donation'] = this.isDonation;
     data['name'] = this.name;
+    data['total'] = this.totalquantity;
     data['email'] = this.email;
     data['phone_num'] = this.phoneNum;
     return data;

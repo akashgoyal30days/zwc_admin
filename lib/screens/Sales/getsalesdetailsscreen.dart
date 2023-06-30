@@ -347,17 +347,31 @@ class _GetCollectionDetailsScreenState extends State<GetsalesdetailsScreen> {
                                                                             Get.to(GetSalesViewDetailsScreen())
                                                                           });
                                                             },
-                                                            child: Text(
-                                                              "View Details",
-                                                              style: GoogleFonts.roboto(
+                                                            child: 
+                                                              Row(
+                                                              children: [
+                                                                Icon(
+                                                                  Icons
+                                                                      .visibility,
                                                                   color: Colors
                                                                       .green,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  decoration:
-                                                                      TextDecoration
-                                                                          .underline),
+                                                                ),
+                                                                SizedBox(
+                                                                  width: 2,
+                                                                ),
+                                                                Text(
+                                                                  "View Details",
+                                                                  style:
+                                                                      GoogleFonts
+                                                                          .roboto(
+                                                                    color: Colors
+                                                                        .green,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                  ),
+                                                                ),
+                                                              ],
                                                             ),
                                                           ),
                                                         ),

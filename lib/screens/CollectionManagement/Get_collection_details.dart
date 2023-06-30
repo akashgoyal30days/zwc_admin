@@ -229,29 +229,65 @@ class _GetCollectionDetailsScreenState
                                                           MainAxisAlignment
                                                               .spaceBetween,
                                                       children: [
-                                                        Text(controller
-                                                            .getallcollectionslist!
-                                                            .data![index]
-                                                            .name
-                                                            .toString()),
+                                                        Text(
+                                                          "Date",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.green,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
                                                         Text(
                                                           controller
                                                               .getallcollectionslist!
                                                               .data![index]
                                                               .transactionDate
                                                               .toString(),
-                                                          style: GoogleFonts
-                                                              .roboto(
-                                                                  color: Colors
-                                                                      .green,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
                                                         ),
                                                       ],
                                                     ),
+                                                    SizedBox(
+                                                      height: 4,
+                                                    ),
                                                     Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
                                                       children: [
+                                                        Text(
+                                                          "Name",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.green,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                        Text(controller
+                                                            .getallcollectionslist!
+                                                            .data![index]
+                                                            .name
+                                                            .toString()),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 4,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "Contact No.",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.green,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
                                                         Text(controller
                                                             .getallcollectionslist!
                                                             .data![index]
@@ -260,13 +296,47 @@ class _GetCollectionDetailsScreenState
                                                       ],
                                                     ),
                                                     SizedBox(
-                                                      height: 10,
+                                                      height: 4,
                                                     ),
                                                     Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
                                                               .spaceBetween,
                                                       children: [
+                                                        Text(
+                                                          "Quantity",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.green,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                        Text(controller
+                                                                .getallcollectionslist!
+                                                                .data![index]
+                                                                .totalquantity
+                                                                .toString() +
+                                                            " Kgs"),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 4,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(
+                                                          "Amount",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.green,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
                                                         Text(
                                                           "₹${controller.getallcollectionslist!.data![index].amount.toString()}",
                                                           style: GoogleFonts
@@ -277,6 +347,17 @@ class _GetCollectionDetailsScreenState
                                                                       FontWeight
                                                                           .bold),
                                                         ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 4,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        SizedBox(),
                                                         Visibility(
                                                           visible: true,
                                                           child: InkWell(
@@ -298,22 +379,36 @@ class _GetCollectionDetailsScreenState
                                                                             Get.to(CollectionViewDetailsScreen())
                                                                           });
                                                             },
-                                                            child: Text(
-                                                              "View Details",
-                                                              style: GoogleFonts.roboto(
+                                                            child:
+                                                             Row(
+                                                              children: [
+                                                                Icon(
+                                                                  Icons
+                                                                      .visibility,
                                                                   color: Colors
                                                                       .green,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  decoration:
-                                                                      TextDecoration
-                                                                          .underline),
+                                                                ),
+                                                                SizedBox(
+                                                                  width: 2,
+                                                                ),
+                                                                Text(
+                                                                  "View Details",
+                                                                  style:
+                                                                      GoogleFonts
+                                                                          .roboto(
+                                                                    color: Colors
+                                                                        .green,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                  ),
+                                                                ),
+                                                              ],
                                                             ),
                                                           ),
                                                         ),
                                                       ],
-                                                    )
+                                                    ),
                                                   ],
                                                 )),
                                           ),
