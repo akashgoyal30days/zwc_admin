@@ -13,8 +13,9 @@ import 'package:share_plus/share_plus.dart';
 import 'package:zwc/model/certificate_model.dart';
 
 class CertificateScreen extends StatefulWidget {
-  const CertificateScreen(this.model, {super.key});
+  const CertificateScreen(this.model, {super.key,  this.username});
   final CertificateModel model;
+  final String? username;
   @override
   State<CertificateScreen> createState() => _CertificateScreenState();
 }
@@ -173,8 +174,11 @@ class _CertificateScreenState extends State<CertificateScreen> {
                       ),
                     ],
                   ),
+                  SizedBox(
+                    height: 5,
+                  ),
                   Text(
-                    "You have been certified for your impact on the environment",
+                    "${widget.username} have been certified for your impact on the environment",
                     style: GoogleFonts.roboto(
                       color: Colors.white,
                       fontSize: 20,
@@ -184,15 +188,15 @@ class _CertificateScreenState extends State<CertificateScreen> {
                       height: MediaQuery.of(context).size.height * 0.5 * 0.1),
                   Image.memory(widget.model.ImageBytes),
                   SizedBox(height: 16),
-                  Text(
-                    "Share your impact with your friends",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.green.shade600,
-                      fontSize: 18,
-                    ),
-                  ),
+                  // Text(
+                  //   "Share your impact with your friends",
+                  //   textAlign: TextAlign.center,
+                  //   style: TextStyle(
+                  //     fontWeight: FontWeight.bold,
+                  //     color: Colors.green.shade600,
+                  //     fontSize: 18,
+                  //   ),
+                  // ),
                   SizedBox(height: 16),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,

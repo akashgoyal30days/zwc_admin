@@ -85,7 +85,8 @@ class URLS {
       getallwastecategory = "category",
       addwastecategory = "category/add_category",
       addwasteprocessdetails = "wasteProcess/add_process",
-      editwasteprocessdetails = "wasteProcess/update_process";
+      editwasteprocessdetails = "wasteProcess/update_process",
+      getusercertificate = "report/certificate";
 
   /////
 

@@ -13,6 +13,7 @@ import 'package:zwc/controllers/resourcemanagemntcontroller.dart';
 import 'package:zwc/controllers/salescpntroller.dart';
 import 'package:zwc/controllers/segragated_wastecontroller.dart';
 import 'package:zwc/controllers/stockreportcontroller.dart';
+import 'package:zwc/controllers/usermanagemntconrollewer.dart';
 import 'package:zwc/controllers/waste_processing_controller.dart';
 import 'package:zwc/data/shared_preference.dart';
 import 'package:zwc/screens/AreaMaster/Area/getareadetails.dart';
@@ -40,6 +41,7 @@ import 'package:zwc/screens/StockReport/getstockreportbywastetype.dart';
 import 'package:zwc/screens/StockReport/gettotalstockreport.dart';
 import 'package:zwc/screens/StockTransfer/Add_stocktransfer_details.dart';
 import 'package:zwc/screens/StockTransfer/getstocktransferdetails.dart';
+import 'package:zwc/screens/UserManagement/getzwcaccounts.dart';
 import 'package:zwc/screens/WasteProcessing/addwasteprocessing.dart';
 import 'package:zwc/screens/WasteProcessing/getwasteprocessing.dart';
 import 'package:zwc/screens/auth/login.dart';
@@ -213,6 +215,41 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                     }
                   },
                 ),
+              ],
+            ),
+             ExpansionTile(
+              leading: Icon(
+                Icons.dashboard,
+                color: Colors.green,
+                size: 25,
+              ),
+              title: Text(
+                "User Management",
+                style: GoogleFonts.roboto(
+                    color: Colors.green, fontWeight: FontWeight.bold),
+              ),
+              children: [
+                ListTile(
+                  title: Center(
+                    child: Text(
+                      "ZWC Accounts",
+                      style: GoogleFonts.roboto(
+                          color: Colors.green, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  onTap: () {
+                    if (dbbranchid.toString() == "null" ||
+                        dbbranchid.toString() == "0") {
+                      Get.to(NoBranchselectedscreen());
+                    } else {
+                      Get.back();
+                      Get.delete<UserManagementController>();
+
+                      Get.to(GetZwcAccountsScreen());
+                    }
+                  },
+                ),
+              
               ],
             ),
             ExpansionTile(
