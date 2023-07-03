@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import 'package:zwc/controllers/usermanagemntconrollewer.dart';
 import 'package:zwc/model/Getallcitizenlistmodel.dart';
-import 'package:zwc/screens/CollectionManagement/Add_Collection_waste_details.dart';
 import 'package:zwc/screens/dashboard/certificate.dart';
 import 'package:zwc/widgets/progressloader.dart';
 
@@ -372,44 +370,44 @@ class _addcollectiondetailsState extends State<GetZwcAccountsScreen> {
                                                     MainAxisAlignment
                                                         .spaceBetween,
                                                 children: [
-                                                  Expanded(
-                                                    child: Container(
-                                                      color:
-                                                          Colors.green.shade800,
-                                                      height: 30,
-                                                      child: Center(
-                                                          child: Text(
-                                                        "View Details",
-                                                        style: TextStyle(
-                                                            fontSize: 12,
-                                                            color:
-                                                                Colors.white),
-                                                      )),
-                                                    ),
-                                                  ),
-                                                  VerticalDivider(
-                                                    width: 2,
-                                                    color: Colors.white,
-                                                  ),
-                                                  Expanded(
-                                                    child: Container(
-                                                      color:
-                                                          Colors.green.shade800,
-                                                      height: 30,
-                                                      child: Center(
-                                                          child: Text(
-                                                        "Update Password",
-                                                        style: TextStyle(
-                                                            fontSize: 12,
-                                                            color:
-                                                                Colors.white),
-                                                      )),
-                                                    ),
-                                                  ),
-                                                  VerticalDivider(
-                                                    width: 2,
-                                                    color: Colors.white,
-                                                  ),
+                                                  // Expanded(
+                                                  //   child: Container(
+                                                  //     color:
+                                                  //         Colors.green.shade800,
+                                                  //     height: 30,
+                                                  //     child: Center(
+                                                  //         child: Text(
+                                                  //       "View Details",
+                                                  //       style: TextStyle(
+                                                  //           fontSize: 12,
+                                                  //           color:
+                                                  //               Colors.white),
+                                                  //     )),
+                                                  //   ),
+                                                  // ),
+                                                  // VerticalDivider(
+                                                  //   width: 2,
+                                                  //   color: Colors.white,
+                                                  // ),
+                                                  // Expanded(
+                                                  //   child: Container(
+                                                  //     color:
+                                                  //         Colors.green.shade800,
+                                                  //     height: 30,
+                                                  //     child: Center(
+                                                  //         child: Text(
+                                                  //       "Update Password",
+                                                  //       style: TextStyle(
+                                                  //           fontSize: 12,
+                                                  //           color:
+                                                  //               Colors.white),
+                                                  //     )),
+                                                  //   ),
+                                                  // ),
+                                                  // VerticalDivider(
+                                                  //   width: 2,
+                                                  //   color: Colors.white,
+                                                  // ),
                                                   Expanded(
                                                     child: InkWell(
                                                       onTap: () {
@@ -469,45 +467,25 @@ class _addcollectiondetailsState extends State<GetZwcAccountsScreen> {
                         ),
                       ),
                     ),
-                    Container(
-                      width: double.infinity,
-                      height: 50,
-                      child: TextButton(
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.green),
-                          foregroundColor:
-                              MaterialStateProperty.all(Colors.white),
-                          shape: MaterialStateProperty.all(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(6),
-                            ),
-                          ),
-                        ),
-                        onPressed: () {
-                          if (_iscitizen != null) {
-                            String selectdate =
-                                DateFormat("yyyy-MM-dd").format(_selectdate);
-                            String citizenid = _iscitizen.toString();
-                            String donationvalue =
-                                _isdonation == true ? "1" : "0";
-                            Get.deleteAll();
-                            Get.to(AddCollectionWasteDetails(
-                              selecteddate: selectdate,
-                              citizenid: citizenid,
-                              isdonation: donationvalue,
-                            ));
-                          } else {
-                            Get.snackbar("Collection", "Please Select Citizen",
-                                backgroundColor: Colors.green.shade900,
-                                colorText: Colors.white,
-                                borderColor: Colors.white,
-                                borderWidth: 1);
-                          }
-                        },
-                        child: const Text("Proceed"),
-                      ),
-                    ),
+                    // Container(
+                    //   width: double.infinity,
+                    //   height: 50,
+                    //   child: TextButton(
+                    //     style: ButtonStyle(
+                    //       backgroundColor:
+                    //           MaterialStateProperty.all(Colors.green),
+                    //       foregroundColor:
+                    //           MaterialStateProperty.all(Colors.white),
+                    //       shape: MaterialStateProperty.all(
+                    //         RoundedRectangleBorder(
+                    //           borderRadius: BorderRadius.circular(6),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     onPressed: () {},
+                    //     child: const Text("Add ZWC Account"),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
