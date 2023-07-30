@@ -10,7 +10,7 @@ String getstockreportbycategoryModelToJson(GetstockreportbycategoryModel data) =
 
 class GetstockreportbycategoryModel {
     bool? status;
-    List<Datum>? data;
+    List<Categorystockdata>? data;
 
     GetstockreportbycategoryModel({
         this.status,
@@ -19,7 +19,7 @@ class GetstockreportbycategoryModel {
 
     factory GetstockreportbycategoryModel.fromJson(Map<String, dynamic> json) => GetstockreportbycategoryModel(
         status: json["status"],
-        data: json["data"] == null ? [] : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
+        data: json["data"] == null ? [] : List<Categorystockdata>.from(json["data"]!.map((x) => Categorystockdata.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
@@ -28,7 +28,7 @@ class GetstockreportbycategoryModel {
     };
 }
 
-class Datum {
+class Categorystockdata {
     String? id;
     String? categoryName;
     String? categoryImage;
@@ -38,7 +38,7 @@ class Datum {
     dynamic opening;
     int? closing;
 
-    Datum({
+    Categorystockdata({
         this.id,
         this.categoryName,
         this.categoryImage,
@@ -49,7 +49,7 @@ class Datum {
         this.closing,
     });
 
-    factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+    factory Categorystockdata.fromJson(Map<String, dynamic> json) => Categorystockdata(
         id: json["id"],
         categoryName: json["category_name"],
         categoryImage: json["category_image"],

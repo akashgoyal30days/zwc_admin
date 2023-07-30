@@ -9,6 +9,7 @@ import 'package:zwc/controllers/dashboard_controller.dart';
 import 'package:zwc/data/shared_preference.dart';
 import 'package:zwc/screens/Navigation_drawer.dart';
 import 'package:zwc/widgets/Members_data.dart';
+import 'package:zwc/widgets/drywasateoverview.dart';
 
 import '../../widgets/environment_saved.dart';
 import '../../widgets/statistics.dart';
@@ -180,18 +181,40 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 setState(() {
                                   branchdropdownvalue = value;
 
-                                  dashboardcontroller.getDashboard(
-                                      dateRange, value.toString(), "month");
+                                  dashboardcontroller
+                                      .getDashboard(
+                                          dateRange, value.toString(), "month")
+                                      .then((value) {
+                                    dashboardcontroller
+                                        .getstockreportbycategory(
+                                      fromdate: DateFormat("y-MM-dd")
+                                          .format(dateRange.start)
+                                          .toString(),
+                                      todate: DateFormat("y-MM-dd")
+                                          .format(dateRange.end)
+                                          .toString(),
+                                      category: "1",
+                                    );
+                                  });
                                 });
                               },
                             ),
                           )),
                         ),
-                        const SizedBox(height: 16),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Drywasteoverview(
+                            dateRange: dateRange,
+                            totaldrywaste: dashboardcontroller.DrywasteCollected
+                                .toString(),
+                            stockdata: dashboardcontroller
+                                .getstockdatabycategory!.data),
+                        const SizedBox(height: 10),
                         MembersDataScreen(
                             dateRange: dateRange,
                             membersdata: controller.membersData),
-                        const SizedBox(height: 16),
+                        const SizedBox(height: 10),
                         EnvironmentSavedWidget(
                           dateRange: dateRange,
                           environmentSaving: controller.environmentSaved,

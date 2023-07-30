@@ -18,6 +18,7 @@ class DashboardController extends GetxController {
   String? errorText;
   String? Waste_collected;
   String? drywet_Waste_collected;
+  String? DrywasteCollected;
   String? wet_Waste_collected;
   String? totalcitizen;
   String? totalcollector;
@@ -61,7 +62,8 @@ class DashboardController extends GetxController {
     return getallbranchdata;
   }
 
-  Future getDashboard(DateTimeRange dateRange, String branchid, String gap) async {
+  Future getDashboard(
+      DateTimeRange dateRange, String branchid, String gap) async {
     certificateModel = null;
     showLoading = true;
     errorText = null;
@@ -109,6 +111,9 @@ class DashboardController extends GetxController {
     try {
       drywet_Waste_collected =
           body["data"]["dry_wet_waste_collection_graph"]["title"].toString();
+      DrywasteCollected = body["data"]["dry_wet_waste_collection_graph"]
+              ["total_dry"]
+          .toString();
       labels = body["data"]["dry_wet_waste_collection_graph"]["label"] as List;
       data = body["data"]["dry_wet_waste_collection_graph"]["wet"] as List;
       data1 = body["data"]["dry_wet_waste_collection_graph"]["dry"] as List;
@@ -140,7 +145,8 @@ class DashboardController extends GetxController {
     lastUpdatedOn = DateTime.now();
     update();
   }
-GetstockreportbycategoryModel? getstockdatabycategory;
+
+  GetstockreportbycategoryModel? getstockdatabycategory;
 
   Future<GetstockreportbycategoryModel?> getstockreportbycategory(
       {String? fromdate, String? todate, String? category}) async {
