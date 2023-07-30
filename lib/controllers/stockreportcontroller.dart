@@ -10,11 +10,9 @@ import 'package:zwc/model/gettotalstockreportmodel.dart';
 
 import '../api/api_client.dart';
 import '../api/urls.dart';
-import '../model/Getallproductlistmodel.dart';
 
 class StockReportController extends GetxController {
   bool showloading = false;
-
 
   Getallproductcategorylist? getallproductcategorylist;
 
@@ -36,7 +34,6 @@ class StockReportController extends GetxController {
     }
     return getallproductcategorylist;
   }
-
 
   GettotalstockreportModel? gettotalstockdata;
 

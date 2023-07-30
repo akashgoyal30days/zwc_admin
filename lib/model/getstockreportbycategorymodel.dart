@@ -1,62 +1,73 @@
+// To parse this JSON data, do
+//
+//     final getstockreportbycategoryModel = getstockreportbycategoryModelFromJson(jsonString);
+
+import 'dart:convert';
+
+GetstockreportbycategoryModel getstockreportbycategoryModelFromJson(String str) => GetstockreportbycategoryModel.fromJson(json.decode(str));
+
+String getstockreportbycategoryModelToJson(GetstockreportbycategoryModel data) => json.encode(data.toJson());
+
 class GetstockreportbycategoryModel {
-  bool? status;
-  List<Data>? data;
+    bool? status;
+    List<Datum>? data;
 
-  GetstockreportbycategoryModel({this.status, this.data});
+    GetstockreportbycategoryModel({
+        this.status,
+        this.data,
+    });
 
-  GetstockreportbycategoryModel.fromJson(Map<String, dynamic> json) {
-    status = json['status'];
-    if (json['data'] != null) {
-      data = <Data>[];
-      json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
-      });
-    }
-  }
+    factory GetstockreportbycategoryModel.fromJson(Map<String, dynamic> json) => GetstockreportbycategoryModel(
+        status: json["status"],
+        data: json["data"] == null ? [] : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
+    );
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
+    Map<String, dynamic> toJson() => {
+        "status": status,
+        "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
+    };
 }
 
-class Data {
-  String? id;
-  String? categoryName;
-  dynamic outQuantity;
-  dynamic inQuantity;
-  dynamic balance;
-  dynamic opening;
+class Datum {
+    String? id;
+    String? categoryName;
+    String? categoryImage;
+    dynamic outQuantity;
+    dynamic inQuantity;
+    dynamic balance;
+    dynamic opening;
+    int? closing;
 
-  Data(
-      {this.id,
-      this.categoryName,
-      this.outQuantity,
-      this.inQuantity,
-      this.balance,
-      this.opening});
+    Datum({
+        this.id,
+        this.categoryName,
+        this.categoryImage,
+        this.outQuantity,
+        this.inQuantity,
+        this.balance,
+        this.opening,
+        this.closing,
+    });
 
-  Data.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    categoryName = json['category_name'];
-    outQuantity = json['out_quantity'];
-    inQuantity = json['in_quantity'];
-    balance = json['balance'];
-    opening = json['opening'];
-  }
+    factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+        id: json["id"],
+        categoryName: json["category_name"],
+        categoryImage: json["category_image"],
+        outQuantity: json["out_quantity"],
+        inQuantity: json["in_quantity"],
+        balance: json["balance"],
+        opening: json["opening"],
+        closing: json["closing"],
+    );
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['category_name'] = this.categoryName;
-    data['out_quantity'] = this.outQuantity;
-    data['in_quantity'] = this.inQuantity;
-    data['balance'] = this.balance;
-    data['opening'] = this.opening;
-    return data;
-  }
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "category_name": categoryName,
+        "category_image": categoryImage,
+        "out_quantity": outQuantity,
+        "in_quantity": inQuantity,
+        "balance": balance,
+        "opening": opening,
+        "closing": closing,
+    };
 }

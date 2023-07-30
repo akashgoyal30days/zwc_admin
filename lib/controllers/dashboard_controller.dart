@@ -7,9 +7,11 @@ import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:zwc/api/api_client.dart';
 import 'package:zwc/api/urls.dart';
+import 'package:zwc/data/shared_preference.dart';
 import 'package:zwc/model/Getdashboardbranchesmodel.dart';
 
 import '../model/certificate_model.dart';
+import '../model/getstockreportbycategorymodel.dart';
 
 class DashboardController extends GetxController {
   bool showLoading = false, certificateLoading = false;
@@ -59,7 +61,7 @@ class DashboardController extends GetxController {
     return getallbranchdata;
   }
 
-  getDashboard(DateTimeRange dateRange, String branchid, String gap) async {
+  Future getDashboard(DateTimeRange dateRange, String branchid, String gap) async {
     certificateModel = null;
     showLoading = true;
     errorText = null;
@@ -137,6 +139,30 @@ class DashboardController extends GetxController {
     showLoading = false;
     lastUpdatedOn = DateTime.now();
     update();
+  }
+GetstockreportbycategoryModel? getstockdatabycategory;
+
+  Future<GetstockreportbycategoryModel?> getstockreportbycategory(
+      {String? fromdate, String? todate, String? category}) async {
+    showLoading = true;
+    update();
+    String? branchid =
+        await SharedPreferenceSingleTon.getData("dashboard_branch_id");
+
+    var response = await APIClient.post(URLS.getstockreportbycategory, body: {
+      "branch": branchid,
+      "category": category,
+      "fromdate": fromdate,
+      "todate": todate
+    });
+    var body = json.decode(response.body);
+    if (response.statusCode == 200) {
+      getstockdatabycategory = GetstockreportbycategoryModel.fromJson(body);
+      showLoading = false;
+      log(body.toString());
+      update();
+    }
+    return getstockdatabycategory;
   }
 
   getCertificate() async {

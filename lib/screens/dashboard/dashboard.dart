@@ -28,9 +28,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   final DashboardController dashboardcontroller =
       Get.put(DashboardController());
+
   String? branchdropdownvalue;
   String? apicallbranchid;
-  String? loginbranchid ;
+  String? loginbranchid;
   @override
   void initState() {
     dashboardcontroller.getallbranches().then((value) => {
@@ -39,11 +40,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
               branchdropdownvalue.toString() != "0")
             {apicallbranchid = branchdropdownvalue.toString()}
           else
-            {apicallbranchid = loginbranchid??"0"},
+            {apicallbranchid = loginbranchid ?? "0"},
           if (dashboardcontroller.drywetwastecollection.isEmpty)
             {
-              dashboardcontroller.getDashboard(
-                  dateRange, apicallbranchid.toString(), "month")
+              dashboardcontroller
+                  .getDashboard(dateRange, apicallbranchid.toString(), "month")
+                  .then((value) {
+                dashboardcontroller.getstockreportbycategory(
+                  fromdate:
+                      DateFormat("y-MM-dd").format(dateRange.start).toString(),
+                  todate:
+                      DateFormat("y-MM-dd").format(dateRange.end).toString(),
+                  category: "1",
+                );
+              })
             }
         });
 
@@ -53,7 +63,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
   getdashboardbranchid() async {
     branchdropdownvalue =
         SharedPreferenceSingleTon.getData("dashboard_branch_id").toString();
-    loginbranchid = SharedPreferenceSingleTon.getData("loginbranchid").toString();
+    loginbranchid =
+        SharedPreferenceSingleTon.getData("loginbranchid").toString();
     log(branchdropdownvalue.toString());
     setState(() {});
   }
@@ -96,7 +107,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           centerTitle: true,
         ),
         body: SafeArea(
-            child: controller.showLoading
+            child: dashboardcontroller.showLoading
                 ? const Padding(
                     padding: EdgeInsets.only(top: 18.0),
                     child: Center(child: CircularProgressIndicator()),
