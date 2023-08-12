@@ -4,22 +4,107 @@ import 'package:intl/intl.dart';
 
 import '../controllers/pickup_controller.dart';
 
-class PickupRequestWidget extends StatelessWidget {
+class PickupRequestWidget extends StatefulWidget {
   const PickupRequestWidget(this.model, {super.key});
   final PickRequestModel model;
+
+  @override
+  State<PickupRequestWidget> createState() => _PickupRequestWidgetState();
+}
+
+class _PickupRequestWidgetState extends State<PickupRequestWidget> {
+  DateFormat formattime = DateFormat("dd MMMM,y");
+  String errordatetimestring = "0000-00-00 00:00:00";
+  String? statusvalue;
+
+  taptochangesheet(BuildContext context, {String? requestid}) {
+    showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        builder: (BuildContext context) {
+          return StatefulBuilder(
+            builder: (BuildContext context, setState) {
+              return Container(
+                padding: EdgeInsets.all(16.0),
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      RadioListTile(
+                        title: Text("Accept"),
+                        value: "accept",
+                        groupValue: statusvalue,
+                        onChanged: (value) {
+                          setState(() {
+                            statusvalue = value.toString();
+                          });
+                        },
+                      ),
+                      RadioListTile(
+                        title: Text("Reject"),
+                        value: "reject",
+                        groupValue: statusvalue,
+                        onChanged: (value) {
+                          setState(() {
+                            statusvalue = value.toString();
+                          });
+                        },
+                      ),
+                      RadioListTile(
+                        title: Text("Complete"),
+                        value: "complete",
+                        groupValue: statusvalue,
+                        onChanged: (value) {
+                          setState(() {
+                            statusvalue = value.toString();
+                          });
+                        },
+                      ),
+                      Container(
+                        width: double.infinity,
+                        margin: EdgeInsets.symmetric(horizontal: 10),
+                        height: 50,
+                        child: TextButton(
+                          style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(Colors.green),
+                            foregroundColor:
+                                MaterialStateProperty.all(Colors.white),
+                            shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                            ),
+                          ),
+                          onPressed: () {},
+                          child: const Text("Proceed"),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+              ;
+            },
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
       child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.25,
+        height: MediaQuery.of(context).size.height * 0.27,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Stack(
             children: [
               Positioned.fill(
                 child: CachedNetworkImage(
-                  imageUrl: model.requestImage,
+                  imageUrl: widget.model.requestImage,
                   fit: BoxFit.cover,
                   placeholder: (_, __) =>
                       const Center(child: CircularProgressIndicator()),
@@ -43,9 +128,9 @@ class PickupRequestWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    StatusWidget(model.pickRequestsType),
+                    StatusWidget(widget.model.pickRequestsType),
                     const SizedBox(height: 8),
-                    if (model.pickRequestsType == 3)
+                    if (widget.model.pickRequestsType == 3)
                       Padding(
                         padding: const EdgeInsets.only(bottom: 8.0),
                         child: RichText(
@@ -54,8 +139,7 @@ class PickupRequestWidget extends StatelessWidget {
                               text: "Pickup between ",
                               style: TextStyle(color: Colors.white)),
                           TextSpan(
-                              text:
-                                  DateFormat.yMMMd().format(model.slotDateFrom),
+                              text: widget.model.slotDateFrom,
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -64,96 +148,157 @@ class PickupRequestWidget extends StatelessWidget {
                               text: " and ",
                               style: TextStyle(color: Colors.white)),
                           TextSpan(
-                              text: DateFormat.yMMMd().format(model.slotDateTo),
+                              text: widget.model.slotDateTo,
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                               )),
                         ])),
                       ),
-                    if (model.pickRequestsType == 2)
+                    if (widget.model.pickRequestsType == 2)
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          RichText(
-                            text: TextSpan(children: [
-                              const TextSpan(
-                                  text: "Rejected on ",
-                                  style: TextStyle(color: Colors.white)),
-                              TextSpan(
-                                  text: DateFormat.yMMMd()
-                                      .format(model.rejectionDateTime),
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                            ]),
-                          ),
-                          if(model.rejectionRemarks.isNotEmpty)
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8),
-                            child: RichText(
-                              text: const TextSpan(children: [
-                                TextSpan(
-                                    text: "Rejection Reason: ",
-                                    style: TextStyle(color: Colors.white)),
-                                TextSpan(
-                                    text:
-                                        "DateFormat.yMMMd().format(model.rejectionDateTime)",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                    )),
-                              ]),
+                          widget.model.rejectionDateTime == errordatetimestring
+                              ? SizedBox()
+                              : RichText(
+                                  text: TextSpan(children: [
+                                    const TextSpan(
+                                        text: "Rejected on ",
+                                        style: TextStyle(color: Colors.white)),
+                                    TextSpan(
+                                        text: formattime.format(DateTime.parse(
+                                            widget.model.rejectionDateTime)),
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        )),
+                                  ]),
+                                ),
+                          if (widget.model.rejectionRemarks.isNotEmpty)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8),
+                              child: RichText(
+                                text: TextSpan(children: [
+                                  TextSpan(
+                                      text: "Rejection Reason: ",
+                                      style: TextStyle(color: Colors.white)),
+                                  TextSpan(
+                                      text: widget.model.rejectionRemarks
+                                          .toString(),
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      )),
+                                ]),
+                              ),
                             ),
-                          ),
                           const SizedBox(height: 8),
                         ],
                       ),
-                    if (model.pickRequestsType == 1)
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0),
-                        child: RichText(
-                            text: TextSpan(children: [
-                          const TextSpan(
-                              text: "Pickedup on ",
-                              style: TextStyle(color: Colors.white)),
-                          TextSpan(
-                              text: DateFormat.yMMMd()
-                                  .format(model.pickupDateTime),
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              )),
-                        ])),
-                      ),
+                    if (widget.model.pickRequestsType == 1)
+                      widget.model.pickupDateTime == errordatetimestring
+                          ? SizedBox()
+                          : Padding(
+                              padding: const EdgeInsets.only(bottom: 8.0),
+                              child: RichText(
+                                  text: TextSpan(children: [
+                                const TextSpan(
+                                    text: "Pickedup on ",
+                                    style: TextStyle(color: Colors.white)),
+                                TextSpan(
+                                    text: formattime.format(DateTime.parse(
+                                        widget.model.pickupDateTime)),
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                              ])),
+                            ),
                     Row(
                       children: [
                         Expanded(
-                          child: RichText(
-                              text: TextSpan(children: [
-                            const TextSpan(
-                                text: "Requested on ",
-                                style: TextStyle(color: Colors.grey)),
-                            TextSpan(
-                                text: DateFormat.yMMMd()
-                                    .format(model.requestDateTime),
-                                style: const TextStyle(
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.bold,
-                                )),
-                          ])),
+                          child: widget.model.requestDateTime ==
+                                  errordatetimestring
+                              ? SizedBox()
+                              : RichText(
+                                  text: TextSpan(children: [
+                                  const TextSpan(
+                                      text: "Requested on ",
+                                      style: TextStyle(color: Colors.grey)),
+                                  TextSpan(
+                                      text: formattime.format(DateTime.parse(
+                                          widget.model.requestDateTime)),
+                                      style: const TextStyle(
+                                        color: Colors.grey,
+                                        fontWeight: FontWeight.bold,
+                                      )),
+                                ])),
                         ),
                         RichText(
                             text: TextSpan(children: [
                           TextSpan(
-                              text: model.approxWeight,
+                              text: widget.model.approxWeight,
                               style:
                                   const TextStyle(fontWeight: FontWeight.bold)),
                           const TextSpan(text: " kg"),
                         ])),
                       ],
-                    )
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    widget.model.name.toString() == ""
+                        ? SizedBox()
+                        : Container(
+                            child: Text(
+                              widget.model.name.toString(),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                    SizedBox(
+                      height: 2,
+                    ),
+                    widget.model.email.toString() == ""
+                        ? SizedBox()
+                        : Container(
+                            child: Text(
+                              widget.model.email.toString(),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        taptochangesheet(context,
+                            requestid: widget.model.id.toString());
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.5),
+                            borderRadius: BorderRadius.circular(5)),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 4),
+                          child: Center(
+                            child: Text(
+                              "Tap to change status",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ))
@@ -172,7 +317,7 @@ class PickupRequestWidget extends StatelessWidget {
                   height: MediaQuery.of(context).size.width * 0.30,
                   width: MediaQuery.of(context).size.width * 0.30,
                   child: CachedNetworkImage(
-                    imageUrl: model.requestImage,
+                    imageUrl: widget.model.requestImage,
                     placeholder: (__, _) =>
                         const Center(child: CircularProgressIndicator()),
                     fit: BoxFit.cover,
@@ -199,14 +344,14 @@ class PickupRequestWidget extends StatelessWidget {
                               fontWeight: FontWeight.bold, color: Colors.green),
                         ),
                         Text(
-                          DateFormat("d MMM, y").format(model.requestDateTime),
+                          widget.model.requestDateTime,
                         ),
                         const SizedBox(height: 6),
                       ],
                     ),
                   ],
                 ),
-                if (model.pickRequestsType == 1)
+                if (widget.model.pickRequestsType == 1)
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -225,14 +370,14 @@ class PickupRequestWidget extends StatelessWidget {
                                 color: Colors.green),
                           ),
                           Text(
-                            DateFormat("d MMM, y").format(model.pickupDateTime),
+                            widget.model.pickupDateTime,
                           ),
                           const SizedBox(height: 6),
                         ],
                       ),
                     ],
                   ),
-                if (model.pickRequestsType == 2)
+                if (widget.model.pickRequestsType == 2)
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -251,8 +396,7 @@ class PickupRequestWidget extends StatelessWidget {
                                 color: Colors.green),
                           ),
                           Text(
-                            DateFormat("d MMM, y")
-                                .format(model.rejectionDateTime),
+                            widget.model.rejectionDateTime,
                           ),
                           const SizedBox(height: 6),
                         ],
@@ -275,13 +419,13 @@ class PickupRequestWidget extends StatelessWidget {
                           style: TextStyle(
                               fontWeight: FontWeight.bold, color: Colors.green),
                         ),
-                        Text("${model.approxWeight} KG(s)"),
+                        Text("${widget.model.approxWeight} KG(s)"),
                         const SizedBox(height: 6),
                       ],
                     ),
                   ],
                 ),
-                if (model.pickRequestsType == 0)
+                if (widget.model.pickRequestsType == 0)
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -293,8 +437,7 @@ class PickupRequestWidget extends StatelessWidget {
                               color: Colors.black,
                             )),
                         TextSpan(
-                            text:
-                                DateFormat("d MMM").format(model.slotDateFrom),
+                            text: widget.model.slotDateFrom,
                             style: const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -305,8 +448,7 @@ class PickupRequestWidget extends StatelessWidget {
                               color: Colors.black,
                             )),
                         TextSpan(
-                            text:
-                                DateFormat("d MMM y").format(model.slotDateTo),
+                            text: widget.model.slotDateTo,
                             style: const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -314,7 +456,7 @@ class PickupRequestWidget extends StatelessWidget {
                       ])),
                     ],
                   ),
-                if (model.pickRequestsType == 1)
+                if (widget.model.pickRequestsType == 1)
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -326,8 +468,7 @@ class PickupRequestWidget extends StatelessWidget {
                               color: Colors.black,
                             )),
                         TextSpan(
-                            text: DateFormat("d MMM, y")
-                                .format(model.pickupDateTime),
+                            text: widget.model.pickupDateTime,
                             style: const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -335,7 +476,7 @@ class PickupRequestWidget extends StatelessWidget {
                       ])),
                     ],
                   ),
-                if (model.pickRequestsType == 2)
+                if (widget.model.pickRequestsType == 2)
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -347,7 +488,7 @@ class PickupRequestWidget extends StatelessWidget {
                               color: Colors.black,
                             )),
                         TextSpan(
-                            text: model.rejectionRemarks,
+                            text: widget.model.rejectionRemarks,
                             style: const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,

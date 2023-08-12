@@ -8,6 +8,7 @@ import 'package:zwc/controllers/Stock_transfer_controller.dart';
 import 'package:zwc/controllers/areamastercontroller.dart';
 import 'package:zwc/controllers/collection_management_controller.dart';
 import 'package:zwc/controllers/dashboard_controller.dart';
+import 'package:zwc/controllers/pickup_controller.dart';
 import 'package:zwc/controllers/purchasecontroller.dart';
 import 'package:zwc/controllers/resourcemanagemntcontroller.dart';
 import 'package:zwc/controllers/salescpntroller.dart';
@@ -46,6 +47,7 @@ import 'package:zwc/screens/WasteProcessing/addwasteprocessing.dart';
 import 'package:zwc/screens/WasteProcessing/getwasteprocessing.dart';
 import 'package:zwc/screens/auth/login.dart';
 import 'package:zwc/screens/dashboard/dashboard.dart';
+import 'package:zwc/screens/pickup/pickup.dart';
 
 class Navigationdrawer extends StatefulWidget {
   Navigationdrawer({Key? key}) : super(key: key);
@@ -121,6 +123,29 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                 Get.delete<DashboardController>();
 
                 Get.to(DashboardScreen());
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.local_shipping,
+                color: Colors.green,
+                size: 25,
+              ),
+              title: Text(
+                "Pickup Requests",
+                style: GoogleFonts.roboto(
+                    color: Colors.green, fontWeight: FontWeight.bold),
+              ),
+              onTap: () {
+                if (dbbranchid.toString() == "null" ||
+                    dbbranchid.toString() == "0") {
+                  Get.to(NoBranchselectedscreen());
+                } else {
+                  Get.back();
+                  Get.delete<PickupController>();
+
+                  Get.to(PickUpRequest());
+                }
               },
             ),
             ExpansionTile(
@@ -217,7 +242,7 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                 ),
               ],
             ),
-             ExpansionTile(
+            ExpansionTile(
               leading: Icon(
                 Icons.dashboard,
                 color: Colors.green,
@@ -249,7 +274,6 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                     }
                   },
                 ),
-              
               ],
             ),
             ExpansionTile(
@@ -817,7 +841,7 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                 Icons.dashboard,
                 color: Colors.green,
                 size: 25,
-              ), 
+              ),
               title: Text(
                 "Offline Data Sync",
                 style: GoogleFonts.roboto(

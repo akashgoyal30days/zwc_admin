@@ -99,8 +99,7 @@ class URLS {
   static const changePassword = "public/userDetail/update_password";
 
   //pickup requests
-  static const pastRequests = "public/wastePickupRequests/my_requests",
-      newRequests = "public/wastePickupRequests/request";
+  static const pastRequests = "wastePickupRequests/requests";
 
   //dashboard
   static const getDashboard = "dashboard";

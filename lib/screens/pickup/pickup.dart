@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:zwc/controllers/pickup_controller.dart';
-import 'package:zwc/screens/pickup/new_pickup_request.dart';
 
 import '../../widgets/pickup_request_widget.dart';
 
@@ -16,20 +15,12 @@ class PickUpRequest extends StatefulWidget {
 
 class _PickUpRequestState extends State<PickUpRequest> {
   Color indicatorColor = Colors.yellow;
+  final PickupController pickupcontroller = Get.put(PickupController());
 
   @override
   void initState() {
-    Get.put<PickupController>(PickupController());
+    pickupcontroller.getHistoryRequests();
     super.initState();
-  }
-
-  newRequest() async {
-    var controller = Get.find<PickupController>();
-    if (await Get.to(const NewPickupRequest(), fullscreenDialog: true) ==
-        true) {
-      controller.getHistoryRequests();
-    }
-    controller.newRequestErrorText = "";
   }
 
   @override
@@ -40,17 +31,11 @@ class _PickUpRequestState extends State<PickUpRequest> {
         appBar: AppBar(
           title: Text(
             "Pickup Requests",
-            style: GoogleFonts.roboto(
+            style: GoogleFonts.montserrat(
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
           ),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.add),
-              onPressed: newRequest,
-            )
-          ],
           centerTitle: true,
         ),
         body: controller.loadingHistory
@@ -175,12 +160,6 @@ class _PickUpRequestState extends State<PickUpRequest> {
                   ],
                 ),
               ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: newRequest,
-          icon: const Icon(Icons.add),
-          label: const Text("Pickup"),
-        ),
       );
     });
   }
