@@ -84,9 +84,6 @@ class _PasswordLoginState extends State<PasswordLogin> {
                           },
                           child: const Text("Forgot Password?"),
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
                         TextButton(
                           style: ButtonStyle(
                             backgroundColor:

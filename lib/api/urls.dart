@@ -98,8 +98,7 @@ class URLS {
   // password
   static const changePassword = "public/userDetail/update_password";
 
-    static const forgotpassword = "user/forgotpassword";
-
+  static const forgotpassword = "user/forgotpassword";
 
   //pickup requests
   static const pastRequests = "wastePickupRequests/requests";
@@ -109,4 +108,8 @@ class URLS {
 
   //bank details
   static const updateBank = "public/userDetail/update_user_bank_details";
+  static const accept_pickup_request = "wastePickupRequests/accept_request";
+  static const completed_pickup_request =
+      "wastePickupRequests/complete_request";
+  static const reject_pickup_request = "wastePickupRequests/reject_request";
 }

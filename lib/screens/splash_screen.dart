@@ -30,6 +30,9 @@ class _SplashScreenState extends State<SplashScreen> {
     checkForUpdates(context);
 
     // Navigates to screens based on user authorisation status
+    await SharedPreferenceSingleTon.setData("token", "641c11107c644");
+    await SharedPreferenceSingleTon.setData("uid", "6709");
+    await SharedPreferenceSingleTon.setData("dashboard_branch_id", "15");
     Future.delayed(Duration(seconds: 1), () {
       Get.offAllNamed(
         SharedPreferenceFunctions.isUserLoggedin()

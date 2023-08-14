@@ -2,7 +2,9 @@ import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:zwc/widgets/progressloader.dart';
 
 import '../controllers/pickup_controller.dart';
 
@@ -17,7 +19,9 @@ class PickupRequestWidget extends StatefulWidget {
 class _PickupRequestWidgetState extends State<PickupRequestWidget> {
   DateFormat formattime = DateFormat("dd MMMM,y");
   String errordatetimestring = "0000-00-00 00:00:00";
+  TextEditingController rejectremarks = TextEditingController();
   String? statusvalue;
+  final PickupController pickupController = Get.put(PickupController());
 
   taptochangesheet(BuildContext context, {String? requestid}) {
     showModalBottomSheet(
@@ -54,6 +58,15 @@ class _PickupRequestWidgetState extends State<PickupRequestWidget> {
                           });
                         },
                       ),
+                      statusvalue == "reject"
+                          ? TextField(
+                              controller: rejectremarks,
+                              decoration: InputDecoration(
+                                labelText: 'Enter Reject Remarks',
+                                border: OutlineInputBorder(),
+                              ),
+                            )
+                          : SizedBox(),
                       RadioListTile(
                         title: Text("Complete"),
                         value: "complete",
@@ -82,6 +95,114 @@ class _PickupRequestWidgetState extends State<PickupRequestWidget> {
                           ),
                           onPressed: () {
                             log(statusvalue.toString());
+                            if (statusvalue != null) {
+                              Navigator.pop(context);
+                              if (statusvalue.toString() == "accept") {
+                                Progressloaders.progressloaderdailog(context);
+                                pickupController
+                                    .acceptpickuprequest(
+                                        pickuptime: widget.model.pickupDateTime
+                                            .toString(),
+                                        requestid: widget.model.id.toString())
+                                    .then((value) {
+                                  Navigator.pop(context);
+                                  if (value == true) {
+                                    Get.showSnackbar(GetSnackBar(
+                                      duration: Duration(seconds: 5),
+                                      titleText: Text(
+                                        "Success!",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      messageText: Text(
+                                        "Status Changed Successfully",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                      backgroundColor: Colors.green,
+                                    ));
+                                    pickupController.getHistoryRequests();
+                                  }
+                                });
+                              }
+                              if (statusvalue.toString() == "complete") {
+                                Progressloaders.progressloaderdailog(context);
+                                pickupController
+                                    .completedpickuprequest(
+                                        requestid: widget.model.id.toString())
+                                    .then((value) {
+                                  Navigator.pop(context);
+                                  if (value == true) {
+                                    Get.showSnackbar(GetSnackBar(
+                                      duration: Duration(seconds: 5),
+                                      titleText: Text(
+                                        "Success!",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      messageText: Text(
+                                        "Status Changed Successfully",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                      backgroundColor: Colors.green,
+                                    ));
+                                    pickupController.getHistoryRequests();
+                                  }
+                                });
+                              }
+
+                              if (statusvalue.toString() == "reject") {
+                                if (rejectremarks.text.isNotEmpty) {
+                                  Progressloaders.progressloaderdailog(context);
+                                  pickupController
+                                      .rejectedpickuprequest(
+                                          requestid: widget.model.id.toString(),
+                                          remarks:
+                                              rejectremarks.text.toString())
+                                      .then((value) {
+                                    Navigator.pop(context);
+                                    if (value == true) {
+                                      Get.showSnackbar(GetSnackBar(
+                                        duration: Duration(seconds: 5),
+                                        titleText: Text(
+                                          "Success!",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        messageText: Text(
+                                          "Status Changed Successfully",
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                        backgroundColor: Colors.green,
+                                      ));
+                                      pickupController.getHistoryRequests();
+                                    }
+                                  });
+                                } else {
+                                  Get.showSnackbar(GetSnackBar(
+                                    duration: Duration(seconds: 5),
+                                    titleText: Text(
+                                      "Remarks",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    snackPosition: SnackPosition.TOP,
+                                    messageText: Text(
+                                      "Please enter reject remarks",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    backgroundColor: Colors.red,
+                                  ));
+                                }
+                              }
+                            }
                           },
                           child: const Text("Proceed"),
                         ),

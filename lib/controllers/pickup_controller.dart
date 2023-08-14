@@ -16,8 +16,6 @@ class PickupController extends GetxController {
       rejectedRequests = [],
       completedRequests = [];
 
-  
-
   getHistoryRequests() async {
     pendingRequests.clear();
     acceptedRequests.clear();
@@ -54,6 +52,52 @@ class PickupController extends GetxController {
     loadingHistory = false;
     update();
   }
+
+  Future<bool> acceptpickuprequest(
+      {String? requestid, String? pickuptime}) async {
+    var response = await APIClient.post(URLS.accept_pickup_request, body: {
+      "request": requestid.toString(),
+      "pickup_time": pickuptime.toString()
+    });
+
+    var body = json.decode(response.body);
+    log(body["status"].toString());
+    if (body["status"].toString() == "true") {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<bool> completedpickuprequest({
+    String? requestid,
+  }) async {
+    var response = await APIClient.post(URLS.completed_pickup_request, body: {
+      "request": requestid.toString(),
+    });
+
+    var body = json.decode(response.body);
+    log(body["status"].toString());
+    if (body["status"].toString() == "true") {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<bool> rejectedpickuprequest(
+      {String? requestid, String? remarks}) async {
+    var response = await APIClient.post(URLS.reject_pickup_request,
+        body: {"request": requestid.toString(), "remarks": remarks.toString()});
+
+    var body = json.decode(response.body);
+    log(body["status"].toString());
+    if (body["status"].toString() == "true") {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
 class PickRequestModel {
@@ -81,8 +125,8 @@ class PickRequestModel {
   PickRequestModel(data)
       : id = data["id"],
         requestDateTime = (data["request_date_time"]),
-        name = (data["name"]??""),
-        email = (data["email"]??""),
+        name = (data["name"] ?? ""),
+        email = (data["email"] ?? ""),
         slotDateFrom = (data["slot_date_from"]),
         slotDateTo = (data["slot_date_to"]),
         acceptanceDateTime = (data["acceptance_date_time"]),
