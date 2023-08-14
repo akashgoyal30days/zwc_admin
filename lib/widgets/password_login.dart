@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:zwc/screens/auth/forgotpasswordscreen.dart';
 
 import '../controllers/login_ctrl.dart';
 import 'custom_text_field.dart';
@@ -77,10 +78,12 @@ class _PasswordLoginState extends State<PasswordLogin> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        // TextButton(
-                        //   onPressed: widget.changetoOTP,
-                        //   child: const Text("Instead login with OTP"),
-                        // ),
+                        TextButton(
+                          onPressed: () {
+                            Get.to(Forgotpassword());
+                          },
+                          child: const Text("Forgot Password?"),
+                        ),
                         SizedBox(
                           height: 20,
                         ),
@@ -99,7 +102,6 @@ class _PasswordLoginState extends State<PasswordLogin> {
                           onPressed: login,
                           child: const Text("Log in"),
                         ),
-                       
                         const SizedBox(height: 10),
                       ],
                     ),
