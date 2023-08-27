@@ -47,6 +47,7 @@ import 'package:zwc/screens/WasteProcessing/addwasteprocessing.dart';
 import 'package:zwc/screens/WasteProcessing/getwasteprocessing.dart';
 import 'package:zwc/screens/auth/login.dart';
 import 'package:zwc/screens/dashboard/dashboard.dart';
+import 'package:zwc/screens/messagebrodscast/messagebrodcast.dart';
 import 'package:zwc/screens/pickup/pickup.dart';
 
 class Navigationdrawer extends StatefulWidget {
@@ -864,6 +865,23 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                 Get.back();
 
                 Get.to(OfflineDataSync());
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.dashboard,
+                color: Colors.green,
+                size: 25,
+              ),
+              title: Text(
+                "Notification Brodcast",
+                style: GoogleFonts.roboto(
+                    color: Colors.green, fontWeight: FontWeight.bold),
+              ),
+              onTap: () async {
+                Get.back();
+
+                Get.to(messagebroadcastscreen());
               },
             ),
             ListTile(
