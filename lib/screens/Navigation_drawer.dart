@@ -59,12 +59,55 @@ class Navigationdrawer extends StatefulWidget {
 
 class _NavigationdrawerState extends State<Navigationdrawer> {
   final db = DatabaseHelper.instance;
+  final SegragatedController segregatedcontroller =
+      Get.put(SegragatedController());
+  final UserManagementController usermanagemntcontroller =
+      Get.put(UserManagementController());
   @override
   void initState() {
     getdashboardbranchid();
     getqrcodedatalength();
+    uploadallqrdataavailable();
 
     super.initState();
+  }
+
+  uploadallqrdataavailable() async {
+    List<localqrdatamodel> localqrdata = [];
+    var response = await db.getalllocalqrdata();
+    localqrdata = response.map((e) => localqrdatamodel.fromJson(e)).toList();
+    setState(() {});
+    if (localqrdata.length > 0) {
+      segregatedcontroller
+          .addsegregationdetailsbyQR(localqrdata: localqrdata)
+          .then((value) => {
+                if (value)
+                  {
+                    // QuickAlert.show(
+                    //     barrierDismissible: false,
+                    //     context: context,
+                    //     type: QuickAlertType.success,
+                    //     title: 'Congratulations',
+                    //     text: 'Data Sync Successfully',
+                    //     onConfirmBtnTap: () async {
+                    //       Navigator.pop(context);
+                    //       await db.deleteAlllocalQrdata();
+                    //     }),
+                  }
+                else
+                  {
+                    // QuickAlert.show(
+                    //     barrierDismissible: false,
+                    //     context: context,
+                    //     type: QuickAlertType.error,
+                    //     title: 'Data Not Sync',
+                    //     text: 'Please Try Again ',
+                    //     onConfirmBtnTap: () async {
+                    //       Navigator.pop(context);
+                    //     }),
+                  }
+              });
+    } else {}
   }
 
   String? dbbranchid;
@@ -126,29 +169,34 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                 Get.to(DashboardScreen());
               },
             ),
-            ListTile(
-              leading: Icon(
-                Icons.local_shipping,
-                color: Colors.green,
-                size: 25,
-              ),
-              title: Text(
-                "Pickup Requests",
-                style: GoogleFonts.roboto(
-                    color: Colors.green, fontWeight: FontWeight.bold),
-              ),
-              onTap: () {
-                if (dbbranchid.toString() == "null" ||
-                    dbbranchid.toString() == "0") {
-                  Get.to(NoBranchselectedscreen());
-                } else {
-                  Get.back();
-                  Get.delete<PickupController>();
+             usermanagemntcontroller.PickuprequestModule.isNotEmpty&&
+            usermanagemntcontroller.PickuprequestModule.first.isView
+                        .toString() ==
+                    "1"
+                ? ListTile(
+                    leading: Icon(
+                      Icons.local_shipping,
+                      color: Colors.green,
+                      size: 25,
+                    ),
+                    title: Text(
+                      "Pickup Requests",
+                      style: GoogleFonts.roboto(
+                          color: Colors.green, fontWeight: FontWeight.bold),
+                    ),
+                    onTap: () {
+                      if (dbbranchid.toString() == "null" ||
+                          dbbranchid.toString() == "0") {
+                        Get.to(NoBranchselectedscreen());
+                      } else {
+                        Get.back();
+                        Get.delete<PickupController>();
 
-                  Get.to(PickUpRequest());
-                }
-              },
-            ),
+                        Get.to(PickUpRequest());
+                      }
+                    },
+                  )
+                : SizedBox(),
             ExpansionTile(
               leading: Icon(
                 Icons.dashboard,
@@ -161,86 +209,111 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                     color: Colors.green, fontWeight: FontWeight.bold),
               ),
               children: [
-                ListTile(
-                  title: Center(
-                    child: Text(
-                      "State",
-                      style: GoogleFonts.roboto(
-                          color: Colors.green, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  onTap: () {
-                    if (dbbranchid.toString() == "null" ||
-                        dbbranchid.toString() == "0") {
-                      Get.to(NoBranchselectedscreen());
-                    } else {
-                      Get.back();
-                      Get.delete<AreaMasterController>();
+                             usermanagemntcontroller.StateModule.isNotEmpty&&
 
-                      Get.to(GetStateDetails());
-                    }
-                  },
-                ),
-                ListTile(
-                  title: Center(
-                    child: Text(
-                      "District",
-                      style: GoogleFonts.roboto(
-                          color: Colors.green, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  onTap: () {
-                    if (dbbranchid.toString() == "null" ||
-                        dbbranchid.toString() == "0") {
-                      Get.to(NoBranchselectedscreen());
-                    } else {
-                      Get.back();
-                      Get.delete<AreaMasterController>();
+                usermanagemntcontroller.StateModule.first.isView.toString() ==
+                        "1"
+                    ? ListTile(
+                        title: Center(
+                          child: Text(
+                            "State",
+                            style: GoogleFonts.roboto(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        onTap: () {
+                          if (dbbranchid.toString() == "null" ||
+                              dbbranchid.toString() == "0") {
+                            Get.to(NoBranchselectedscreen());
+                          } else {
+                            Get.back();
+                            Get.delete<AreaMasterController>();
 
-                      Get.to(GetDistrictDetails());
-                    }
-                  },
-                ),
-                ListTile(
-                  title: Center(
-                    child: Text(
-                      "City",
-                      style: GoogleFonts.roboto(
-                          color: Colors.green, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  onTap: () {
-                    if (dbbranchid.toString() == "null" ||
-                        dbbranchid.toString() == "0") {
-                      Get.to(NoBranchselectedscreen());
-                    } else {
-                      Get.back();
-                      Get.delete<AreaMasterController>();
+                            Get.to(GetStateDetails());
+                          }
+                        },
+                      )
+                    : SizedBox(),
+                                 usermanagemntcontroller.DistrictModule.isNotEmpty&&
 
-                      Get.to(GetCityDetails());
-                    }
-                  },
-                ),
-                ListTile(
-                  title: Center(
-                    child: Text(
-                      "Area",
-                      style: GoogleFonts.roboto(
-                          color: Colors.green, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  onTap: () {
-                    if (dbbranchid.toString() == "null" ||
-                        dbbranchid.toString() == "0") {
-                      Get.to(NoBranchselectedscreen());
-                    } else {
-                      Get.back();
-                      Get.delete<AreaMasterController>();
+                usermanagemntcontroller.DistrictModule.first.isView
+                            .toString() ==
+                        "1"
+                    ? ListTile(
+                        title: Center(
+                          child: Text(
+                            "District",
+                            style: GoogleFonts.roboto(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        onTap: () {
+                          if (dbbranchid.toString() == "null" ||
+                              dbbranchid.toString() == "0") {
+                            Get.to(NoBranchselectedscreen());
+                          } else {
+                            Get.back();
+                            Get.delete<AreaMasterController>();
 
-                      Get.to(GetAreaDetails());
-                    }
-                  },
-                ),
+                            Get.to(GetDistrictDetails());
+                          }
+                        },
+                      )
+                    : SizedBox(),
+                                 usermanagemntcontroller.CityModule.isNotEmpty&&
+
+                usermanagemntcontroller.CityModule.first.isView.toString() ==
+                        "1"
+                    ? ListTile(
+                        title: Center(
+                          child: Text(
+                            "City",
+                            style: GoogleFonts.roboto(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        onTap: () {
+                          if (dbbranchid.toString() == "null" ||
+                              dbbranchid.toString() == "0") {
+                            Get.to(NoBranchselectedscreen());
+                          } else {
+                            Get.back();
+                            Get.delete<AreaMasterController>();
+
+                            Get.to(GetCityDetails());
+                          }
+                        },
+                      )
+                    : SizedBox(),
+                                 usermanagemntcontroller.AreaModule.isNotEmpty&&
+
+                usermanagemntcontroller.AreaModule.first.isView.toString() ==
+                        "1"
+                    ? ListTile(
+                        title: Center(
+                          child: Text(
+                            "Area",
+                            style: GoogleFonts.roboto(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        onTap: () {
+                          if (dbbranchid.toString() == "null" ||
+                              dbbranchid.toString() == "0") {
+                            Get.to(NoBranchselectedscreen());
+                          } else {
+                            Get.back();
+                            Get.delete<AreaMasterController>();
+
+                            Get.to(GetAreaDetails());
+                          }
+                        },
+                      )
+                    : SizedBox(),
               ],
             ),
             ExpansionTile(
@@ -417,42 +490,56 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                     color: Colors.green, fontWeight: FontWeight.bold),
               ),
               children: [
-                ListTile(
-                  title: Center(
-                    child: Text(
-                      "Collection Details",
-                      style: GoogleFonts.roboto(
-                          color: Colors.green, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  onTap: () {
-                    if (dbbranchid.toString() == "null" ||
-                        dbbranchid.toString() == "0") {
-                      Get.to(NoBranchselectedscreen());
-                    } else {
-                      Get.delete<CollectionManagementController>();
-                      Get.to(GetCollectionDetailsScreen());
-                    }
-                  },
-                ),
-                ListTile(
-                  title: Center(
-                    child: Text(
-                      "Add Collection Details",
-                      style: GoogleFonts.roboto(
-                          color: Colors.green, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  onTap: () {
-                    if (dbbranchid.toString() == "null" ||
-                        dbbranchid.toString() == "0") {
-                      Get.to(NoBranchselectedscreen());
-                    } else {
-                      Get.delete<CollectionManagementController>();
-                      Get.to(addcollectiondetails());
-                    }
-                  },
-                ),
+                             usermanagemntcontroller.CollectionsModule.isNotEmpty&&
+
+                usermanagemntcontroller.CollectionsModule.first.isView
+                            .toString() ==
+                        "1"
+                    ? ListTile(
+                        title: Center(
+                          child: Text(
+                            "Collection Details",
+                            style: GoogleFonts.roboto(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        onTap: () {
+                          if (dbbranchid.toString() == "null" ||
+                              dbbranchid.toString() == "0") {
+                            Get.to(NoBranchselectedscreen());
+                          } else {
+                            Get.delete<CollectionManagementController>();
+                            Get.to(GetCollectionDetailsScreen());
+                          }
+                        },
+                      )
+                    : SizedBox(),
+                                 usermanagemntcontroller.CollectionsModule.isNotEmpty&&
+
+                usermanagemntcontroller.CollectionsModule.first.isAdd
+                            .toString() ==
+                        "1"
+                    ? ListTile(
+                        title: Center(
+                          child: Text(
+                            "Add Collection Details",
+                            style: GoogleFonts.roboto(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        onTap: () {
+                          if (dbbranchid.toString() == "null" ||
+                              dbbranchid.toString() == "0") {
+                            Get.to(NoBranchselectedscreen());
+                          } else {
+                            Get.delete<CollectionManagementController>();
+                            Get.to(addcollectiondetails());
+                          }
+                        },
+                      )
+                    : SizedBox(),
               ],
             ),
             ExpansionTile(
@@ -467,42 +554,56 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                     color: Colors.green, fontWeight: FontWeight.bold),
               ),
               children: [
-                ListTile(
-                  title: Center(
-                    child: Text(
-                      "Waste Processsing Details",
-                      style: GoogleFonts.roboto(
-                          color: Colors.green, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  onTap: () {
-                    if (dbbranchid.toString() == "null" ||
-                        dbbranchid.toString() == "0") {
-                      Get.to(NoBranchselectedscreen());
-                    } else {
-                      Get.delete<WasteProcessingController>();
-                      Get.to(GetWasteProcessingScreen());
-                    }
-                  },
-                ),
-                ListTile(
-                  title: Center(
-                    child: Text(
-                      "Add Waste Processing",
-                      style: GoogleFonts.roboto(
-                          color: Colors.green, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  onTap: () {
-                    if (dbbranchid.toString() == "null" ||
-                        dbbranchid.toString() == "0") {
-                      Get.to(NoBranchselectedscreen());
-                    } else {
-                      Get.delete<WasteProcessingController>();
-                      Get.to(addwasteprocessing());
-                    }
-                  },
-                ),
+                             usermanagemntcontroller.WasteProcessingModule.isNotEmpty&&
+
+                usermanagemntcontroller.WasteProcessingModule.first.isView
+                            .toString() ==
+                        "1"
+                    ? ListTile(
+                        title: Center(
+                          child: Text(
+                            "Waste Processsing Details",
+                            style: GoogleFonts.roboto(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        onTap: () {
+                          if (dbbranchid.toString() == "null" ||
+                              dbbranchid.toString() == "0") {
+                            Get.to(NoBranchselectedscreen());
+                          } else {
+                            Get.delete<WasteProcessingController>();
+                            Get.to(GetWasteProcessingScreen());
+                          }
+                        },
+                      )
+                    : SizedBox(),
+                                 usermanagemntcontroller.WasteProcessingModule.isNotEmpty&&
+
+                usermanagemntcontroller.WasteProcessingModule.first.isAdd
+                            .toString() ==
+                        "1"
+                    ? ListTile(
+                        title: Center(
+                          child: Text(
+                            "Add Waste Processing",
+                            style: GoogleFonts.roboto(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        onTap: () {
+                          if (dbbranchid.toString() == "null" ||
+                              dbbranchid.toString() == "0") {
+                            Get.to(NoBranchselectedscreen());
+                          } else {
+                            Get.delete<WasteProcessingController>();
+                            Get.to(addwasteprocessing());
+                          }
+                        },
+                      )
+                    : SizedBox(),
               ],
             ),
             ExpansionTile(
@@ -517,46 +618,58 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                     color: Colors.green, fontWeight: FontWeight.bold),
               ),
               children: [
-                ListTile(
-                  title: Center(
-                    child: Text(
-                      "Stock Transfer Details",
-                      style: GoogleFonts.roboto(
-                          color: Colors.green, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  onTap: () {
-                    if (dbbranchid.toString() == "null" ||
-                        dbbranchid.toString() == "0") {
-                      Get.to(NoBranchselectedscreen());
-                    } else {
-                      Get.back();
-                      Get.delete<StockTransferController>();
+                usermanagemntcontroller.Stocktransfermodule.isNotEmpty &&
+                        usermanagemntcontroller.Stocktransfermodule.first.isView
+                                .toString() ==
+                            "1"
+                    ? ListTile(
+                        title: Center(
+                          child: Text(
+                            "Stock Transfer Details",
+                            style: GoogleFonts.roboto(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        onTap: () {
+                          if (dbbranchid.toString() == "null" ||
+                              dbbranchid.toString() == "0") {
+                            Get.to(NoBranchselectedscreen());
+                          } else {
+                            Get.back();
+                            Get.delete<StockTransferController>();
 
-                      Get.to(GetStockTransferDetails());
-                    }
-                  },
-                ),
-                ListTile(
-                  title: Center(
-                    child: Text(
-                      "Add Stock Transfer",
-                      style: GoogleFonts.roboto(
-                          color: Colors.green, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  onTap: () {
-                    if (dbbranchid.toString() == "null" ||
-                        dbbranchid.toString() == "0") {
-                      Get.to(NoBranchselectedscreen());
-                    } else {
-                      Get.back();
-                      Get.delete<StockTransferController>();
+                            Get.to(GetStockTransferDetails());
+                          }
+                        },
+                      )
+                    : SizedBox(),
+                usermanagemntcontroller.Stocktransfermodule.isNotEmpty &&
+                        usermanagemntcontroller.Stocktransfermodule.first.isAdd
+                                .toString() ==
+                            "1"
+                    ? ListTile(
+                        title: Center(
+                          child: Text(
+                            "Add Stock Transfer",
+                            style: GoogleFonts.roboto(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        onTap: () {
+                          if (dbbranchid.toString() == "null" ||
+                              dbbranchid.toString() == "0") {
+                            Get.to(NoBranchselectedscreen());
+                          } else {
+                            Get.back();
+                            Get.delete<StockTransferController>();
 
-                      Get.to(Addstockytransferdetails());
-                    }
-                  },
-                ),
+                            Get.to(Addstockytransferdetails());
+                          }
+                        },
+                      )
+                    : SizedBox(),
               ],
             ),
             ExpansionTile(
@@ -571,46 +684,57 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                     color: Colors.green, fontWeight: FontWeight.bold),
               ),
               children: [
-                ListTile(
-                  title: Center(
-                    child: Text(
-                      "Sales Details",
-                      style: GoogleFonts.roboto(
-                          color: Colors.green, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  onTap: () {
-                    if (dbbranchid.toString() == "null" ||
-                        dbbranchid.toString() == "0") {
-                      Get.to(NoBranchselectedscreen());
-                    } else {
-                      Get.back();
-                      Get.delete<SalesController>();
+                             usermanagemntcontroller.SaleModule.isNotEmpty&&
 
-                      Get.to(GetsalesdetailsScreen());
-                    }
-                  },
-                ),
-                ListTile(
-                  title: Center(
-                    child: Text(
-                      "Add Sales",
-                      style: GoogleFonts.roboto(
-                          color: Colors.green, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  onTap: () {
-                    if (dbbranchid.toString() == "null" ||
-                        dbbranchid.toString() == "0") {
-                      Get.to(NoBranchselectedscreen());
-                    } else {
-                      Get.back();
-                      Get.delete<SalesController>();
+                usermanagemntcontroller.SaleModule.first.isView.toString() ==
+                        "1"
+                    ? ListTile(
+                        title: Center(
+                          child: Text(
+                            "Sales Details",
+                            style: GoogleFonts.roboto(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        onTap: () {
+                          if (dbbranchid.toString() == "null" ||
+                              dbbranchid.toString() == "0") {
+                            Get.to(NoBranchselectedscreen());
+                          } else {
+                            Get.back();
+                            Get.delete<SalesController>();
 
-                      Get.to(Addsalesdetails());
-                    }
-                  },
-                ),
+                            Get.to(GetsalesdetailsScreen());
+                          }
+                        },
+                      )
+                    : SizedBox(),
+                                 usermanagemntcontroller.SaleModule.isNotEmpty&&
+
+                usermanagemntcontroller.SaleModule.first.isAdd.toString() == "1"
+                    ? ListTile(
+                        title: Center(
+                          child: Text(
+                            "Add Sales",
+                            style: GoogleFonts.roboto(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        onTap: () {
+                          if (dbbranchid.toString() == "null" ||
+                              dbbranchid.toString() == "0") {
+                            Get.to(NoBranchselectedscreen());
+                          } else {
+                            Get.back();
+                            Get.delete<SalesController>();
+
+                            Get.to(Addsalesdetails());
+                          }
+                        },
+                      )
+                    : SizedBox(),
               ],
             ),
             ExpansionTile(
@@ -625,46 +749,61 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                     color: Colors.green, fontWeight: FontWeight.bold),
               ),
               children: [
-                ListTile(
-                  title: Center(
-                    child: Text(
-                      "Purchase Details",
-                      style: GoogleFonts.roboto(
-                          color: Colors.green, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  onTap: () {
-                    if (dbbranchid.toString() == "null" ||
-                        dbbranchid.toString() == "0") {
-                      Get.to(NoBranchselectedscreen());
-                    } else {
-                      Get.back();
-                      Get.delete<PurchaseController>();
 
-                      Get.to(GetpurchasedetailsScreen());
-                    }
-                  },
-                ),
-                ListTile(
-                  title: Center(
-                    child: Text(
-                      "Add Purchase",
-                      style: GoogleFonts.roboto(
-                          color: Colors.green, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  onTap: () {
-                    if (dbbranchid.toString() == "null" ||
-                        dbbranchid.toString() == "0") {
-                      Get.to(NoBranchselectedscreen());
-                    } else {
-                      Get.back();
-                      Get.delete<PurchaseController>();
+                             usermanagemntcontroller.PurchaseModule.isNotEmpty&&
 
-                      Get.to(AddPurchaseDeatils());
-                    }
-                  },
-                ),
+                usermanagemntcontroller.PurchaseModule.first.isView
+                            .toString() ==
+                        "1"
+                    ? ListTile(
+                        title: Center(
+                          child: Text(
+                            "Purchase Details",
+                            style: GoogleFonts.roboto(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        onTap: () {
+                          if (dbbranchid.toString() == "null" ||
+                              dbbranchid.toString() == "0") {
+                            Get.to(NoBranchselectedscreen());
+                          } else {
+                            Get.back();
+                            Get.delete<PurchaseController>();
+
+                            Get.to(GetpurchasedetailsScreen());
+                          }
+                        },
+                      )
+                    : SizedBox(),
+
+                                 usermanagemntcontroller.PurchaseModule.isNotEmpty&&
+
+                usermanagemntcontroller.PurchaseModule.first.isAdd.toString() ==
+                        "1"
+                    ? ListTile(
+                        title: Center(
+                          child: Text(
+                            "Add Purchase",
+                            style: GoogleFonts.roboto(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        onTap: () {
+                          if (dbbranchid.toString() == "null" ||
+                              dbbranchid.toString() == "0") {
+                            Get.to(NoBranchselectedscreen());
+                          } else {
+                            Get.back();
+                            Get.delete<PurchaseController>();
+
+                            Get.to(AddPurchaseDeatils());
+                          }
+                        },
+                      )
+                    : SizedBox(),
               ],
             ),
             ExpansionTile(
@@ -679,46 +818,60 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                     color: Colors.green, fontWeight: FontWeight.bold),
               ),
               children: [
-                ListTile(
-                  title: Center(
-                    child: Text(
-                      "Segregated Details",
-                      style: GoogleFonts.roboto(
-                          color: Colors.green, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  onTap: () {
-                    if (dbbranchid.toString() == "null" ||
-                        dbbranchid.toString() == "0") {
-                      Get.to(NoBranchselectedscreen());
-                    } else {
-                      Get.back();
-                      Get.delete<SegragatedController>();
+                             usermanagemntcontroller.Segregatedwastemodule.isNotEmpty&&
 
-                      Get.to(GetSegregatedDetails());
-                    }
-                  },
-                ),
-                ListTile(
-                  title: Center(
-                    child: Text(
-                      "Add Segregation Details",
-                      style: GoogleFonts.roboto(
-                          color: Colors.green, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  onTap: () {
-                    if (dbbranchid.toString() == "null" ||
-                        dbbranchid.toString() == "0") {
-                      Get.to(NoBranchselectedscreen());
-                    } else {
-                      Get.back();
-                      Get.delete<SegragatedController>();
+                usermanagemntcontroller.Segregatedwastemodule.first.isView
+                            .toString() ==
+                        "1"
+                    ? ListTile(
+                        title: Center(
+                          child: Text(
+                            "Segregated Details",
+                            style: GoogleFonts.roboto(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        onTap: () {
+                          if (dbbranchid.toString() == "null" ||
+                              dbbranchid.toString() == "0") {
+                            Get.to(NoBranchselectedscreen());
+                          } else {
+                            Get.back();
+                            Get.delete<SegragatedController>();
 
-                      Get.to(addsegregationdetails());
-                    }
-                  },
-                ),
+                            Get.to(GetSegregatedDetails());
+                          }
+                        },
+                      )
+                    : SizedBox(),
+                                 usermanagemntcontroller.Segregatedwastemodule.isNotEmpty&&
+
+                usermanagemntcontroller.Segregatedwastemodule.first.isAdd
+                            .toString() ==
+                        "1"
+                    ? ListTile(
+                        title: Center(
+                          child: Text(
+                            "Add Segregation Details",
+                            style: GoogleFonts.roboto(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        onTap: () {
+                          if (dbbranchid.toString() == "null" ||
+                              dbbranchid.toString() == "0") {
+                            Get.to(NoBranchselectedscreen());
+                          } else {
+                            Get.back();
+                            Get.delete<SegragatedController>();
+
+                            Get.to(addsegregationdetails());
+                          }
+                        },
+                      )
+                    : SizedBox(),
                 ListTile(
                   title: Center(
                     child: Text(
@@ -741,132 +894,144 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                 ),
               ],
             ),
-            ExpansionTile(
-              leading: Icon(
-                Icons.dashboard,
-                color: Colors.green,
-                size: 25,
-              ),
-              title: Text(
-                "Stock Reports",
-                style: GoogleFonts.roboto(
-                    color: Colors.green, fontWeight: FontWeight.bold),
-              ),
-              children: [
-                ListTile(
-                  title: Center(
-                    child: Text(
-                      "Total Stock Report",
+             usermanagemntcontroller.StockReportModule.isNotEmpty&&
+
+            usermanagemntcontroller.StockReportModule.first.isView.toString() ==
+                    "1"
+                ? ExpansionTile(
+                    leading: Icon(
+                      Icons.dashboard,
+                      color: Colors.green,
+                      size: 25,
+                    ),
+                    title: Text(
+                      "Stock Reports",
                       style: GoogleFonts.roboto(
                           color: Colors.green, fontWeight: FontWeight.bold),
                     ),
-                  ),
-                  onTap: () {
-                    if (dbbranchid.toString() == "null" ||
-                        dbbranchid.toString() == "0") {
-                      Get.to(NoBranchselectedscreen());
-                    } else {
-                      Get.back();
-                      Get.delete<StockReportController>();
-
-                      Get.to(gettotalstockreport());
-                    }
-                  },
-                ),
-                // ListTile(
-                //   title: Center(
-                //     child: Text(
-                //       "Stock Report by Category",
-                //       style: GoogleFonts.roboto(
-                //           color: Colors.green, fontWeight: FontWeight.bold),
-                //     ),
-                //   ),
-                //   onTap: () {
-                //     if (dbbranchid.toString() == "null" ||
-                //         dbbranchid.toString() == "0") {
-                //       Get.to(NoBranchselectedscreen());
-                //     } else {
-                //       Get.back();
-                //       Get.delete<StockReportController>();
-
-                //       Get.to(GetstockreportbyCategoryScreen());
-                //     }
-                //   },
-                // ),
-                ListTile(
-                  title: Center(
-                    child: Text(
-                      "Stock Report by Waste",
-                      style: GoogleFonts.roboto(
-                          color: Colors.green, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  onTap: () {
-                    if (dbbranchid.toString() == "null" ||
-                        dbbranchid.toString() == "0") {
-                      Get.to(NoBranchselectedscreen());
-                    } else {
-                      Get.back();
-                      Get.delete<StockReportController>();
-
-                      Get.to(GetstockreportbywasteScreen());
-                    }
-                  },
-                ),
-              ],
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.dashboard,
-                color: Colors.green,
-                size: 25,
-              ),
-              title: Text(
-                "IEC Programs",
-                style: GoogleFonts.roboto(
-                    color: Colors.green, fontWeight: FontWeight.bold),
-              ),
-              onTap: () {
-                if (dbbranchid.toString() == "null" ||
-                    dbbranchid.toString() == "0") {
-                  Get.to(NoBranchselectedscreen());
-                } else {
-                  Get.back();
-
-                  Get.to(GetIECProgramsDetails());
-                }
-              },
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.dashboard,
-                color: Colors.green,
-                size: 25,
-              ),
-              title: Text(
-                "Offline Data Sync",
-                style: GoogleFonts.roboto(
-                    color: Colors.green, fontWeight: FontWeight.bold),
-              ),
-              trailing: localqrdatalength == null
-                  ? SizedBox()
-                  : Container(
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle, color: Colors.red),
-                      child: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Text(
-                          localqrdatalength.toString(),
-                          style: TextStyle(color: Colors.white),
+                    children: [
+                      ListTile(
+                        title: Center(
+                          child: Text(
+                            "Total Stock Report",
+                            style: GoogleFonts.roboto(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
-                      ),
-                    ),
-              onTap: () {
-                Get.back();
+                        onTap: () {
+                          if (dbbranchid.toString() == "null" ||
+                              dbbranchid.toString() == "0") {
+                            Get.to(NoBranchselectedscreen());
+                          } else {
+                            Get.back();
+                            Get.delete<StockReportController>();
 
-                Get.to(OfflineDataSync());
-              },
-            ),
+                            Get.to(gettotalstockreport());
+                          }
+                        },
+                      ),
+                      // ListTile(
+                      //   title: Center(
+                      //     child: Text(
+                      //       "Stock Report by Category",
+                      //       style: GoogleFonts.roboto(
+                      //           color: Colors.green, fontWeight: FontWeight.bold),
+                      //     ),
+                      //   ),
+                      //   onTap: () {
+                      //     if (dbbranchid.toString() == "null" ||
+                      //         dbbranchid.toString() == "0") {
+                      //       Get.to(NoBranchselectedscreen());
+                      //     } else {
+                      //       Get.back();
+                      //       Get.delete<StockReportController>();
+
+                      //       Get.to(GetstockreportbyCategoryScreen());
+                      //     }
+                      //   },
+                      // ),
+                      ListTile(
+                        title: Center(
+                          child: Text(
+                            "Stock Report by Waste",
+                            style: GoogleFonts.roboto(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        onTap: () {
+                          if (dbbranchid.toString() == "null" ||
+                              dbbranchid.toString() == "0") {
+                            Get.to(NoBranchselectedscreen());
+                          } else {
+                            Get.back();
+                            Get.delete<StockReportController>();
+
+                            Get.to(GetstockreportbywasteScreen());
+                          }
+                        },
+                      ),
+                    ],
+                  )
+                : SizedBox(),
+             usermanagemntcontroller.IECProgramsModule.isNotEmpty&&
+
+            usermanagemntcontroller.IECProgramsModule.first.isView.toString() ==
+                    "1"
+                ? ListTile(
+                    leading: Icon(
+                      Icons.dashboard,
+                      color: Colors.green,
+                      size: 25,
+                    ),
+                    title: Text(
+                      "IEC Programs",
+                      style: GoogleFonts.roboto(
+                          color: Colors.green, fontWeight: FontWeight.bold),
+                    ),
+                    onTap: () {
+                      if (dbbranchid.toString() == "null" ||
+                          dbbranchid.toString() == "0") {
+                        Get.to(NoBranchselectedscreen());
+                      } else {
+                        Get.back();
+
+                        Get.to(GetIECProgramsDetails());
+                      }
+                    },
+                  )
+                : SizedBox(),
+            // ListTile(
+            //   leading: Icon(
+            //     Icons.dashboard,
+            //     color: Colors.green,
+            //     size: 25,
+            //   ),
+            //   title: Text(
+            //     "Offline Data Sync",
+            //     style: GoogleFonts.roboto(
+            //         color: Colors.green, fontWeight: FontWeight.bold),
+            //   ),
+            //   trailing: localqrdatalength == null
+            //       ? SizedBox()
+            //       : Container(
+            //           decoration: BoxDecoration(
+            //               shape: BoxShape.circle, color: Colors.red),
+            //           child: Padding(
+            //             padding: const EdgeInsets.all(4.0),
+            //             child: Text(
+            //               localqrdatalength.toString(),
+            //               style: TextStyle(color: Colors.white),
+            //             ),
+            //           ),
+            //         ),
+            //   onTap: () {
+            //     // Get.back();
+
+            //     // Get.to(OfflineDataSync());
+            //   },
+            // ),
             ListTile(
               leading: Icon(
                 Icons.dashboard,

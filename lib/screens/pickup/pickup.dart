@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:zwc/controllers/pickup_controller.dart';
+import 'package:zwc/controllers/usermanagemntconrollewer.dart';
 
 import '../../widgets/pickup_request_widget.dart';
 
@@ -16,6 +17,8 @@ class PickUpRequest extends StatefulWidget {
 class _PickUpRequestState extends State<PickUpRequest> {
   Color indicatorColor = Colors.yellow;
   final PickupController pickupcontroller = Get.put(PickupController());
+    final UserManagementController usermanagemntcontroller =
+      Get.put(UserManagementController());
 
   @override
   void initState() {

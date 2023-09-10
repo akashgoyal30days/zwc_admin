@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:zwc/controllers/usermanagemntconrollewer.dart';
 import 'package:zwc/widgets/progressloader.dart';
 
 import '../controllers/pickup_controller.dart';
@@ -22,6 +23,8 @@ class _PickupRequestWidgetState extends State<PickupRequestWidget> {
   TextEditingController rejectremarks = TextEditingController();
   String? statusvalue;
   final PickupController pickupController = Get.put(PickupController());
+  final UserManagementController usermanagemntcontroller =
+      Get.put(UserManagementController());
 
   taptochangesheet(BuildContext context, {String? requestid}) {
     showModalBottomSheet(

@@ -1,15 +1,15 @@
 class GetMyModulesModel {
   bool? status;
-  List<Data>? data;
+  List<ModuleData>? data;
 
   GetMyModulesModel({this.status, this.data});
 
   GetMyModulesModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <ModuleData>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(new ModuleData.fromJson(v));
       });
     }
   }
@@ -24,7 +24,7 @@ class GetMyModulesModel {
   }
 }
 
-class Data {
+class ModuleData {
   String? userRoleId;
   String? systemModuleId;
   int? isAdd;
@@ -33,7 +33,7 @@ class Data {
   int? isDelete;
   String? name;
 
-  Data(
+  ModuleData(
       {this.userRoleId,
       this.systemModuleId,
       this.isAdd,
@@ -42,7 +42,7 @@ class Data {
       this.isDelete,
       this.name});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  ModuleData.fromJson(Map<String, dynamic> json) {
     userRoleId = json['user_role_id'];
     systemModuleId = json['system_module_id'];
     isAdd = json['is_add'];

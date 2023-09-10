@@ -15,6 +15,20 @@ import '../data/shared_preference.dart';
 class UserManagementController extends GetxController {
   bool showloading = false;
   GetMyModulesModel? getmymodulesdata;
+  List<ModuleData> PickuprequestModule = [];
+  List<ModuleData> IECProgramsModule = [];
+  List<ModuleData> WasteProcessingModule = [];
+  List<ModuleData> PurchaseModule = [];
+  List<ModuleData> SaleModule = [];
+  List<ModuleData> StockReportModule = [];
+  List<ModuleData> Segregatedwastemodule = [];
+  List<ModuleData> Stocktransfermodule = [];
+  List<ModuleData> CollectionsModule = [];
+  List<ModuleData> StateModule = [];
+  List<ModuleData> CityModule = [];
+  List<ModuleData> DistrictModule = [];
+  List<ModuleData> AreaModule = [];
+
   Future<GetMyModulesModel?> getmymodulesdetsils() async {
     showloading = true;
     update();
@@ -27,7 +41,47 @@ class UserManagementController extends GetxController {
     var body = json.decode(response.body);
     if (response.statusCode == 200) {
       getmymodulesdata = GetMyModulesModel.fromJson(body);
-      log(body.toString());
+      log("Module : " + getmymodulesdata!.toJson().toString());
+      PickuprequestModule = getmymodulesdata!.data!
+          .where((element) => element.name.toString() == "Pickup Requests")
+          .toList();
+      IECProgramsModule = getmymodulesdata!.data!
+          .where((element) => element.name.toString() == "IEC Programs")
+          .toList();
+      WasteProcessingModule = getmymodulesdata!.data!
+          .where((element) => element.name.toString() == "Waste Processing")
+          .toList();
+      PurchaseModule = getmymodulesdata!.data!
+          .where((element) => element.name.toString() == "Purchase")
+          .toList();
+      SaleModule = getmymodulesdata!.data!
+          .where((element) => element.name.toString() == "Sale")
+          .toList();
+      StockReportModule = getmymodulesdata!.data!
+          .where((element) => element.name.toString() == "Stock Report")
+          .toList();
+      Segregatedwastemodule = getmymodulesdata!.data!
+          .where((element) => element.name.toString() == "Segregated Waste")
+          .toList();
+      CollectionsModule = getmymodulesdata!.data!
+          .where((element) => element.name.toString() == "Collections")
+          .toList();
+      StateModule = getmymodulesdata!.data!
+          .where((element) => element.name.toString() == "State")
+          .toList();
+      CityModule = getmymodulesdata!.data!
+          .where((element) => element.name.toString() == "City")
+          .toList();
+      DistrictModule = getmymodulesdata!.data!
+          .where((element) => element.name.toString() == "District")
+          .toList();
+      AreaModule = getmymodulesdata!.data!
+          .where((element) => element.name.toString() == "Area")
+          .toList();
+      Stocktransfermodule = getmymodulesdata!.data!
+          .where((element) => element.name.toString() == "Stock Transfer")
+          .toList();
+
       showloading = false;
       update();
     }
@@ -56,7 +110,7 @@ class UserManagementController extends GetxController {
 
   CertificateModel? certificateModel;
   bool certificateLoading = true;
-   getuserCertificate({String? uid}) async {
+  getuserCertificate({String? uid}) async {
     certificateLoading = true;
     update();
     try {

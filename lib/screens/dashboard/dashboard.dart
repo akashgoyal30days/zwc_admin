@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:zwc/controllers/dashboard_controller.dart';
+import 'package:zwc/controllers/usermanagemntconrollewer.dart';
 import 'package:zwc/data/shared_preference.dart';
 import 'package:zwc/screens/Navigation_drawer.dart';
 import 'package:zwc/widgets/Members_data.dart';
@@ -29,6 +30,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   final DashboardController dashboardcontroller =
       Get.put(DashboardController());
+  final UserManagementController usermanagemntcontroller =
+      Get.put(UserManagementController());
+      
 
   String? branchdropdownvalue;
   String? apicallbranchid;
@@ -57,6 +61,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               })
             }
         });
+    usermanagemntcontroller.getmymodulesdetsils();
 
     super.initState();
   }
