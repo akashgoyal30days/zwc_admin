@@ -47,7 +47,6 @@ import 'package:zwc/screens/WasteProcessing/addwasteprocessing.dart';
 import 'package:zwc/screens/WasteProcessing/getwasteprocessing.dart';
 import 'package:zwc/screens/auth/login.dart';
 import 'package:zwc/screens/dashboard/dashboard.dart';
-import 'package:zwc/screens/messagebrodscast/messagebrodcast.dart';
 import 'package:zwc/screens/pickup/pickup.dart';
 
 class Navigationdrawer extends StatefulWidget {
@@ -83,6 +82,9 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
           .then((value) => {
                 if (value)
                   {
+                    db.deleteAlllocalQrdata().then((value) {
+                      getqrcodedatalength();
+                    })
                     // QuickAlert.show(
                     //     barrierDismissible: false,
                     //     context: context,
