@@ -51,6 +51,15 @@ class DatabaseHelper {
         [lqrcode, lqrdate]);
   }
 
+  Future<int> checkdataavailablity({String? lqrcode, String? lqrdate}) async {
+    final db = await database;
+    List<Map> result = await db.rawQuery(
+        'SELECT * FROM $qrtablename WHERE $qrcode=? and $qrdate=?',
+        [lqrcode, lqrdate]);
+    var count = result.length;
+    return count;
+  }
+
   Future<int> getqrdatalength() async {
     final db = await database;
     var response = await db.query('$qrtablename');
@@ -64,7 +73,7 @@ class DatabaseHelper {
   }
 
   Future<int> deleteAlllocalQrdata() async {
-    Database db = await instance.database;
+    final db = await database;
     return await db.rawDelete('DELETE FROM $qrtablename WHERE id > 0');
   }
 }

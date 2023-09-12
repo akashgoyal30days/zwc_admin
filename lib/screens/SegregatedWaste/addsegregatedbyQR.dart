@@ -83,42 +83,62 @@ class _QRScannerScreenState extends State<AddSegregateByQR> {
                         String selectdate =
                             DateFormat("yyyy-MM-dd").format(DateTime.now());
                         await mobilescannercontroller.stop();
-                        log(scannedbarcodevalue.toString());
 
                         await db
-                            .insertqrcode(
+                            .checkdataavailablity(
                                 lqrcode: scannedbarcodevalue.toString(),
                                 lqrdate: selectdate.toString())
-                            .then((value) => {
-                                  log(value.toString()),
-                                  if (value > 1)
-                                    {
-                                      QuickAlert.show(
-                                          barrierDismissible: false,
-                                          context: context,
-                                          type: QuickAlertType.success,
-                                          title: 'Data Added Successfully',
-                                          text: 'You Can Sync Data Later',
-                                          onConfirmBtnTap: () {
-                                            Navigator.pop(context);
-                                            mobilescannercontroller.start();
-                                          }),
-                                    }
-                                  else
-                                    {
-                                      QuickAlert.show(
-                                          barrierDismissible: false,
-                                          context: context,
-                                          type: QuickAlertType.error,
-                                          title: 'Sorry',
-                                          text: 'Data Not Added',
-                                          confirmBtnText: "Try Again",
-                                          onConfirmBtnTap: () {
-                                            Navigator.pop(context);
-                                            mobilescannercontroller.start();
-                                          })
-                                    }
-                                });
+                            .then((available) async {
+                          if (available > 0) {
+                            {
+                              QuickAlert.show(
+                                  barrierDismissible: false,
+                                  context: context,
+                                  type: QuickAlertType.success,
+                                  title: 'Data Already Available',
+                                  text: 'Data will sync automatically',
+                                  onConfirmBtnTap: () {
+                                    Navigator.pop(context);
+                                    mobilescannercontroller.start();
+                                  });
+                            }
+                          } else {
+                            await db
+                                .insertqrcode(
+                                    lqrcode: scannedbarcodevalue.toString(),
+                                    lqrdate: selectdate.toString())
+                                .then((value) => {
+                                      log(value.toString()),
+                                      if (value > 0)
+                                        {
+                                          QuickAlert.show(
+                                              barrierDismissible: false,
+                                              context: context,
+                                              type: QuickAlertType.success,
+                                              title: 'Data Added Successfully',
+                                              text: 'Data will sync automatically',
+                                              onConfirmBtnTap: () {
+                                                Navigator.pop(context);
+                                                mobilescannercontroller.start();
+                                              }),
+                                        }
+                                      else
+                                        {
+                                          QuickAlert.show(
+                                              barrierDismissible: false,
+                                              context: context,
+                                              type: QuickAlertType.error,
+                                              title: 'Sorry',
+                                              text: 'Data Not Added',
+                                              confirmBtnText: "Try Again",
+                                              onConfirmBtnTap: () {
+                                                Navigator.pop(context);
+                                                mobilescannercontroller.start();
+                                              })
+                                        }
+                                    });
+                          }
+                        });
                       })),
                   QRScannerOverlay(overlayColour: Colors.black.withOpacity(0.5))
                 ],

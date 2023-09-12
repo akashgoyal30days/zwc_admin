@@ -169,10 +169,10 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                 Get.to(DashboardScreen());
               },
             ),
-             usermanagemntcontroller.PickuprequestModule.isNotEmpty&&
-            usermanagemntcontroller.PickuprequestModule.first.isView
-                        .toString() ==
-                    "1"
+            usermanagemntcontroller.PickuprequestModule.isNotEmpty &&
+                    usermanagemntcontroller.PickuprequestModule.first.isView
+                            .toString() ==
+                        "1"
                 ? ListTile(
                     leading: Icon(
                       Icons.local_shipping,
@@ -209,10 +209,10 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                     color: Colors.green, fontWeight: FontWeight.bold),
               ),
               children: [
-                             usermanagemntcontroller.StateModule.isNotEmpty&&
-
-                usermanagemntcontroller.StateModule.first.isView.toString() ==
-                        "1"
+                usermanagemntcontroller.StateModule.isNotEmpty &&
+                        usermanagemntcontroller.StateModule.first.isView
+                                .toString() ==
+                            "1"
                     ? ListTile(
                         title: Center(
                           child: Text(
@@ -235,11 +235,10 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                         },
                       )
                     : SizedBox(),
-                                 usermanagemntcontroller.DistrictModule.isNotEmpty&&
-
-                usermanagemntcontroller.DistrictModule.first.isView
-                            .toString() ==
-                        "1"
+                usermanagemntcontroller.DistrictModule.isNotEmpty &&
+                        usermanagemntcontroller.DistrictModule.first.isView
+                                .toString() ==
+                            "1"
                     ? ListTile(
                         title: Center(
                           child: Text(
@@ -262,10 +261,10 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                         },
                       )
                     : SizedBox(),
-                                 usermanagemntcontroller.CityModule.isNotEmpty&&
-
-                usermanagemntcontroller.CityModule.first.isView.toString() ==
-                        "1"
+                usermanagemntcontroller.CityModule.isNotEmpty &&
+                        usermanagemntcontroller.CityModule.first.isView
+                                .toString() ==
+                            "1"
                     ? ListTile(
                         title: Center(
                           child: Text(
@@ -288,10 +287,10 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                         },
                       )
                     : SizedBox(),
-                                 usermanagemntcontroller.AreaModule.isNotEmpty&&
-
-                usermanagemntcontroller.AreaModule.first.isView.toString() ==
-                        "1"
+                usermanagemntcontroller.AreaModule.isNotEmpty &&
+                        usermanagemntcontroller.AreaModule.first.isView
+                                .toString() ==
+                            "1"
                     ? ListTile(
                         title: Center(
                           child: Text(
@@ -490,11 +489,10 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                     color: Colors.green, fontWeight: FontWeight.bold),
               ),
               children: [
-                             usermanagemntcontroller.CollectionsModule.isNotEmpty&&
-
-                usermanagemntcontroller.CollectionsModule.first.isView
-                            .toString() ==
-                        "1"
+                usermanagemntcontroller.CollectionsModule.isNotEmpty &&
+                        usermanagemntcontroller.CollectionsModule.first.isView
+                                .toString() ==
+                            "1"
                     ? ListTile(
                         title: Center(
                           child: Text(
@@ -515,11 +513,10 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                         },
                       )
                     : SizedBox(),
-                                 usermanagemntcontroller.CollectionsModule.isNotEmpty&&
-
-                usermanagemntcontroller.CollectionsModule.first.isAdd
-                            .toString() ==
-                        "1"
+                usermanagemntcontroller.CollectionsModule.isNotEmpty &&
+                        usermanagemntcontroller.CollectionsModule.first.isAdd
+                                .toString() ==
+                            "1"
                     ? ListTile(
                         title: Center(
                           child: Text(
@@ -554,11 +551,11 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                     color: Colors.green, fontWeight: FontWeight.bold),
               ),
               children: [
-                             usermanagemntcontroller.WasteProcessingModule.isNotEmpty&&
-
-                usermanagemntcontroller.WasteProcessingModule.first.isView
-                            .toString() ==
-                        "1"
+                usermanagemntcontroller.WasteProcessingModule.isNotEmpty &&
+                        usermanagemntcontroller
+                                .WasteProcessingModule.first.isView
+                                .toString() ==
+                            "1"
                     ? ListTile(
                         title: Center(
                           child: Text(
@@ -579,11 +576,11 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                         },
                       )
                     : SizedBox(),
-                                 usermanagemntcontroller.WasteProcessingModule.isNotEmpty&&
-
-                usermanagemntcontroller.WasteProcessingModule.first.isAdd
-                            .toString() ==
-                        "1"
+                usermanagemntcontroller.WasteProcessingModule.isNotEmpty &&
+                        usermanagemntcontroller
+                                .WasteProcessingModule.first.isAdd
+                                .toString() ==
+                            "1"
                     ? ListTile(
                         title: Center(
                           child: Text(
@@ -684,10 +681,10 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                     color: Colors.green, fontWeight: FontWeight.bold),
               ),
               children: [
-                             usermanagemntcontroller.SaleModule.isNotEmpty&&
-
-                usermanagemntcontroller.SaleModule.first.isView.toString() ==
-                        "1"
+                usermanagemntcontroller.SaleModule.isNotEmpty &&
+                        usermanagemntcontroller.SaleModule.first.isView
+                                .toString() ==
+                            "1"
                     ? ListTile(
                         title: Center(
                           child: Text(
@@ -710,9 +707,10 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                         },
                       )
                     : SizedBox(),
-                                 usermanagemntcontroller.SaleModule.isNotEmpty&&
-
-                usermanagemntcontroller.SaleModule.first.isAdd.toString() == "1"
+                usermanagemntcontroller.SaleModule.isNotEmpty &&
+                        usermanagemntcontroller.SaleModule.first.isAdd
+                                .toString() ==
+                            "1"
                     ? ListTile(
                         title: Center(
                           child: Text(
@@ -749,12 +747,10 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                     color: Colors.green, fontWeight: FontWeight.bold),
               ),
               children: [
-
-                             usermanagemntcontroller.PurchaseModule.isNotEmpty&&
-
-                usermanagemntcontroller.PurchaseModule.first.isView
-                            .toString() ==
-                        "1"
+                usermanagemntcontroller.PurchaseModule.isNotEmpty &&
+                        usermanagemntcontroller.PurchaseModule.first.isView
+                                .toString() ==
+                            "1"
                     ? ListTile(
                         title: Center(
                           child: Text(
@@ -777,11 +773,10 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                         },
                       )
                     : SizedBox(),
-
-                                 usermanagemntcontroller.PurchaseModule.isNotEmpty&&
-
-                usermanagemntcontroller.PurchaseModule.first.isAdd.toString() ==
-                        "1"
+                usermanagemntcontroller.PurchaseModule.isNotEmpty &&
+                        usermanagemntcontroller.PurchaseModule.first.isAdd
+                                .toString() ==
+                            "1"
                     ? ListTile(
                         title: Center(
                           child: Text(
@@ -818,11 +813,11 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                     color: Colors.green, fontWeight: FontWeight.bold),
               ),
               children: [
-                             usermanagemntcontroller.Segregatedwastemodule.isNotEmpty&&
-
-                usermanagemntcontroller.Segregatedwastemodule.first.isView
-                            .toString() ==
-                        "1"
+                usermanagemntcontroller.Segregatedwastemodule.isNotEmpty &&
+                        usermanagemntcontroller
+                                .Segregatedwastemodule.first.isView
+                                .toString() ==
+                            "1"
                     ? ListTile(
                         title: Center(
                           child: Text(
@@ -845,11 +840,11 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                         },
                       )
                     : SizedBox(),
-                                 usermanagemntcontroller.Segregatedwastemodule.isNotEmpty&&
-
-                usermanagemntcontroller.Segregatedwastemodule.first.isAdd
-                            .toString() ==
-                        "1"
+                usermanagemntcontroller.Segregatedwastemodule.isNotEmpty &&
+                        usermanagemntcontroller
+                                .Segregatedwastemodule.first.isAdd
+                                .toString() ==
+                            "1"
                     ? ListTile(
                         title: Center(
                           child: Text(
@@ -894,10 +889,10 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                 ),
               ],
             ),
-             usermanagemntcontroller.StockReportModule.isNotEmpty&&
-
-            usermanagemntcontroller.StockReportModule.first.isView.toString() ==
-                    "1"
+            usermanagemntcontroller.StockReportModule.isNotEmpty &&
+                    usermanagemntcontroller.StockReportModule.first.isView
+                            .toString() ==
+                        "1"
                 ? ExpansionTile(
                     leading: Icon(
                       Icons.dashboard,
@@ -975,10 +970,10 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                     ],
                   )
                 : SizedBox(),
-             usermanagemntcontroller.IECProgramsModule.isNotEmpty&&
-
-            usermanagemntcontroller.IECProgramsModule.first.isView.toString() ==
-                    "1"
+            usermanagemntcontroller.IECProgramsModule.isNotEmpty &&
+                    usermanagemntcontroller.IECProgramsModule.first.isView
+                            .toString() ==
+                        "1"
                 ? ListTile(
                     leading: Icon(
                       Icons.dashboard,
@@ -1002,36 +997,6 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                     },
                   )
                 : SizedBox(),
-            // ListTile(
-            //   leading: Icon(
-            //     Icons.dashboard,
-            //     color: Colors.green,
-            //     size: 25,
-            //   ),
-            //   title: Text(
-            //     "Offline Data Sync",
-            //     style: GoogleFonts.roboto(
-            //         color: Colors.green, fontWeight: FontWeight.bold),
-            //   ),
-            //   trailing: localqrdatalength == null
-            //       ? SizedBox()
-            //       : Container(
-            //           decoration: BoxDecoration(
-            //               shape: BoxShape.circle, color: Colors.red),
-            //           child: Padding(
-            //             padding: const EdgeInsets.all(4.0),
-            //             child: Text(
-            //               localqrdatalength.toString(),
-            //               style: TextStyle(color: Colors.white),
-            //             ),
-            //           ),
-            //         ),
-            //   onTap: () {
-            //     // Get.back();
-
-            //     // Get.to(OfflineDataSync());
-            //   },
-            // ),
             ListTile(
               leading: Icon(
                 Icons.dashboard,
@@ -1039,16 +1004,46 @@ class _NavigationdrawerState extends State<Navigationdrawer> {
                 size: 25,
               ),
               title: Text(
-                "Notification Brodcast",
+                "Offline Data Sync",
                 style: GoogleFonts.roboto(
                     color: Colors.green, fontWeight: FontWeight.bold),
               ),
-              onTap: () async {
-                Get.back();
+              trailing: localqrdatalength == null
+                  ? SizedBox()
+                  : Container(
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle, color: Colors.red),
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Text(
+                          localqrdatalength.toString(),
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+              onTap: () {
+                // Get.back();
 
-                Get.to(messagebroadcastscreen());
+                // Get.to(OfflineDataSync());
               },
             ),
+            // ListTile(
+            //   leading: Icon(
+            //     Icons.dashboard,
+            //     color: Colors.green,
+            //     size: 25,
+            //   ),
+            //   title: Text(
+            //     "Notification Brodcast",
+            //     style: GoogleFonts.roboto(
+            //         color: Colors.green, fontWeight: FontWeight.bold),
+            //   ),
+            //   onTap: () async {
+            //     Get.back();
+
+            //     Get.to(messagebroadcastscreen());
+            //   },
+            // ),
             ListTile(
               leading: Icon(
                 Icons.logout,
