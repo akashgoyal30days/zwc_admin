@@ -45,7 +45,7 @@ class _GetCollectionDetailsScreenState extends State<GetStockTransferDetails> {
         context: context,
         initialDate: fromdate,
         firstDate: DateTime(2015, 8),
-        lastDate: DateTime.now());
+        lastDate: DateTime(2101));
     if (picked != null && picked != fromdate) {
       setState(() {
         fromdate = picked;
@@ -61,7 +61,7 @@ class _GetCollectionDetailsScreenState extends State<GetStockTransferDetails> {
         context: context,
         initialDate: todate,
         firstDate: DateTime(2015, 8),
-        lastDate: DateTime.now());
+        lastDate: DateTime(2101));
     if (picked != null && picked != todate) {
       setState(() {
         todate = picked;
@@ -344,32 +344,31 @@ class _GetCollectionDetailsScreenState extends State<GetStockTransferDetails> {
                                                                           GetStockTransferViewDetailsScreen())
                                                                     });
                                                           },
-                                                          child: 
-                                                            Row(
-                                                              children: [
-                                                                Icon(
-                                                                  Icons
-                                                                      .visibility,
+                                                          child: Row(
+                                                            children: [
+                                                              Icon(
+                                                                Icons
+                                                                    .visibility,
+                                                                color: Colors
+                                                                    .green,
+                                                              ),
+                                                              SizedBox(
+                                                                width: 2,
+                                                              ),
+                                                              Text(
+                                                                "View Details",
+                                                                style:
+                                                                    GoogleFonts
+                                                                        .roboto(
                                                                   color: Colors
                                                                       .green,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
                                                                 ),
-                                                                SizedBox(
-                                                                  width: 2,
-                                                                ),
-                                                                Text(
-                                                                  "View Details",
-                                                                  style:
-                                                                      GoogleFonts
-                                                                          .roboto(
-                                                                    color: Colors
-                                                                        .green,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
+                                                              ),
+                                                            ],
+                                                          ),
                                                         ),
                                                       ],
                                                     )

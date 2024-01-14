@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 
 import 'package:google_fonts/google_fonts.dart';
@@ -10,7 +11,9 @@ import 'package:zwc/controllers/usermanagemntconrollewer.dart';
 import 'package:zwc/data/shared_preference.dart';
 import 'package:zwc/screens/Navigation_drawer.dart';
 import 'package:zwc/widgets/Members_data.dart';
+import 'package:zwc/widgets/STPdatascreen.dart';
 import 'package:zwc/widgets/drywasateoverview.dart';
+import 'package:zwc/widgets/segregatedatascreen.dart';
 
 import '../../widgets/environment_saved.dart';
 import '../../widgets/statistics.dart';
@@ -32,7 +35,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
       Get.put(DashboardController());
   final UserManagementController usermanagemntcontroller =
       Get.put(UserManagementController());
-      
 
   String? branchdropdownvalue;
   String? apicallbranchid;
@@ -97,7 +99,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 var dates = await showDateRangePicker(
                   context: context,
                   firstDate: DateTime(2010),
-                  lastDate: DateTime.now(),
+                  lastDate: DateTime(2101),
                   initialDateRange: dateRange,
                 );
                 if (dates == null) return;
@@ -209,46 +211,68 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         SizedBox(
                           height: 10,
                         ),
-                        Drywasteoverview(
-                            dateRange: dateRange,
-                            totaldrywaste: dashboardcontroller.DrywasteCollected
-                                .toString(),
-                            stockdata: dashboardcontroller
-                                .getstockdatabycategory!.data),
-                        const SizedBox(height: 10),
-                        MembersDataScreen(
-                            dateRange: dateRange,
-                            membersdata: controller.membersData),
-                        const SizedBox(height: 10),
-                        EnvironmentSavedWidget(
-                          dateRange: dateRange,
-                          environmentSaving: controller.environmentSaved,
+
+                        dashboardcontroller.showcollectiondata == true
+                            ? Drywasteoverview(
+                                dateRange: dateRange,
+                                totaldrywaste: dashboardcontroller
+                                    .DrywasteCollected.toString(),
+                                stockdata: dashboardcontroller
+                                    .getstockdatabycategory!.data)
+                            : SizedBox(),
+                        SizedBox(
+                          height: 10,
                         ),
+                        dashboardcontroller.showSTP == true
+                            ? StpDataScreen(dateRange: dateRange)
+                            : SizedBox(),
+                        dashboardcontroller.showsegregateddata == true
+                            ? SegregateScreendata(
+                                segredateddata:
+                                    dashboardcontroller.segregateddata,
+                                dateRange: dateRange)
+                            : SizedBox(),
+                        const SizedBox(height: 10),
+                        dashboardcontroller.showcollectiondata == true
+                            ? MembersDataScreen(
+                                dateRange: dateRange,
+                                membersdata: controller.membersData)
+                            : SizedBox(),
+                        const SizedBox(height: 10),
+                        dashboardcontroller.showcollectiondata == true
+                            ? EnvironmentSavedWidget(
+                                dateRange: dateRange,
+                                environmentSaving: controller.environmentSaved,
+                              )
+                            : SizedBox(),
                         const SizedBox(height: 16),
-                        Statistics(
-                          dateRange: dateRange,
-                          wastecollected:
-                              controller.drywet_Waste_collected.toString(),
-                        ),
-                        if (controller.lastUpdatedOn != null)
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 16, right: 16, bottom: 8),
-                                child: Center(
-                                  child: Text(
-                                    "last updated at ${DateFormat("hh:mm").format(controller.lastUpdatedOn!)}",
-                                    style: TextStyle(
-                                        color: Colors.grey.shade400,
-                                        fontStyle: FontStyle.italic,
-                                        fontSize: 12),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                        dashboardcontroller.showcollectiondata == true
+                            ? Statistics(
+                                dateRange: dateRange,
+                                wastecollected: controller
+                                    .drywet_Waste_collected
+                                    .toString(),
+                              )
+                            : SizedBox(),
+                        // if (controller.lastUpdatedOn != null)
+                        //   Row(
+                        //     mainAxisAlignment: MainAxisAlignment.end,
+                        //     children: [
+                        //       Padding(
+                        //         padding: const EdgeInsets.only(
+                        //             top: 16, right: 16, bottom: 8),
+                        //         child: Center(
+                        //           child: Text(
+                        //             "last updated at ${DateFormat("hh:mm").format(controller.lastUpdatedOn!)}",
+                        //             style: TextStyle(
+                        //                 color: Colors.grey.shade400,
+                        //                 fontStyle: FontStyle.italic,
+                        //                 fontSize: 12),
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
                       ],
                     ),
                   )),

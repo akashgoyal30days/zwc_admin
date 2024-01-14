@@ -43,7 +43,7 @@ class _GetCollectionDetailsScreenState extends State<GetSegregatedDetails> {
         context: context,
         initialDate: fromdate,
         firstDate: DateTime(2015, 8),
-        lastDate: DateTime.now());
+        lastDate: DateTime(2101));
     if (picked != null && picked != fromdate) {
       setState(() {
         fromdate = picked;
@@ -59,7 +59,7 @@ class _GetCollectionDetailsScreenState extends State<GetSegregatedDetails> {
         context: context,
         initialDate: todate,
         firstDate: DateTime(2015, 8),
-        lastDate: DateTime.now());
+        lastDate: DateTime(2101));
     if (picked != null && picked != todate) {
       setState(() {
         todate = picked;
@@ -266,16 +266,17 @@ class _GetCollectionDetailsScreenState extends State<GetSegregatedDetails> {
                                                             .data![index]
                                                             .name
                                                             .toString()),
-                                                       
                                                       ],
                                                     ),
                                                     SizedBox(
                                                       height: 5,
                                                     ),
                                                     Row(
-                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
                                                       children: [
-                                                         Text(
+                                                        Text(
                                                           "Email",
                                                           style: TextStyle(
                                                               color:
@@ -295,9 +296,11 @@ class _GetCollectionDetailsScreenState extends State<GetSegregatedDetails> {
                                                       height: 5,
                                                     ),
                                                     Row(
-                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
                                                       children: [
-                                                         Text(
+                                                        Text(
                                                           "Contact",
                                                           style: TextStyle(
                                                               color:

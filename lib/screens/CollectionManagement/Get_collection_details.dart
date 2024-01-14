@@ -46,7 +46,7 @@ class _GetCollectionDetailsScreenState
         context: context,
         initialDate: fromdate,
         firstDate: DateTime(2015, 8),
-        lastDate: DateTime.now());
+        lastDate: DateTime(2101));
     if (picked != null && picked != fromdate) {
       setState(() {
         fromdate = picked;
@@ -62,7 +62,7 @@ class _GetCollectionDetailsScreenState
         context: context,
         initialDate: todate,
         firstDate: DateTime(2015, 8),
-        lastDate: DateTime.now());
+        lastDate: DateTime(2101));
     if (picked != null && picked != todate) {
       setState(() {
         todate = picked;
@@ -379,8 +379,7 @@ class _GetCollectionDetailsScreenState
                                                                             Get.to(CollectionViewDetailsScreen())
                                                                           });
                                                             },
-                                                            child:
-                                                             Row(
+                                                            child: Row(
                                                               children: [
                                                                 Icon(
                                                                   Icons

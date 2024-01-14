@@ -57,7 +57,7 @@ class _messagebroadcastscreenState extends State<messagebroadcastscreen> {
       }
     };
     var apibody = json.encode(body);
-    log("Data we sending : " + apibody.toString());
+    // log("Data we sending : " + apibody.toString());
 
     var url = Uri.parse("https://fcm.googleapis.com/fcm/send");
     try {
@@ -66,9 +66,9 @@ class _messagebroadcastscreenState extends State<messagebroadcastscreen> {
             "Key=AAAAAeyP5wc:APA91bFeUW0LF9jbuoeDVuJOdDODZ7KLaDipodlLbWWgApG84mJYFyAqexRS77EbL_BAUru0s4B1Q1bebZwFddc-qGNZ5SEjrVeiAcfEEpxDK5fpBr_fxN4EQHRbs1pfj6etpfSE2duw",
         "Content-Type": "application/json"
       });
-      log("Status Code : " + response.statusCode.toString());
+      // log("Status Code : " + response.statusCode.toString());
       var jsonresponse = jsonDecode(response.body.toString());
-      log("Firebase Message Response : " + jsonresponse.toString());
+      // log("Firebase Message Response : " + jsonresponse.toString());
       if (response.statusCode.toString() == "200") {
         Navigator.pop(context);
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -87,7 +87,7 @@ class _messagebroadcastscreenState extends State<messagebroadcastscreen> {
             content: Text("Error please try again..")));
       }
     } catch (error) {
-      log("Firebase Message Error : " + error.toString());
+      // log("Firebase Message Error : " + error.toString());
       Navigator.pop(context);
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           padding: EdgeInsets.all(20),

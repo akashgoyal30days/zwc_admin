@@ -9,6 +9,7 @@ import 'package:zwc/api/api_client.dart';
 import 'package:zwc/api/urls.dart';
 import 'package:zwc/data/shared_preference.dart';
 import 'package:zwc/model/Getdashboardbranchesmodel.dart';
+import 'package:zwc/model/Getstpmodel.dart';
 
 import '../model/certificate_model.dart';
 import '../model/getstockreportbycategorymodel.dart';
@@ -25,13 +26,21 @@ class DashboardController extends GetxController {
   String? totalaggregator;
   String? totalwarriors;
   String? totalrecyclers;
+  double? WaterLastFlow;
+  double? TotalWaterRecylled;
+  bool? showcollectiondata;
+  bool? showsegregateddata;
+  bool? showSTP;
 
   String rewards = "0";
   CertificateModel? certificateModel;
-  final List<WasteCollectedModel> wasteCollected = [];
-  final List<CollectionModel> collection = [];
-  final List<drywetWasteCollectedModel> drywetwastecollection = [];
-  final List<WasteCollectedModel> wetwastecollection = [];
+  List<WasteCollectedModel> wasteCollected = [];
+  List<CollectionModel> collection = [];
+  List<drywetWasteCollectedModel> drywetwastecollection = [];
+  List<WasteCollectedModel> wetwastecollection = [];
+  List segregateddata = [];
+  List Stpdata = [];
+  List<WaterStpDataModel> WatermeterData = [];
 
   final List<CollectionModel> environmentSaved = [];
   MembersData? membersData;
@@ -96,10 +105,22 @@ class DashboardController extends GetxController {
       totalcollector = body["data"]["collectors"].toString();
       totalrecyclers = body["data"]["recyclers"].toString();
       totalwarriors = body["data"]["warriors"].toString();
+      showcollectiondata = body["widgets"]["collection"].toString() == "1";
+      showsegregateddata = body["widgets"]["segregated"].toString() == "1";
+      showSTP = body["widgets"]["stp"].toString() == "1";
       membersData = MembersData(totalcitizen, totalaggregator, totalwarriors,
           totalrecyclers, totalcollector);
     } catch (e) {}
     try {
+      segregateddata = body["data"]["segregate"] as List;
+      Stpdata = body["data"]["stp"] as List;
+      var wdata = Stpdata[0]["data"]["history"] as List;
+      WaterLastFlow = Stpdata[0]["data"]["latest"]["params"]["volume"];
+      TotalWaterRecylled = Stpdata[0]["data"]["sum"]["params"]["volume"];
+      for (var i = 0; i < wdata.length; i++) {
+        WatermeterData.add(WaterStpDataModel(
+            wdata[i]["date"].toString(), wdata[i]["params"]["volume"]));
+      }
       Waste_collected =
           body["data"]["waste_collection_graph"]["first"]["title"].toString();
       labels = body["data"]["waste_collection_graph"]["first"]["label"] as List;
@@ -165,7 +186,7 @@ class DashboardController extends GetxController {
     if (response.statusCode == 200) {
       getstockdatabycategory = GetstockreportbycategoryModel.fromJson(body);
       showLoading = false;
-      log(body.toString());
+      // log(body.toString());
       update();
     }
     return getstockdatabycategory;
@@ -227,6 +248,12 @@ class CollectionModel {
   final String label;
   final double data;
   const CollectionModel(this.label, this.data);
+}
+
+class WaterStpDataModel {
+  final String label;
+  final double data;
+  const WaterStpDataModel(this.label, this.data);
 }
 
 class MembersData {

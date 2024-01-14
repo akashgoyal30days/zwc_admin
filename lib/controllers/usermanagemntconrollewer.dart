@@ -41,7 +41,7 @@ class UserManagementController extends GetxController {
     var body = json.decode(response.body);
     if (response.statusCode == 200) {
       getmymodulesdata = GetMyModulesModel.fromJson(body);
-      log("Module : " + getmymodulesdata!.toJson().toString());
+      // log("Module : " + getmymodulesdata!.toJson().toString());
       PickuprequestModule = getmymodulesdata!.data!
           .where((element) => element.name.toString() == "Pickup Requests")
           .toList();
