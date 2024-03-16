@@ -28,7 +28,8 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   DateTimeRange dateRange = DateTimeRange(
-      start: DateTime(2023, DateTime.now().month, DateTime.now().day - 60),
+      start: DateTime(
+          DateTime.now().year, DateTime.now().month, DateTime.now().day - 60),
       end: DateTime.now());
 
   final DashboardController dashboardcontroller =
@@ -106,7 +107,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 if (dateRange.start != dates.start ||
                     dateRange.end != dates.end) {
                   dateRange = dates;
-                  controller.getDashboard(dateRange, "0", "month");
+                  getdashboardbranchid();
+
+                  dashboardcontroller
+                      .getDashboard(
+                          dateRange, branchdropdownvalue.toString(), "month")
+                      .then((value) {
+                    dashboardcontroller.getstockreportbycategory(
+                      fromdate: DateFormat("y-MM-dd")
+                          .format(dateRange.start)
+                          .toString(),
+                      todate: DateFormat("y-MM-dd")
+                          .format(dateRange.end)
+                          .toString(),
+                      category: "1",
+                    );
+                  });
                   setState(() {});
                 }
               },

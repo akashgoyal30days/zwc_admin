@@ -52,7 +52,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         if (widget.inputType == TextInputType.phone)
           FilteringTextInputFormatter.allow(RegExp(r'[0-9]+[,,.]{0,1}[0-9]*')),
       ],
-      keyboardType: widget.inputType,
+      // keyboardType: widget.inputType,
       decoration: InputDecoration(
         counterText: "",
         hintText: widget.hint,
